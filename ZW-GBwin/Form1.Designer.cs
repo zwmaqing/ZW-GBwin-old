@@ -353,11 +353,11 @@
             this.superTabControl1.ControlBox.MenuBox,
             this.superTabControl1.ControlBox.CloseBox});
             this.superTabControl1.ControlBox.Visible = false;
+            this.superTabControl1.Controls.Add(this.superTabControlPanel10);
             this.superTabControl1.Controls.Add(this.superTabControlPanel1);
             this.superTabControl1.Controls.Add(this.superTabControlPanel4);
             this.superTabControl1.Controls.Add(this.superTabControlPanel6);
             this.superTabControl1.Controls.Add(this.superTabControlPanel3);
-            this.superTabControl1.Controls.Add(this.superTabControlPanel10);
             this.superTabControl1.Controls.Add(this.superTabControlPanel11);
             this.superTabControl1.Controls.Add(this.superTabControlPanel9);
             this.superTabControl1.Controls.Add(this.superTabControlPanel8);
@@ -616,7 +616,7 @@
             this.superTabControlPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.superTabControlPanel1.Location = new System.Drawing.Point(152, 0);
             this.superTabControlPanel1.Name = "superTabControlPanel1";
-            this.superTabControlPanel1.Size = new System.Drawing.Size(856, 663);
+            this.superTabControlPanel1.Size = new System.Drawing.Size(856, 565);
             this.superTabControlPanel1.TabIndex = 1;
             this.superTabControlPanel1.TabItem = this.tabItem_Device;
             // 
@@ -628,7 +628,7 @@
             this.panelEx19.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelEx19.Location = new System.Drawing.Point(0, 73);
             this.panelEx19.Name = "panelEx19";
-            this.panelEx19.Size = new System.Drawing.Size(856, 590);
+            this.panelEx19.Size = new System.Drawing.Size(856, 492);
             this.panelEx19.Style.Alignment = System.Drawing.StringAlignment.Center;
             this.panelEx19.Style.BackColor1.ColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelBackground;
             this.panelEx19.Style.BackColor2.ColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelBackground2;
@@ -1703,6 +1703,7 @@
             this.TopLeftCornerSize = 0;
             this.TopMost = true;
             this.TopRightCornerSize = 0;
+            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.panelEx_Title.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pic_CompLogo)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.superTabControl1)).EndInit();
