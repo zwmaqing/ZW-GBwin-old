@@ -117,14 +117,39 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="delete_net_32" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\delete_net_32.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <metadata name="styleManager1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>17, 17</value>
+  </metadata>
+  <metadata name="imageList1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>156, 17</value>
+  </metadata>
+  <data name="imageList1.ImageStream" mimetype="application/x-microsoft.net.object.binary.base64">
+    <value>
+        AAEAAAD/////AQAAAAAAAAAMAgAAAFdTeXN0ZW0uV2luZG93cy5Gb3JtcywgVmVyc2lvbj00LjAuMC4w
+        LCBDdWx0dXJlPW5ldXRyYWwsIFB1YmxpY0tleVRva2VuPWI3N2E1YzU2MTkzNGUwODkFAQAAACZTeXN0
+        ZW0uV2luZG93cy5Gb3Jtcy5JbWFnZUxpc3RTdHJlYW1lcgEAAAAERGF0YQcCAgAAAAkDAAAADwMAAABM
+        BAAAAk1TRnQBSQFMAwEBAAFAAQABQAEAARABAAEQAQAE/wEhAQAI/wFCAU0BNgcAATYDAAEoAwABQAMA
+        ARADAAEBAQABIAYAARAWAANWAb4DAAH/AwAB/wMAAf8DAAH/AwAB/wMAAf8DAAH/AwAB/wMAAf8DAAH/
+        AwAB/wMAAf8DAAH+Ax4BK8AAA0YBgQMAAf8DAAH/AwAB/wMAAf8DAAH/AwAB/wMAAf8DAAH/AwAB/wMA
+        Af8DAAH/AwAB/wMAAf8DAAH/AwAB/sAAAxwB+QMAAf8DAAH/AwAB/wMAAf8DAAH/AwAB/wMAAf8DAAH/
+        AwAB/wMAAf8DAAH/AwAB/wMAAf8DAAH/AwAB/8MAAf8DAAH/AwAB/wNWAbsDOwFlAzwBZgM8AWYDPAFm
+        AzwBZgM8AWYDPAFmAzwBZgM9AWkDAAH/AwAB/wMAAf/DAAH/AwAB/wMAAf8DJQE3AxABFgMlATcDJQE3
+        AyUBNwMlATcDJQE3AyUBNwMlATcEAAM2AfIDAAH/AwAB/8MAAf8DAAH/AwAB/wMlATcDPAFmAwAB/wMA
+        Af8DAAH/AwAB/wMAAf8DAAH/AwAB/wQAAzYB8gMAAf8DAAH/wwAB/wMAAf8DAAH/AyUBNwM8AWYDAAH/
+        AwAB/wMAAf8DAAH/AwAB/wMAAf8DAAH/BAADNgHyAwAB/wMAAf/DAAH/AwAB/wMAAf8DJQE3AzwBZgMA
+        Af8DAAH/AwAB/wMAAf8DAAH/AwAB/wMAAf8EAAM2AfIDAAH/AwAB/8MAAf8DAAH/AwAB/wMlATcDPAFn
+        AwAB/wMAAf8DAAH/AwAB/wMAAf8DAAH/AwAB/wQAAzYB8gMAAf8DAAH/wwAB/wMAAf8DAAH/AyUBNyQA
+        AzYB8gMAAf8DAAH/wwAB/wMAAf8DAAH/AyQBNiQAAzYB8gMAAf8DAAH/wwAB/wMAAf8DAAH/A1cB2gNO
+        AZkDTgGZA04BmQNOAZkDTgGZA04BmQNOAZkDTgGZA1ABnQMAAf8DAAH/AwAB/8MAAf8DAAH/AwAB/wMA
+        Af8DAAH/AwAB/wMAAf8DAAH/AwAB/wMAAf8DAAH/AwAB/wMAAf8DAAH/AwAB/wMAAf/AAANWAdgDAAH/
+        AwAB/wMAAf8DAAH/AwAB/wMAAf8DAAH/AwAB/wMAAf8DAAH/AwAB/wMAAf8DAAH/AwAB/wMAAf/AAAMT
+        ARoDAAH/AwAB/wMAAf8DAAH/AwAB/wMAAf8DAAH/AwAB/wMAAf8DAAH/AwAB/wMAAf8DAAH/AwAB/wNW
+        Ab7EAAMTARoDVgHYAwAB/wMAAf8DAAH/AwAB/wMAAf8DAAH/AwAB/wMAAf8DAAH/AwAB/wMcAfkDRgGB
+        xAABQgFNAT4HAAE+AwABKAMAAUADAAEQAwABAQEAAQEFAAGAFwAD/wEAAYAgAAEIBwABCAcAAQgHAAEI
+        BwABCAYAAQ8B+AYAAQ8B+CYAAYABAQYACw==
+</value>
   </data>
-  <data name="window_24px" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\window_24px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="zhiweiTitleLogo" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\zhiweiTitleLogo.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
+  <metadata name="$this.TrayHeight" type="System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>68</value>
+  </metadata>
 </root>
