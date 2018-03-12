@@ -118,13 +118,67 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="delete_net_32" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\delete_net_32.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="musicDel_net_32" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\musicDel_net_32.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="window_24px" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\window_24px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="previous_32px" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\previous_32px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="refresh_net_32" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\refresh_net_32.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="musicAdd_net_32" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\musicAdd_net_32.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="musicSoundPlanel_net_32" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\musicSoundPlanel_net_32.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="zhiweiTitleLogo" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\zhiweiTitleLogo.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="musicEdit_net_32" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\musicEdit_net_32.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="FolderMusicDel_net_32" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\FolderMusicDel_net_32.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="musicSoundAdd_net_32" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\musicSoundAdd_net_32.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="FolderMusicEdit_net_32" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\FolderMusicEdit_net_32.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="musicSoundDel_net_32" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\musicSoundDel_net_32.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="play_32px" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\play_32px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="musicSoundClear_net_32" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\musicSoundClear_net_32.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="delete_net_32" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\delete_net_32.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="musicSoundEdit_net_32" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\musicSoundEdit_net_32.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="FolderMusicAdd_net_32" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\FolderMusicAdd_net_32.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="musicSoundSeting_net_32" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\musicSoundSeting_net_32.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="musicSoundTask_net_32" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\musicSoundTask_net_32.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="next_32px" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\next_32px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="pause_32px" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\pause_32px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="stop_32px" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\stop_32px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>

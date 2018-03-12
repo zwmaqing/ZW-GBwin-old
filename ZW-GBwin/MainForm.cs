@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace ZW_GBwin
 {
-    public partial class Form1 : MetroForm
+    public partial class MainForm : MetroForm
     {
-        public Form1()
+        public MainForm()
         {
             InitializeComponent();
         }
