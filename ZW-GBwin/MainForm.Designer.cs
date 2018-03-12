@@ -72,19 +72,6 @@
             this.btnItem_PrevTimeMusic = new DevComponents.DotNetBar.ButtonItem();
             this.btnItem_NextTimeMusic = new DevComponents.DotNetBar.ButtonItem();
             this.tabItem_TimeMusic = new DevComponents.DotNetBar.SuperTabItem();
-            this.superTabControlPanel2 = new DevComponents.DotNetBar.SuperTabControlPanel();
-            this.panelEx18 = new DevComponents.DotNetBar.PanelEx();
-            this.panelEx2 = new DevComponents.DotNetBar.PanelEx();
-            this.ribbonBar2 = new DevComponents.DotNetBar.RibbonBar();
-            this.btnItem_AddRealMusic = new DevComponents.DotNetBar.ButtonItem();
-            this.btnItem_EditRealMusic = new DevComponents.DotNetBar.ButtonItem();
-            this.btnItem_DelRealMusic = new DevComponents.DotNetBar.ButtonItem();
-            this.btnItem_StartRealMusic = new DevComponents.DotNetBar.ButtonItem();
-            this.btnItem_PauseRealMusic = new DevComponents.DotNetBar.ButtonItem();
-            this.btnItem_StopRealMusic = new DevComponents.DotNetBar.ButtonItem();
-            this.btnItem_PrevRealMusic = new DevComponents.DotNetBar.ButtonItem();
-            this.btnItem_NextRealMusic = new DevComponents.DotNetBar.ButtonItem();
-            this.tabItem_RealMusic = new DevComponents.DotNetBar.SuperTabItem();
             this.superTabControlPanel5 = new DevComponents.DotNetBar.SuperTabControlPanel();
             this.panelEx15 = new DevComponents.DotNetBar.PanelEx();
             this.panelEx5 = new DevComponents.DotNetBar.PanelEx();
@@ -93,17 +80,6 @@
             this.btnItem_StopFireAlarm = new DevComponents.DotNetBar.ButtonItem();
             this.btnItem_SettingFireAlarm = new DevComponents.DotNetBar.ButtonItem();
             this.tabItem_FireAlarm = new DevComponents.DotNetBar.SuperTabItem();
-            this.superTabControlPanel4 = new DevComponents.DotNetBar.SuperTabControlPanel();
-            this.panelEx16 = new DevComponents.DotNetBar.PanelEx();
-            this.panelEx4 = new DevComponents.DotNetBar.PanelEx();
-            this.ribbonBar4 = new DevComponents.DotNetBar.RibbonBar();
-            this.btnItem_AddCollTask = new DevComponents.DotNetBar.ButtonItem();
-            this.btnItem_EditCollTask = new DevComponents.DotNetBar.ButtonItem();
-            this.btnItem_DelCollTask = new DevComponents.DotNetBar.ButtonItem();
-            this.btnItem_StartCollTask = new DevComponents.DotNetBar.ButtonItem();
-            this.btnItem_StopCollTask = new DevComponents.DotNetBar.ButtonItem();
-            this.btnItem_SetSoundCardCollTask = new DevComponents.DotNetBar.ButtonItem();
-            this.tabItem_CollectionPlay = new DevComponents.DotNetBar.SuperTabItem();
             this.superTabControlPanel9 = new DevComponents.DotNetBar.SuperTabControlPanel();
             this.panelEx12 = new DevComponents.DotNetBar.PanelEx();
             this.panelEx9 = new DevComponents.DotNetBar.PanelEx();
@@ -115,23 +91,6 @@
             this.superTabControlPanel11 = new DevComponents.DotNetBar.SuperTabControlPanel();
             this.panelEx10 = new DevComponents.DotNetBar.PanelEx();
             this.tabItem_BasicSetting = new DevComponents.DotNetBar.SuperTabItem();
-            this.superTabControlPanel7 = new DevComponents.DotNetBar.SuperTabControlPanel();
-            this.panelEx13 = new DevComponents.DotNetBar.PanelEx();
-            this.panelEx7 = new DevComponents.DotNetBar.PanelEx();
-            this.ribbonBar7 = new DevComponents.DotNetBar.RibbonBar();
-            this.btnItem_AddSystemUser = new DevComponents.DotNetBar.ButtonItem();
-            this.btnItem_EditSystemUser = new DevComponents.DotNetBar.ButtonItem();
-            this.btnItem_DelSystemUser = new DevComponents.DotNetBar.ButtonItem();
-            this.tabItem_SystemUser = new DevComponents.DotNetBar.SuperTabItem();
-            this.superTabControlPanel6 = new DevComponents.DotNetBar.SuperTabControlPanel();
-            this.panelEx14 = new DevComponents.DotNetBar.PanelEx();
-            this.panelEx6 = new DevComponents.DotNetBar.PanelEx();
-            this.ribbonBar6 = new DevComponents.DotNetBar.RibbonBar();
-            this.btnItem_StartTalkback = new DevComponents.DotNetBar.ButtonItem();
-            this.btnItem_StopTalkback = new DevComponents.DotNetBar.ButtonItem();
-            this.btnItem_SettingTalkback = new DevComponents.DotNetBar.ButtonItem();
-            this.btnItem_SetSoundCardTalkback = new DevComponents.DotNetBar.ButtonItem();
-            this.tabItem_Talkback = new DevComponents.DotNetBar.SuperTabItem();
             this.superTabControlPanel10 = new DevComponents.DotNetBar.SuperTabControlPanel();
             this.tabItem_Help = new DevComponents.DotNetBar.SuperTabItem();
             this.tabItem_PlayResources = new DevComponents.DotNetBar.SuperTabItem();
@@ -155,19 +114,11 @@
             this.panelEx1.SuspendLayout();
             this.superTabControlPanel3.SuspendLayout();
             this.panelEx3.SuspendLayout();
-            this.superTabControlPanel2.SuspendLayout();
-            this.panelEx2.SuspendLayout();
             this.superTabControlPanel5.SuspendLayout();
             this.panelEx5.SuspendLayout();
-            this.superTabControlPanel4.SuspendLayout();
-            this.panelEx4.SuspendLayout();
             this.superTabControlPanel9.SuspendLayout();
             this.panelEx9.SuspendLayout();
             this.superTabControlPanel11.SuspendLayout();
-            this.superTabControlPanel7.SuspendLayout();
-            this.panelEx7.SuspendLayout();
-            this.superTabControlPanel6.SuspendLayout();
-            this.panelEx6.SuspendLayout();
             this.superTabControlPanel8.SuspendLayout();
             this.panelEx8.SuspendLayout();
             this.SuspendLayout();
@@ -355,17 +306,13 @@
             this.superTabControl1.ControlBox.MenuBox,
             this.superTabControl1.ControlBox.CloseBox});
             this.superTabControl1.ControlBox.Visible = false;
-            this.superTabControl1.Controls.Add(this.superTabControlPanel8);
-            this.superTabControl1.Controls.Add(this.superTabControlPanel4);
             this.superTabControl1.Controls.Add(this.superTabControlPanel1);
-            this.superTabControl1.Controls.Add(this.superTabControlPanel10);
-            this.superTabControl1.Controls.Add(this.superTabControlPanel9);
-            this.superTabControl1.Controls.Add(this.superTabControlPanel6);
             this.superTabControl1.Controls.Add(this.superTabControlPanel3);
-            this.superTabControl1.Controls.Add(this.superTabControlPanel2);
             this.superTabControl1.Controls.Add(this.superTabControlPanel5);
+            this.superTabControl1.Controls.Add(this.superTabControlPanel8);
+            this.superTabControl1.Controls.Add(this.superTabControlPanel9);
             this.superTabControl1.Controls.Add(this.superTabControlPanel11);
-            this.superTabControl1.Controls.Add(this.superTabControlPanel7);
+            this.superTabControl1.Controls.Add(this.superTabControlPanel10);
             this.superTabControl1.ForeColor = System.Drawing.Color.Black;
             this.superTabControl1.Location = new System.Drawing.Point(0, 65);
             this.superTabControl1.Margin = new System.Windows.Forms.Padding(3, 0, 3, 3);
@@ -379,14 +326,10 @@
             this.superTabControl1.TabIndex = 2;
             this.superTabControl1.Tabs.AddRange(new DevComponents.DotNetBar.BaseItem[] {
             this.tabItem_Device,
-            this.tabItem_RealMusic,
             this.tabItem_TimeMusic,
             this.tabItem_FireAlarm,
-            this.tabItem_CollectionPlay,
             this.tabItem_MusicResources,
             this.tabItem_ChannlsGroup,
-            this.tabItem_Talkback,
-            this.tabItem_SystemUser,
             this.tabItem_BasicSetting,
             this.tabItem_Help});
             this.superTabControl1.TabStyle = DevComponents.DotNetBar.eSuperTabStyle.Office2010BackstageBlue;
@@ -713,165 +656,6 @@
             this.tabItem_TimeMusic.Name = "tabItem_TimeMusic";
             this.tabItem_TimeMusic.Text = "定时音乐";
             // 
-            // superTabControlPanel2
-            // 
-            this.superTabControlPanel2.Controls.Add(this.panelEx18);
-            this.superTabControlPanel2.Controls.Add(this.panelEx2);
-            this.superTabControlPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.superTabControlPanel2.Location = new System.Drawing.Point(152, 0);
-            this.superTabControlPanel2.Name = "superTabControlPanel2";
-            this.superTabControlPanel2.Size = new System.Drawing.Size(856, 663);
-            this.superTabControlPanel2.TabIndex = 0;
-            this.superTabControlPanel2.TabItem = this.tabItem_RealMusic;
-            // 
-            // panelEx18
-            // 
-            this.panelEx18.CanvasColor = System.Drawing.SystemColors.Control;
-            this.panelEx18.ColorSchemeStyle = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
-            this.panelEx18.DisabledBackColor = System.Drawing.Color.Empty;
-            this.panelEx18.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panelEx18.Location = new System.Drawing.Point(0, 73);
-            this.panelEx18.Name = "panelEx18";
-            this.panelEx18.Size = new System.Drawing.Size(856, 590);
-            this.panelEx18.Style.Alignment = System.Drawing.StringAlignment.Center;
-            this.panelEx18.Style.BackColor1.ColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelBackground;
-            this.panelEx18.Style.BackColor2.ColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelBackground2;
-            this.panelEx18.Style.Border = DevComponents.DotNetBar.eBorderType.SingleLine;
-            this.panelEx18.Style.BorderColor.ColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelBorder;
-            this.panelEx18.Style.ForeColor.ColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelText;
-            this.panelEx18.Style.GradientAngle = 90;
-            this.panelEx18.TabIndex = 4;
-            // 
-            // panelEx2
-            // 
-            this.panelEx2.CanvasColor = System.Drawing.SystemColors.Control;
-            this.panelEx2.ColorSchemeStyle = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
-            this.panelEx2.Controls.Add(this.ribbonBar2);
-            this.panelEx2.DisabledBackColor = System.Drawing.Color.Empty;
-            this.panelEx2.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panelEx2.Location = new System.Drawing.Point(0, 0);
-            this.panelEx2.Name = "panelEx2";
-            this.panelEx2.Size = new System.Drawing.Size(856, 73);
-            this.panelEx2.Style.Alignment = System.Drawing.StringAlignment.Center;
-            this.panelEx2.Style.BackColor1.ColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelBackground;
-            this.panelEx2.Style.BackColor2.ColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelBackground2;
-            this.panelEx2.Style.Border = DevComponents.DotNetBar.eBorderType.SingleLine;
-            this.panelEx2.Style.BorderColor.ColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelBorder;
-            this.panelEx2.Style.ForeColor.ColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelText;
-            this.panelEx2.Style.GradientAngle = 90;
-            this.panelEx2.TabIndex = 3;
-            // 
-            // ribbonBar2
-            // 
-            this.ribbonBar2.AutoOverflowEnabled = true;
-            // 
-            // 
-            // 
-            this.ribbonBar2.BackgroundMouseOverStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            // 
-            // 
-            // 
-            this.ribbonBar2.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.ribbonBar2.ContainerControlProcessDialogKey = true;
-            this.ribbonBar2.DragDropSupport = true;
-            this.ribbonBar2.Items.AddRange(new DevComponents.DotNetBar.BaseItem[] {
-            this.btnItem_AddRealMusic,
-            this.btnItem_EditRealMusic,
-            this.btnItem_DelRealMusic,
-            this.btnItem_StartRealMusic,
-            this.btnItem_PauseRealMusic,
-            this.btnItem_StopRealMusic,
-            this.btnItem_PrevRealMusic,
-            this.btnItem_NextRealMusic});
-            this.ribbonBar2.Location = new System.Drawing.Point(3, 3);
-            this.ribbonBar2.Name = "ribbonBar2";
-            this.ribbonBar2.Size = new System.Drawing.Size(557, 61);
-            this.ribbonBar2.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
-            this.ribbonBar2.TabIndex = 0;
-            // 
-            // 
-            // 
-            this.ribbonBar2.TitleStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            // 
-            // 
-            // 
-            this.ribbonBar2.TitleStyleMouseOver.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.ribbonBar2.TitleVisible = false;
-            // 
-            // btnItem_AddRealMusic
-            // 
-            this.btnItem_AddRealMusic.Image = global::ZW_GBwin.Properties.Resources.musicAdd_net_32;
-            this.btnItem_AddRealMusic.ImagePosition = DevComponents.DotNetBar.eImagePosition.Top;
-            this.btnItem_AddRealMusic.Name = "btnItem_AddRealMusic";
-            this.btnItem_AddRealMusic.SubItemsExpandWidth = 14;
-            this.btnItem_AddRealMusic.Text = "创建项目";
-            // 
-            // btnItem_EditRealMusic
-            // 
-            this.btnItem_EditRealMusic.Image = global::ZW_GBwin.Properties.Resources.musicEdit_net_32;
-            this.btnItem_EditRealMusic.ImagePosition = DevComponents.DotNetBar.eImagePosition.Top;
-            this.btnItem_EditRealMusic.Name = "btnItem_EditRealMusic";
-            this.btnItem_EditRealMusic.SubItemsExpandWidth = 14;
-            this.btnItem_EditRealMusic.Text = "修改项目";
-            // 
-            // btnItem_DelRealMusic
-            // 
-            this.btnItem_DelRealMusic.Image = global::ZW_GBwin.Properties.Resources.musicDel_net_32;
-            this.btnItem_DelRealMusic.ImagePosition = DevComponents.DotNetBar.eImagePosition.Top;
-            this.btnItem_DelRealMusic.Name = "btnItem_DelRealMusic";
-            this.btnItem_DelRealMusic.SubItemsExpandWidth = 14;
-            this.btnItem_DelRealMusic.Text = "删除项目";
-            // 
-            // btnItem_StartRealMusic
-            // 
-            this.btnItem_StartRealMusic.Image = global::ZW_GBwin.Properties.Resources.play_32px;
-            this.btnItem_StartRealMusic.ImagePosition = DevComponents.DotNetBar.eImagePosition.Top;
-            this.btnItem_StartRealMusic.Name = "btnItem_StartRealMusic";
-            this.btnItem_StartRealMusic.SubItemsExpandWidth = 14;
-            this.btnItem_StartRealMusic.Text = "启动项目";
-            // 
-            // btnItem_PauseRealMusic
-            // 
-            this.btnItem_PauseRealMusic.Image = global::ZW_GBwin.Properties.Resources.pause_32px;
-            this.btnItem_PauseRealMusic.ImagePosition = DevComponents.DotNetBar.eImagePosition.Top;
-            this.btnItem_PauseRealMusic.Name = "btnItem_PauseRealMusic";
-            this.btnItem_PauseRealMusic.SubItemsExpandWidth = 14;
-            this.btnItem_PauseRealMusic.Text = "暂停项目";
-            // 
-            // btnItem_StopRealMusic
-            // 
-            this.btnItem_StopRealMusic.Image = global::ZW_GBwin.Properties.Resources.stop_32px;
-            this.btnItem_StopRealMusic.ImagePosition = DevComponents.DotNetBar.eImagePosition.Top;
-            this.btnItem_StopRealMusic.Name = "btnItem_StopRealMusic";
-            this.btnItem_StopRealMusic.SubItemsExpandWidth = 14;
-            this.btnItem_StopRealMusic.Text = "结束项目";
-            // 
-            // btnItem_PrevRealMusic
-            // 
-            this.btnItem_PrevRealMusic.Image = global::ZW_GBwin.Properties.Resources.previous_32px;
-            this.btnItem_PrevRealMusic.ImagePosition = DevComponents.DotNetBar.eImagePosition.Top;
-            this.btnItem_PrevRealMusic.Name = "btnItem_PrevRealMusic";
-            this.btnItem_PrevRealMusic.SubItemsExpandWidth = 14;
-            this.btnItem_PrevRealMusic.Text = "上一曲";
-            // 
-            // btnItem_NextRealMusic
-            // 
-            this.btnItem_NextRealMusic.Image = global::ZW_GBwin.Properties.Resources.next_32px;
-            this.btnItem_NextRealMusic.ImagePosition = DevComponents.DotNetBar.eImagePosition.Top;
-            this.btnItem_NextRealMusic.Name = "btnItem_NextRealMusic";
-            this.btnItem_NextRealMusic.SubItemsExpandWidth = 14;
-            this.btnItem_NextRealMusic.Text = "下一曲";
-            // 
-            // tabItem_RealMusic
-            // 
-            this.tabItem_RealMusic.AttachedControl = this.superTabControlPanel2;
-            this.tabItem_RealMusic.FixedTabSize = new System.Drawing.Size(120, 50);
-            this.tabItem_RealMusic.GlobalItem = false;
-            this.tabItem_RealMusic.Image = global::ZW_GBwin.Properties.Resources.delete_net_32;
-            this.tabItem_RealMusic.ImagePadding.Left = 5;
-            this.tabItem_RealMusic.Name = "tabItem_RealMusic";
-            this.tabItem_RealMusic.Text = "实时音乐";
-            // 
             // superTabControlPanel5
             // 
             this.superTabControlPanel5.Controls.Add(this.panelEx15);
@@ -985,147 +769,6 @@
             this.tabItem_FireAlarm.ImagePadding.Left = 5;
             this.tabItem_FireAlarm.Name = "tabItem_FireAlarm";
             this.tabItem_FireAlarm.Text = "消防报警";
-            // 
-            // superTabControlPanel4
-            // 
-            this.superTabControlPanel4.Controls.Add(this.panelEx16);
-            this.superTabControlPanel4.Controls.Add(this.panelEx4);
-            this.superTabControlPanel4.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.superTabControlPanel4.Location = new System.Drawing.Point(152, 0);
-            this.superTabControlPanel4.Name = "superTabControlPanel4";
-            this.superTabControlPanel4.Size = new System.Drawing.Size(856, 663);
-            this.superTabControlPanel4.TabIndex = 0;
-            this.superTabControlPanel4.TabItem = this.tabItem_CollectionPlay;
-            // 
-            // panelEx16
-            // 
-            this.panelEx16.CanvasColor = System.Drawing.SystemColors.Control;
-            this.panelEx16.ColorSchemeStyle = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
-            this.panelEx16.DisabledBackColor = System.Drawing.Color.Empty;
-            this.panelEx16.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panelEx16.Location = new System.Drawing.Point(0, 73);
-            this.panelEx16.Name = "panelEx16";
-            this.panelEx16.Size = new System.Drawing.Size(856, 590);
-            this.panelEx16.Style.Alignment = System.Drawing.StringAlignment.Center;
-            this.panelEx16.Style.BackColor1.ColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelBackground;
-            this.panelEx16.Style.BackColor2.ColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelBackground2;
-            this.panelEx16.Style.Border = DevComponents.DotNetBar.eBorderType.SingleLine;
-            this.panelEx16.Style.BorderColor.ColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelBorder;
-            this.panelEx16.Style.ForeColor.ColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelText;
-            this.panelEx16.Style.GradientAngle = 90;
-            this.panelEx16.TabIndex = 5;
-            // 
-            // panelEx4
-            // 
-            this.panelEx4.CanvasColor = System.Drawing.SystemColors.Control;
-            this.panelEx4.ColorSchemeStyle = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
-            this.panelEx4.Controls.Add(this.ribbonBar4);
-            this.panelEx4.DisabledBackColor = System.Drawing.Color.Empty;
-            this.panelEx4.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panelEx4.Location = new System.Drawing.Point(0, 0);
-            this.panelEx4.Name = "panelEx4";
-            this.panelEx4.Size = new System.Drawing.Size(856, 73);
-            this.panelEx4.Style.Alignment = System.Drawing.StringAlignment.Center;
-            this.panelEx4.Style.BackColor1.ColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelBackground;
-            this.panelEx4.Style.BackColor2.ColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelBackground2;
-            this.panelEx4.Style.Border = DevComponents.DotNetBar.eBorderType.SingleLine;
-            this.panelEx4.Style.BorderColor.ColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelBorder;
-            this.panelEx4.Style.ForeColor.ColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelText;
-            this.panelEx4.Style.GradientAngle = 90;
-            this.panelEx4.TabIndex = 4;
-            // 
-            // ribbonBar4
-            // 
-            this.ribbonBar4.AutoOverflowEnabled = true;
-            // 
-            // 
-            // 
-            this.ribbonBar4.BackgroundMouseOverStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            // 
-            // 
-            // 
-            this.ribbonBar4.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.ribbonBar4.ContainerControlProcessDialogKey = true;
-            this.ribbonBar4.DragDropSupport = true;
-            this.ribbonBar4.Items.AddRange(new DevComponents.DotNetBar.BaseItem[] {
-            this.btnItem_AddCollTask,
-            this.btnItem_EditCollTask,
-            this.btnItem_DelCollTask,
-            this.btnItem_StartCollTask,
-            this.btnItem_StopCollTask,
-            this.btnItem_SetSoundCardCollTask});
-            this.ribbonBar4.Location = new System.Drawing.Point(3, 3);
-            this.ribbonBar4.Name = "ribbonBar4";
-            this.ribbonBar4.Size = new System.Drawing.Size(438, 61);
-            this.ribbonBar4.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
-            this.ribbonBar4.TabIndex = 0;
-            // 
-            // 
-            // 
-            this.ribbonBar4.TitleStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            // 
-            // 
-            // 
-            this.ribbonBar4.TitleStyleMouseOver.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.ribbonBar4.TitleVisible = false;
-            // 
-            // btnItem_AddCollTask
-            // 
-            this.btnItem_AddCollTask.Image = global::ZW_GBwin.Properties.Resources.delete_net_32;
-            this.btnItem_AddCollTask.ImagePosition = DevComponents.DotNetBar.eImagePosition.Top;
-            this.btnItem_AddCollTask.Name = "btnItem_AddCollTask";
-            this.btnItem_AddCollTask.SubItemsExpandWidth = 14;
-            this.btnItem_AddCollTask.Text = "创建任务";
-            // 
-            // btnItem_EditCollTask
-            // 
-            this.btnItem_EditCollTask.Image = global::ZW_GBwin.Properties.Resources.delete_net_32;
-            this.btnItem_EditCollTask.ImagePosition = DevComponents.DotNetBar.eImagePosition.Top;
-            this.btnItem_EditCollTask.Name = "btnItem_EditCollTask";
-            this.btnItem_EditCollTask.SubItemsExpandWidth = 14;
-            this.btnItem_EditCollTask.Text = "修改任务";
-            // 
-            // btnItem_DelCollTask
-            // 
-            this.btnItem_DelCollTask.Image = global::ZW_GBwin.Properties.Resources.delete_net_32;
-            this.btnItem_DelCollTask.ImagePosition = DevComponents.DotNetBar.eImagePosition.Top;
-            this.btnItem_DelCollTask.Name = "btnItem_DelCollTask";
-            this.btnItem_DelCollTask.SubItemsExpandWidth = 14;
-            this.btnItem_DelCollTask.Text = "删除任务";
-            // 
-            // btnItem_StartCollTask
-            // 
-            this.btnItem_StartCollTask.Image = global::ZW_GBwin.Properties.Resources.delete_net_32;
-            this.btnItem_StartCollTask.ImagePosition = DevComponents.DotNetBar.eImagePosition.Top;
-            this.btnItem_StartCollTask.Name = "btnItem_StartCollTask";
-            this.btnItem_StartCollTask.SubItemsExpandWidth = 14;
-            this.btnItem_StartCollTask.Text = "启动任务";
-            // 
-            // btnItem_StopCollTask
-            // 
-            this.btnItem_StopCollTask.Image = global::ZW_GBwin.Properties.Resources.delete_net_32;
-            this.btnItem_StopCollTask.ImagePosition = DevComponents.DotNetBar.eImagePosition.Top;
-            this.btnItem_StopCollTask.Name = "btnItem_StopCollTask";
-            this.btnItem_StopCollTask.SubItemsExpandWidth = 14;
-            this.btnItem_StopCollTask.Text = "停止任务";
-            // 
-            // btnItem_SetSoundCardCollTask
-            // 
-            this.btnItem_SetSoundCardCollTask.Image = global::ZW_GBwin.Properties.Resources.delete_net_32;
-            this.btnItem_SetSoundCardCollTask.ImagePosition = DevComponents.DotNetBar.eImagePosition.Top;
-            this.btnItem_SetSoundCardCollTask.Name = "btnItem_SetSoundCardCollTask";
-            this.btnItem_SetSoundCardCollTask.SubItemsExpandWidth = 14;
-            this.btnItem_SetSoundCardCollTask.Text = "配置声卡";
-            // 
-            // tabItem_CollectionPlay
-            // 
-            this.tabItem_CollectionPlay.AttachedControl = this.superTabControlPanel4;
-            this.tabItem_CollectionPlay.FixedTabSize = new System.Drawing.Size(150, 50);
-            this.tabItem_CollectionPlay.GlobalItem = false;
-            this.tabItem_CollectionPlay.Image = global::ZW_GBwin.Properties.Resources.delete_net_32;
-            this.tabItem_CollectionPlay.ImagePadding.Left = 5;
-            this.tabItem_CollectionPlay.Name = "tabItem_CollectionPlay";
-            this.tabItem_CollectionPlay.Text = "本地采播";
             // 
             // superTabControlPanel9
             // 
@@ -1278,243 +921,6 @@
             this.tabItem_BasicSetting.ImagePadding.Left = 5;
             this.tabItem_BasicSetting.Name = "tabItem_BasicSetting";
             this.tabItem_BasicSetting.Text = "基本设置";
-            // 
-            // superTabControlPanel7
-            // 
-            this.superTabControlPanel7.Controls.Add(this.panelEx13);
-            this.superTabControlPanel7.Controls.Add(this.panelEx7);
-            this.superTabControlPanel7.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.superTabControlPanel7.Location = new System.Drawing.Point(152, 0);
-            this.superTabControlPanel7.Name = "superTabControlPanel7";
-            this.superTabControlPanel7.Size = new System.Drawing.Size(856, 663);
-            this.superTabControlPanel7.TabIndex = 0;
-            this.superTabControlPanel7.TabItem = this.tabItem_SystemUser;
-            // 
-            // panelEx13
-            // 
-            this.panelEx13.CanvasColor = System.Drawing.SystemColors.Control;
-            this.panelEx13.ColorSchemeStyle = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
-            this.panelEx13.DisabledBackColor = System.Drawing.Color.Empty;
-            this.panelEx13.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panelEx13.Location = new System.Drawing.Point(0, 73);
-            this.panelEx13.Name = "panelEx13";
-            this.panelEx13.Size = new System.Drawing.Size(856, 590);
-            this.panelEx13.Style.Alignment = System.Drawing.StringAlignment.Center;
-            this.panelEx13.Style.BackColor1.ColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelBackground;
-            this.panelEx13.Style.BackColor2.ColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelBackground2;
-            this.panelEx13.Style.Border = DevComponents.DotNetBar.eBorderType.SingleLine;
-            this.panelEx13.Style.BorderColor.ColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelBorder;
-            this.panelEx13.Style.ForeColor.ColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelText;
-            this.panelEx13.Style.GradientAngle = 90;
-            this.panelEx13.TabIndex = 6;
-            // 
-            // panelEx7
-            // 
-            this.panelEx7.CanvasColor = System.Drawing.SystemColors.Control;
-            this.panelEx7.ColorSchemeStyle = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
-            this.panelEx7.Controls.Add(this.ribbonBar7);
-            this.panelEx7.DisabledBackColor = System.Drawing.Color.Empty;
-            this.panelEx7.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panelEx7.Location = new System.Drawing.Point(0, 0);
-            this.panelEx7.Name = "panelEx7";
-            this.panelEx7.Size = new System.Drawing.Size(856, 73);
-            this.panelEx7.Style.Alignment = System.Drawing.StringAlignment.Center;
-            this.panelEx7.Style.BackColor1.ColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelBackground;
-            this.panelEx7.Style.BackColor2.ColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelBackground2;
-            this.panelEx7.Style.Border = DevComponents.DotNetBar.eBorderType.SingleLine;
-            this.panelEx7.Style.BorderColor.ColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelBorder;
-            this.panelEx7.Style.ForeColor.ColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelText;
-            this.panelEx7.Style.GradientAngle = 90;
-            this.panelEx7.TabIndex = 5;
-            // 
-            // ribbonBar7
-            // 
-            this.ribbonBar7.AutoOverflowEnabled = true;
-            // 
-            // 
-            // 
-            this.ribbonBar7.BackgroundMouseOverStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            // 
-            // 
-            // 
-            this.ribbonBar7.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.ribbonBar7.ContainerControlProcessDialogKey = true;
-            this.ribbonBar7.DragDropSupport = true;
-            this.ribbonBar7.Items.AddRange(new DevComponents.DotNetBar.BaseItem[] {
-            this.btnItem_AddSystemUser,
-            this.btnItem_EditSystemUser,
-            this.btnItem_DelSystemUser});
-            this.ribbonBar7.Location = new System.Drawing.Point(3, 3);
-            this.ribbonBar7.Name = "ribbonBar7";
-            this.ribbonBar7.Size = new System.Drawing.Size(262, 61);
-            this.ribbonBar7.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
-            this.ribbonBar7.TabIndex = 0;
-            // 
-            // 
-            // 
-            this.ribbonBar7.TitleStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            // 
-            // 
-            // 
-            this.ribbonBar7.TitleStyleMouseOver.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.ribbonBar7.TitleVisible = false;
-            // 
-            // btnItem_AddSystemUser
-            // 
-            this.btnItem_AddSystemUser.Image = global::ZW_GBwin.Properties.Resources.delete_net_32;
-            this.btnItem_AddSystemUser.ImagePosition = DevComponents.DotNetBar.eImagePosition.Top;
-            this.btnItem_AddSystemUser.Name = "btnItem_AddSystemUser";
-            this.btnItem_AddSystemUser.SubItemsExpandWidth = 14;
-            this.btnItem_AddSystemUser.Text = "创建用户";
-            // 
-            // btnItem_EditSystemUser
-            // 
-            this.btnItem_EditSystemUser.Image = global::ZW_GBwin.Properties.Resources.delete_net_32;
-            this.btnItem_EditSystemUser.ImagePosition = DevComponents.DotNetBar.eImagePosition.Top;
-            this.btnItem_EditSystemUser.Name = "btnItem_EditSystemUser";
-            this.btnItem_EditSystemUser.SubItemsExpandWidth = 14;
-            this.btnItem_EditSystemUser.Text = "修改用户";
-            // 
-            // btnItem_DelSystemUser
-            // 
-            this.btnItem_DelSystemUser.Image = global::ZW_GBwin.Properties.Resources.delete_net_32;
-            this.btnItem_DelSystemUser.ImagePosition = DevComponents.DotNetBar.eImagePosition.Top;
-            this.btnItem_DelSystemUser.Name = "btnItem_DelSystemUser";
-            this.btnItem_DelSystemUser.SubItemsExpandWidth = 14;
-            this.btnItem_DelSystemUser.Text = "删除用户";
-            // 
-            // tabItem_SystemUser
-            // 
-            this.tabItem_SystemUser.AttachedControl = this.superTabControlPanel7;
-            this.tabItem_SystemUser.FixedTabSize = new System.Drawing.Size(150, 50);
-            this.tabItem_SystemUser.GlobalItem = false;
-            this.tabItem_SystemUser.Image = global::ZW_GBwin.Properties.Resources.delete_net_32;
-            this.tabItem_SystemUser.ImagePadding.Left = 5;
-            this.tabItem_SystemUser.Name = "tabItem_SystemUser";
-            this.tabItem_SystemUser.Text = "用户管理";
-            // 
-            // superTabControlPanel6
-            // 
-            this.superTabControlPanel6.Controls.Add(this.panelEx14);
-            this.superTabControlPanel6.Controls.Add(this.panelEx6);
-            this.superTabControlPanel6.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.superTabControlPanel6.Location = new System.Drawing.Point(152, 0);
-            this.superTabControlPanel6.Name = "superTabControlPanel6";
-            this.superTabControlPanel6.Size = new System.Drawing.Size(856, 663);
-            this.superTabControlPanel6.TabIndex = 0;
-            this.superTabControlPanel6.TabItem = this.tabItem_Talkback;
-            // 
-            // panelEx14
-            // 
-            this.panelEx14.CanvasColor = System.Drawing.SystemColors.Control;
-            this.panelEx14.ColorSchemeStyle = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
-            this.panelEx14.DisabledBackColor = System.Drawing.Color.Empty;
-            this.panelEx14.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panelEx14.Location = new System.Drawing.Point(0, 73);
-            this.panelEx14.Name = "panelEx14";
-            this.panelEx14.Size = new System.Drawing.Size(856, 590);
-            this.panelEx14.Style.Alignment = System.Drawing.StringAlignment.Center;
-            this.panelEx14.Style.BackColor1.ColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelBackground;
-            this.panelEx14.Style.BackColor2.ColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelBackground2;
-            this.panelEx14.Style.Border = DevComponents.DotNetBar.eBorderType.SingleLine;
-            this.panelEx14.Style.BorderColor.ColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelBorder;
-            this.panelEx14.Style.ForeColor.ColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelText;
-            this.panelEx14.Style.GradientAngle = 90;
-            this.panelEx14.TabIndex = 5;
-            // 
-            // panelEx6
-            // 
-            this.panelEx6.CanvasColor = System.Drawing.SystemColors.Control;
-            this.panelEx6.ColorSchemeStyle = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
-            this.panelEx6.Controls.Add(this.ribbonBar6);
-            this.panelEx6.DisabledBackColor = System.Drawing.Color.Empty;
-            this.panelEx6.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panelEx6.Location = new System.Drawing.Point(0, 0);
-            this.panelEx6.Name = "panelEx6";
-            this.panelEx6.Size = new System.Drawing.Size(856, 73);
-            this.panelEx6.Style.Alignment = System.Drawing.StringAlignment.Center;
-            this.panelEx6.Style.BackColor1.ColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelBackground;
-            this.panelEx6.Style.BackColor2.ColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelBackground2;
-            this.panelEx6.Style.Border = DevComponents.DotNetBar.eBorderType.SingleLine;
-            this.panelEx6.Style.BorderColor.ColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelBorder;
-            this.panelEx6.Style.ForeColor.ColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelText;
-            this.panelEx6.Style.GradientAngle = 90;
-            this.panelEx6.TabIndex = 4;
-            // 
-            // ribbonBar6
-            // 
-            this.ribbonBar6.AutoOverflowEnabled = true;
-            // 
-            // 
-            // 
-            this.ribbonBar6.BackgroundMouseOverStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            // 
-            // 
-            // 
-            this.ribbonBar6.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.ribbonBar6.ContainerControlProcessDialogKey = true;
-            this.ribbonBar6.DragDropSupport = true;
-            this.ribbonBar6.Items.AddRange(new DevComponents.DotNetBar.BaseItem[] {
-            this.btnItem_StartTalkback,
-            this.btnItem_StopTalkback,
-            this.btnItem_SettingTalkback,
-            this.btnItem_SetSoundCardTalkback});
-            this.ribbonBar6.Location = new System.Drawing.Point(3, 3);
-            this.ribbonBar6.Name = "ribbonBar6";
-            this.ribbonBar6.Size = new System.Drawing.Size(324, 61);
-            this.ribbonBar6.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
-            this.ribbonBar6.TabIndex = 0;
-            // 
-            // 
-            // 
-            this.ribbonBar6.TitleStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            // 
-            // 
-            // 
-            this.ribbonBar6.TitleStyleMouseOver.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.ribbonBar6.TitleVisible = false;
-            // 
-            // btnItem_StartTalkback
-            // 
-            this.btnItem_StartTalkback.Image = global::ZW_GBwin.Properties.Resources.delete_net_32;
-            this.btnItem_StartTalkback.ImagePosition = DevComponents.DotNetBar.eImagePosition.Top;
-            this.btnItem_StartTalkback.Name = "btnItem_StartTalkback";
-            this.btnItem_StartTalkback.SubItemsExpandWidth = 14;
-            this.btnItem_StartTalkback.Text = "手动执行";
-            // 
-            // btnItem_StopTalkback
-            // 
-            this.btnItem_StopTalkback.Image = global::ZW_GBwin.Properties.Resources.delete_net_32;
-            this.btnItem_StopTalkback.ImagePosition = DevComponents.DotNetBar.eImagePosition.Top;
-            this.btnItem_StopTalkback.Name = "btnItem_StopTalkback";
-            this.btnItem_StopTalkback.SubItemsExpandWidth = 14;
-            this.btnItem_StopTalkback.Text = "手动停止";
-            // 
-            // btnItem_SettingTalkback
-            // 
-            this.btnItem_SettingTalkback.Image = global::ZW_GBwin.Properties.Resources.delete_net_32;
-            this.btnItem_SettingTalkback.ImagePosition = DevComponents.DotNetBar.eImagePosition.Top;
-            this.btnItem_SettingTalkback.Name = "btnItem_SettingTalkback";
-            this.btnItem_SettingTalkback.SubItemsExpandWidth = 14;
-            this.btnItem_SettingTalkback.Text = "录音配置";
-            // 
-            // btnItem_SetSoundCardTalkback
-            // 
-            this.btnItem_SetSoundCardTalkback.Image = global::ZW_GBwin.Properties.Resources.delete_net_32;
-            this.btnItem_SetSoundCardTalkback.ImagePosition = DevComponents.DotNetBar.eImagePosition.Top;
-            this.btnItem_SetSoundCardTalkback.Name = "btnItem_SetSoundCardTalkback";
-            this.btnItem_SetSoundCardTalkback.SubItemsExpandWidth = 14;
-            this.btnItem_SetSoundCardTalkback.Text = "配置声卡";
-            // 
-            // tabItem_Talkback
-            // 
-            this.tabItem_Talkback.AttachedControl = this.superTabControlPanel6;
-            this.tabItem_Talkback.FixedTabSize = new System.Drawing.Size(150, 50);
-            this.tabItem_Talkback.GlobalItem = false;
-            this.tabItem_Talkback.Image = global::ZW_GBwin.Properties.Resources.delete_net_32;
-            this.tabItem_Talkback.ImagePadding.Left = 5;
-            this.tabItem_Talkback.Name = "tabItem_Talkback";
-            this.tabItem_Talkback.Text = "实时对讲";
             // 
             // superTabControlPanel10
             // 
@@ -1712,19 +1118,11 @@
             this.panelEx1.ResumeLayout(false);
             this.superTabControlPanel3.ResumeLayout(false);
             this.panelEx3.ResumeLayout(false);
-            this.superTabControlPanel2.ResumeLayout(false);
-            this.panelEx2.ResumeLayout(false);
             this.superTabControlPanel5.ResumeLayout(false);
             this.panelEx5.ResumeLayout(false);
-            this.superTabControlPanel4.ResumeLayout(false);
-            this.panelEx4.ResumeLayout(false);
             this.superTabControlPanel9.ResumeLayout(false);
             this.panelEx9.ResumeLayout(false);
             this.superTabControlPanel11.ResumeLayout(false);
-            this.superTabControlPanel7.ResumeLayout(false);
-            this.panelEx7.ResumeLayout(false);
-            this.superTabControlPanel6.ResumeLayout(false);
-            this.panelEx6.ResumeLayout(false);
             this.superTabControlPanel8.ResumeLayout(false);
             this.panelEx8.ResumeLayout(false);
             this.ResumeLayout(false);
@@ -1748,21 +1146,13 @@
         private DevComponents.DotNetBar.SuperTabControl superTabControl1;
         private DevComponents.DotNetBar.SuperTabControlPanel superTabControlPanel1;
         private DevComponents.DotNetBar.SuperTabItem tabItem_Device;
-        private DevComponents.DotNetBar.SuperTabControlPanel superTabControlPanel2;
-        private DevComponents.DotNetBar.SuperTabItem tabItem_RealMusic;
         private DevComponents.DotNetBar.SuperTabControlPanel superTabControlPanel3;
         private DevComponents.DotNetBar.SuperTabItem tabItem_TimeMusic;
-        private DevComponents.DotNetBar.SuperTabControlPanel superTabControlPanel6;
-        private DevComponents.DotNetBar.SuperTabItem tabItem_Talkback;
         private DevComponents.DotNetBar.SuperTabControlPanel superTabControlPanel5;
         private DevComponents.DotNetBar.SuperTabItem tabItem_FireAlarm;
-        private DevComponents.DotNetBar.SuperTabControlPanel superTabControlPanel4;
-        private DevComponents.DotNetBar.SuperTabItem tabItem_CollectionPlay;
         private DevComponents.DotNetBar.SuperTabControlPanel superTabControlPanel9;
         private DevComponents.DotNetBar.SuperTabItem tabItem_ChannlsGroup;
         private DevComponents.DotNetBar.SuperTabItem tabItem_PlayResources;
-        private DevComponents.DotNetBar.SuperTabControlPanel superTabControlPanel7;
-        private DevComponents.DotNetBar.SuperTabItem tabItem_SystemUser;
         private DevComponents.DotNetBar.PanelEx panelEx1;
         private DevComponents.DotNetBar.RibbonBar ribbonBar1;
         private DevComponents.DotNetBar.ButtonItem btnItem_SearchDevice;
@@ -1771,14 +1161,6 @@
         private DevComponents.DotNetBar.ButtonItem btnItem_EditDevice;
         private DevComponents.DotNetBar.ButtonItem btnItem_TwowaySpeak;
         private DevComponents.DotNetBar.ButtonItem btnItem_SpeakHelp;
-        private DevComponents.DotNetBar.PanelEx panelEx2;
-        private DevComponents.DotNetBar.RibbonBar ribbonBar2;
-        private DevComponents.DotNetBar.ButtonItem btnItem_AddRealMusic;
-        private DevComponents.DotNetBar.ButtonItem btnItem_EditRealMusic;
-        private DevComponents.DotNetBar.ButtonItem btnItem_DelRealMusic;
-        private DevComponents.DotNetBar.ButtonItem btnItem_StartRealMusic;
-        private DevComponents.DotNetBar.ButtonItem btnItem_PauseRealMusic;
-        private DevComponents.DotNetBar.ButtonItem btnItem_StopRealMusic;
         private DevComponents.DotNetBar.PanelEx panelEx3;
         private DevComponents.DotNetBar.RibbonBar ribbonBar3;
         private DevComponents.DotNetBar.ButtonItem btnItem_AddTimeMusic;
@@ -1787,31 +1169,12 @@
         private DevComponents.DotNetBar.ButtonItem btnItem_StartTimeMusic;
         private DevComponents.DotNetBar.ButtonItem btnItem_PauseTimeMusic;
         private DevComponents.DotNetBar.ButtonItem btnItem_StopTimeMusic;
-        private DevComponents.DotNetBar.PanelEx panelEx4;
-        private DevComponents.DotNetBar.RibbonBar ribbonBar4;
-        private DevComponents.DotNetBar.ButtonItem btnItem_AddCollTask;
-        private DevComponents.DotNetBar.ButtonItem btnItem_EditCollTask;
-        private DevComponents.DotNetBar.ButtonItem btnItem_DelCollTask;
-        private DevComponents.DotNetBar.ButtonItem btnItem_StartCollTask;
-        private DevComponents.DotNetBar.ButtonItem btnItem_StopCollTask;
-        private DevComponents.DotNetBar.ButtonItem btnItem_SetSoundCardCollTask;
         private DevComponents.DotNetBar.PanelEx panelEx5;
         private DevComponents.DotNetBar.RibbonBar ribbonBar5;
         private DevComponents.DotNetBar.ButtonItem btnItem_StartFireAlarm;
         private DevComponents.DotNetBar.ButtonItem btnItem_SettingFireAlarm;
-        private DevComponents.DotNetBar.PanelEx panelEx6;
-        private DevComponents.DotNetBar.RibbonBar ribbonBar6;
-        private DevComponents.DotNetBar.ButtonItem btnItem_StartTalkback;
-        private DevComponents.DotNetBar.ButtonItem btnItem_StopTalkback;
-        private DevComponents.DotNetBar.ButtonItem btnItem_SettingTalkback;
-        private DevComponents.DotNetBar.ButtonItem btnItem_SetSoundCardTalkback;
         private DevComponents.DotNetBar.SuperTabControlPanel superTabControlPanel11;
         private DevComponents.DotNetBar.SuperTabItem tabItem_BasicSetting;
-        private DevComponents.DotNetBar.PanelEx panelEx7;
-        private DevComponents.DotNetBar.RibbonBar ribbonBar7;
-        private DevComponents.DotNetBar.ButtonItem btnItem_AddSystemUser;
-        private DevComponents.DotNetBar.ButtonItem btnItem_EditSystemUser;
-        private DevComponents.DotNetBar.ButtonItem btnItem_DelSystemUser;
         private DevComponents.DotNetBar.PanelEx panelEx9;
         private DevComponents.DotNetBar.RibbonBar ribbonBar9;
         private DevComponents.DotNetBar.ButtonItem buttonItem49;
@@ -1820,18 +1183,12 @@
         private DevComponents.DotNetBar.ButtonItem btnItem_StopFireAlarm;
         private DevComponents.DotNetBar.ButtonItem btnItem_NextTimeMusic;
         private DevComponents.DotNetBar.ButtonItem btnItem_PrevTimeMusic;
-        private DevComponents.DotNetBar.ButtonItem btnItem_PrevRealMusic;
-        private DevComponents.DotNetBar.ButtonItem btnItem_NextRealMusic;
         private DevComponents.DotNetBar.ButtonItem buttonItem71;
         private DevComponents.DotNetBar.ButtonItem btnItem_UpdateDevice;
         private DevComponents.DotNetBar.PanelEx panelEx10;
         private DevComponents.DotNetBar.PanelEx panelEx19;
-        private DevComponents.DotNetBar.PanelEx panelEx18;
         private DevComponents.DotNetBar.PanelEx panelEx17;
-        private DevComponents.DotNetBar.PanelEx panelEx16;
         private DevComponents.DotNetBar.PanelEx panelEx15;
-        private DevComponents.DotNetBar.PanelEx panelEx14;
-        private DevComponents.DotNetBar.PanelEx panelEx13;
         private DevComponents.DotNetBar.PanelEx panelEx12;
         private DevComponents.DotNetBar.SuperTabControlPanel superTabControlPanel10;
         private DevComponents.DotNetBar.SuperTabItem tabItem_Help;
