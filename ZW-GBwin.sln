@@ -5,6 +5,8 @@ VisualStudioVersion = 15.0.26430.14
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ZW-GBwin", "ZW-GBwin\ZW-GBwin.csproj", "{A23A17C1-F87C-4344-8818-0E7BB1102BD1}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataHelper", "DataHelper\DataHelper.csproj", "{14B68675-C794-4539-9C22-AFB84A0ED889}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{A23A17C1-F87C-4344-8818-0E7BB1102BD1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A23A17C1-F87C-4344-8818-0E7BB1102BD1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A23A17C1-F87C-4344-8818-0E7BB1102BD1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{14B68675-C794-4539-9C22-AFB84A0ED889}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{14B68675-C794-4539-9C22-AFB84A0ED889}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{14B68675-C794-4539-9C22-AFB84A0ED889}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{14B68675-C794-4539-9C22-AFB84A0ED889}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

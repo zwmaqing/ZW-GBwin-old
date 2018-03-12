@@ -170,7 +170,17 @@
     <None Include="Resources\settings_net_32.png" />
     <None Include="Resources\Sound_on_32px-r.png" />
     <None Include="Resources\clear_net_32.png" />
+    <None Include="Resources\alert_net_32.png" />
+    <None Include="Resources\group_32_Del.png" />
+    <None Include="Resources\group_32_Edit.png" />
+    <None Include="Resources\group_32_Add.png" />
     <Content Include="zhiweiart_32X32.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\DataHelper\DataHelper.csproj">
+      <Project>{14b68675-c794-4539-9c22-afb84a0ed889}</Project>
+      <Name>DataHelper</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
