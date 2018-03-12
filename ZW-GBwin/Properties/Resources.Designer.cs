@@ -63,6 +63,26 @@ namespace ZW_GBwin.Properties {
         /// <summary>
         ///   查找 System.Drawing.Bitmap 类型的本地化资源。
         /// </summary>
+        internal static System.Drawing.Bitmap add_net_32 {
+            get {
+                object obj = ResourceManager.GetObject("add_net_32", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
+        /// </summary>
+        internal static System.Drawing.Bitmap close_net_32 {
+            get {
+                object obj = ResourceManager.GetObject("close_net_32", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
+        /// </summary>
         internal static System.Drawing.Bitmap delete_net_32 {
             get {
                 object obj = ResourceManager.GetObject("delete_net_32", resourceCulture);
@@ -253,9 +273,59 @@ namespace ZW_GBwin.Properties {
         /// <summary>
         ///   查找 System.Drawing.Bitmap 类型的本地化资源。
         /// </summary>
+        internal static System.Drawing.Bitmap search_net_32 {
+            get {
+                object obj = ResourceManager.GetObject("search_net_32", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
+        /// </summary>
+        internal static System.Drawing.Bitmap settings_net_32 {
+            get {
+                object obj = ResourceManager.GetObject("settings_net_32", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
+        /// </summary>
+        internal static System.Drawing.Bitmap Sound_on_32px_r {
+            get {
+                object obj = ResourceManager.GetObject("Sound_on_32px_r", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
+        /// </summary>
         internal static System.Drawing.Bitmap stop_32px {
             get {
                 object obj = ResourceManager.GetObject("stop_32px", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
+        /// </summary>
+        internal static System.Drawing.Bitmap Sync_net_32 {
+            get {
+                object obj = ResourceManager.GetObject("Sync_net_32", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
+        /// </summary>
+        internal static System.Drawing.Bitmap uploadData_net_32 {
+            get {
+                object obj = ResourceManager.GetObject("uploadData_net_32", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

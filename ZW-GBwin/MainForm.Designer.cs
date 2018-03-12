@@ -80,6 +80,17 @@
             this.btnItem_StopFireAlarm = new DevComponents.DotNetBar.ButtonItem();
             this.btnItem_SettingFireAlarm = new DevComponents.DotNetBar.ButtonItem();
             this.tabItem_FireAlarm = new DevComponents.DotNetBar.SuperTabItem();
+            this.superTabControlPanel8 = new DevComponents.DotNetBar.SuperTabControlPanel();
+            this.panelEx8 = new DevComponents.DotNetBar.PanelEx();
+            this.ribbonBar8 = new DevComponents.DotNetBar.RibbonBar();
+            this.btnItem_AddResourcesClass = new DevComponents.DotNetBar.ButtonItem();
+            this.btnItem_EditResourcesClass = new DevComponents.DotNetBar.ButtonItem();
+            this.btnItem_DelResourcesClass = new DevComponents.DotNetBar.ButtonItem();
+            this.btnItem_AddResources = new DevComponents.DotNetBar.ButtonItem();
+            this.btnItem_EditResources = new DevComponents.DotNetBar.ButtonItem();
+            this.btnItem_DelResources = new DevComponents.DotNetBar.ButtonItem();
+            this.btnItem_RefreshResources = new DevComponents.DotNetBar.ButtonItem();
+            this.tabItem_MusicResources = new DevComponents.DotNetBar.SuperTabItem();
             this.superTabControlPanel9 = new DevComponents.DotNetBar.SuperTabControlPanel();
             this.panelEx12 = new DevComponents.DotNetBar.PanelEx();
             this.panelEx9 = new DevComponents.DotNetBar.PanelEx();
@@ -95,17 +106,6 @@
             this.tabItem_Help = new DevComponents.DotNetBar.SuperTabItem();
             this.tabItem_PlayResources = new DevComponents.DotNetBar.SuperTabItem();
             this.buttonItem71 = new DevComponents.DotNetBar.ButtonItem();
-            this.tabItem_MusicResources = new DevComponents.DotNetBar.SuperTabItem();
-            this.superTabControlPanel8 = new DevComponents.DotNetBar.SuperTabControlPanel();
-            this.panelEx8 = new DevComponents.DotNetBar.PanelEx();
-            this.ribbonBar8 = new DevComponents.DotNetBar.RibbonBar();
-            this.btnItem_AddResourcesClass = new DevComponents.DotNetBar.ButtonItem();
-            this.btnItem_EditResourcesClass = new DevComponents.DotNetBar.ButtonItem();
-            this.btnItem_DelResourcesClass = new DevComponents.DotNetBar.ButtonItem();
-            this.btnItem_AddResources = new DevComponents.DotNetBar.ButtonItem();
-            this.btnItem_EditResources = new DevComponents.DotNetBar.ButtonItem();
-            this.btnItem_DelResources = new DevComponents.DotNetBar.ButtonItem();
-            this.btnItem_RefreshResources = new DevComponents.DotNetBar.ButtonItem();
             this.panelEx_Title.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.superTabControl1)).BeginInit();
@@ -116,11 +116,11 @@
             this.panelEx3.SuspendLayout();
             this.superTabControlPanel5.SuspendLayout();
             this.panelEx5.SuspendLayout();
+            this.superTabControlPanel8.SuspendLayout();
+            this.panelEx8.SuspendLayout();
             this.superTabControlPanel9.SuspendLayout();
             this.panelEx9.SuspendLayout();
             this.superTabControlPanel11.SuspendLayout();
-            this.superTabControlPanel8.SuspendLayout();
-            this.panelEx8.SuspendLayout();
             this.SuspendLayout();
             // 
             // styleManager1
@@ -306,9 +306,9 @@
             this.superTabControl1.ControlBox.MenuBox,
             this.superTabControl1.ControlBox.CloseBox});
             this.superTabControl1.ControlBox.Visible = false;
-            this.superTabControl1.Controls.Add(this.superTabControlPanel1);
-            this.superTabControl1.Controls.Add(this.superTabControlPanel3);
             this.superTabControl1.Controls.Add(this.superTabControlPanel5);
+            this.superTabControl1.Controls.Add(this.superTabControlPanel3);
+            this.superTabControl1.Controls.Add(this.superTabControlPanel1);
             this.superTabControl1.Controls.Add(this.superTabControlPanel8);
             this.superTabControl1.Controls.Add(this.superTabControlPanel9);
             this.superTabControl1.Controls.Add(this.superTabControlPanel11);
@@ -423,7 +423,7 @@
             // 
             // btnItem_SearchDevice
             // 
-            this.btnItem_SearchDevice.Image = global::ZW_GBwin.Properties.Resources.delete_net_32;
+            this.btnItem_SearchDevice.Image = global::ZW_GBwin.Properties.Resources.search_net_32;
             this.btnItem_SearchDevice.ImagePosition = DevComponents.DotNetBar.eImagePosition.Top;
             this.btnItem_SearchDevice.Name = "btnItem_SearchDevice";
             this.btnItem_SearchDevice.SubItemsExpandWidth = 14;
@@ -431,7 +431,7 @@
             // 
             // btnItem_AddDevice
             // 
-            this.btnItem_AddDevice.Image = global::ZW_GBwin.Properties.Resources.delete_net_32;
+            this.btnItem_AddDevice.Image = global::ZW_GBwin.Properties.Resources.add_net_32;
             this.btnItem_AddDevice.ImagePosition = DevComponents.DotNetBar.eImagePosition.Top;
             this.btnItem_AddDevice.Name = "btnItem_AddDevice";
             this.btnItem_AddDevice.SubItemsExpandWidth = 14;
@@ -439,7 +439,7 @@
             // 
             // btnItem_EditDevice
             // 
-            this.btnItem_EditDevice.Image = global::ZW_GBwin.Properties.Resources.delete_net_32;
+            this.btnItem_EditDevice.Image = global::ZW_GBwin.Properties.Resources.close_net_32;
             this.btnItem_EditDevice.ImagePosition = DevComponents.DotNetBar.eImagePosition.Top;
             this.btnItem_EditDevice.Name = "btnItem_EditDevice";
             this.btnItem_EditDevice.SubItemsExpandWidth = 14;
@@ -447,7 +447,7 @@
             // 
             // btnItem_SettingDevice
             // 
-            this.btnItem_SettingDevice.Image = global::ZW_GBwin.Properties.Resources.delete_net_32;
+            this.btnItem_SettingDevice.Image = global::ZW_GBwin.Properties.Resources.settings_net_32;
             this.btnItem_SettingDevice.ImagePosition = DevComponents.DotNetBar.eImagePosition.Top;
             this.btnItem_SettingDevice.Name = "btnItem_SettingDevice";
             this.btnItem_SettingDevice.SubItemsExpandWidth = 14;
@@ -456,7 +456,7 @@
             // btnItem_TwowaySpeak
             // 
             this.btnItem_TwowaySpeak.Enabled = false;
-            this.btnItem_TwowaySpeak.Image = global::ZW_GBwin.Properties.Resources.delete_net_32;
+            this.btnItem_TwowaySpeak.Image = global::ZW_GBwin.Properties.Resources.Sync_net_32;
             this.btnItem_TwowaySpeak.ImagePosition = DevComponents.DotNetBar.eImagePosition.Top;
             this.btnItem_TwowaySpeak.Name = "btnItem_TwowaySpeak";
             this.btnItem_TwowaySpeak.SubItemsExpandWidth = 14;
@@ -464,7 +464,7 @@
             // 
             // btnItem_UpdateDevice
             // 
-            this.btnItem_UpdateDevice.Image = global::ZW_GBwin.Properties.Resources.delete_net_32;
+            this.btnItem_UpdateDevice.Image = global::ZW_GBwin.Properties.Resources.uploadData_net_32;
             this.btnItem_UpdateDevice.ImagePosition = DevComponents.DotNetBar.eImagePosition.Top;
             this.btnItem_UpdateDevice.Name = "btnItem_UpdateDevice";
             this.btnItem_UpdateDevice.SubItemsExpandWidth = 14;
@@ -472,7 +472,7 @@
             // 
             // buttonItem28
             // 
-            this.buttonItem28.Image = global::ZW_GBwin.Properties.Resources.delete_net_32;
+            this.buttonItem28.Image = global::ZW_GBwin.Properties.Resources.musicSoundClear_net_32;
             this.buttonItem28.ImagePosition = DevComponents.DotNetBar.eImagePosition.Top;
             this.buttonItem28.Name = "buttonItem28";
             this.buttonItem28.SubItemsExpandWidth = 14;
@@ -480,7 +480,7 @@
             // 
             // btnItem_SpeakHelp
             // 
-            this.btnItem_SpeakHelp.Image = global::ZW_GBwin.Properties.Resources.delete_net_32;
+            this.btnItem_SpeakHelp.Image = global::ZW_GBwin.Properties.Resources.Sound_on_32px_r;
             this.btnItem_SpeakHelp.ImagePosition = DevComponents.DotNetBar.eImagePosition.Top;
             this.btnItem_SpeakHelp.Name = "btnItem_SpeakHelp";
             this.btnItem_SpeakHelp.SubItemsExpandWidth = 14;
@@ -770,6 +770,137 @@
             this.tabItem_FireAlarm.Name = "tabItem_FireAlarm";
             this.tabItem_FireAlarm.Text = "消防报警";
             // 
+            // superTabControlPanel8
+            // 
+            this.superTabControlPanel8.Controls.Add(this.panelEx8);
+            this.superTabControlPanel8.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.superTabControlPanel8.Location = new System.Drawing.Point(152, 0);
+            this.superTabControlPanel8.Name = "superTabControlPanel8";
+            this.superTabControlPanel8.Size = new System.Drawing.Size(856, 663);
+            this.superTabControlPanel8.TabIndex = 0;
+            this.superTabControlPanel8.TabItem = this.tabItem_MusicResources;
+            // 
+            // panelEx8
+            // 
+            this.panelEx8.CanvasColor = System.Drawing.SystemColors.Control;
+            this.panelEx8.ColorSchemeStyle = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
+            this.panelEx8.Controls.Add(this.ribbonBar8);
+            this.panelEx8.DisabledBackColor = System.Drawing.Color.Empty;
+            this.panelEx8.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panelEx8.Location = new System.Drawing.Point(0, 0);
+            this.panelEx8.Name = "panelEx8";
+            this.panelEx8.Size = new System.Drawing.Size(856, 73);
+            this.panelEx8.Style.Alignment = System.Drawing.StringAlignment.Center;
+            this.panelEx8.Style.BackColor1.ColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelBackground;
+            this.panelEx8.Style.BackColor2.ColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelBackground2;
+            this.panelEx8.Style.Border = DevComponents.DotNetBar.eBorderType.SingleLine;
+            this.panelEx8.Style.BorderColor.ColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelBorder;
+            this.panelEx8.Style.ForeColor.ColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelText;
+            this.panelEx8.Style.GradientAngle = 90;
+            this.panelEx8.TabIndex = 5;
+            // 
+            // ribbonBar8
+            // 
+            this.ribbonBar8.AutoOverflowEnabled = true;
+            // 
+            // 
+            // 
+            this.ribbonBar8.BackgroundMouseOverStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            // 
+            // 
+            // 
+            this.ribbonBar8.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.ribbonBar8.ContainerControlProcessDialogKey = true;
+            this.ribbonBar8.DragDropSupport = true;
+            this.ribbonBar8.Items.AddRange(new DevComponents.DotNetBar.BaseItem[] {
+            this.btnItem_AddResourcesClass,
+            this.btnItem_EditResourcesClass,
+            this.btnItem_DelResourcesClass,
+            this.btnItem_AddResources,
+            this.btnItem_EditResources,
+            this.btnItem_DelResources,
+            this.btnItem_RefreshResources});
+            this.ribbonBar8.Location = new System.Drawing.Point(3, 3);
+            this.ribbonBar8.Name = "ribbonBar8";
+            this.ribbonBar8.Size = new System.Drawing.Size(535, 61);
+            this.ribbonBar8.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
+            this.ribbonBar8.TabIndex = 0;
+            // 
+            // 
+            // 
+            this.ribbonBar8.TitleStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            // 
+            // 
+            // 
+            this.ribbonBar8.TitleStyleMouseOver.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.ribbonBar8.TitleVisible = false;
+            // 
+            // btnItem_AddResourcesClass
+            // 
+            this.btnItem_AddResourcesClass.Image = global::ZW_GBwin.Properties.Resources.FolderMusicAdd_net_32;
+            this.btnItem_AddResourcesClass.ImagePosition = DevComponents.DotNetBar.eImagePosition.Top;
+            this.btnItem_AddResourcesClass.Name = "btnItem_AddResourcesClass";
+            this.btnItem_AddResourcesClass.SubItemsExpandWidth = 14;
+            this.btnItem_AddResourcesClass.Text = "添加分类";
+            // 
+            // btnItem_EditResourcesClass
+            // 
+            this.btnItem_EditResourcesClass.Image = global::ZW_GBwin.Properties.Resources.FolderMusicEdit_net_32;
+            this.btnItem_EditResourcesClass.ImagePosition = DevComponents.DotNetBar.eImagePosition.Top;
+            this.btnItem_EditResourcesClass.Name = "btnItem_EditResourcesClass";
+            this.btnItem_EditResourcesClass.SubItemsExpandWidth = 14;
+            this.btnItem_EditResourcesClass.Text = "编辑分类";
+            // 
+            // btnItem_DelResourcesClass
+            // 
+            this.btnItem_DelResourcesClass.Image = global::ZW_GBwin.Properties.Resources.FolderMusicDel_net_32;
+            this.btnItem_DelResourcesClass.ImagePosition = DevComponents.DotNetBar.eImagePosition.Top;
+            this.btnItem_DelResourcesClass.Name = "btnItem_DelResourcesClass";
+            this.btnItem_DelResourcesClass.SubItemsExpandWidth = 14;
+            this.btnItem_DelResourcesClass.Text = "删除分类";
+            // 
+            // btnItem_AddResources
+            // 
+            this.btnItem_AddResources.Image = global::ZW_GBwin.Properties.Resources.musicAdd_net_32;
+            this.btnItem_AddResources.ImagePosition = DevComponents.DotNetBar.eImagePosition.Top;
+            this.btnItem_AddResources.Name = "btnItem_AddResources";
+            this.btnItem_AddResources.SubItemsExpandWidth = 14;
+            this.btnItem_AddResources.Text = "添加资源";
+            // 
+            // btnItem_EditResources
+            // 
+            this.btnItem_EditResources.Image = global::ZW_GBwin.Properties.Resources.musicEdit_net_32;
+            this.btnItem_EditResources.ImagePosition = DevComponents.DotNetBar.eImagePosition.Top;
+            this.btnItem_EditResources.Name = "btnItem_EditResources";
+            this.btnItem_EditResources.SubItemsExpandWidth = 14;
+            this.btnItem_EditResources.Text = "编辑资源";
+            // 
+            // btnItem_DelResources
+            // 
+            this.btnItem_DelResources.Image = global::ZW_GBwin.Properties.Resources.musicDel_net_32;
+            this.btnItem_DelResources.ImagePosition = DevComponents.DotNetBar.eImagePosition.Top;
+            this.btnItem_DelResources.Name = "btnItem_DelResources";
+            this.btnItem_DelResources.SubItemsExpandWidth = 14;
+            this.btnItem_DelResources.Text = "删除资源";
+            // 
+            // btnItem_RefreshResources
+            // 
+            this.btnItem_RefreshResources.Image = global::ZW_GBwin.Properties.Resources.refresh_net_32;
+            this.btnItem_RefreshResources.ImagePosition = DevComponents.DotNetBar.eImagePosition.Top;
+            this.btnItem_RefreshResources.Name = "btnItem_RefreshResources";
+            this.btnItem_RefreshResources.SubItemsExpandWidth = 14;
+            this.btnItem_RefreshResources.Text = "刷新资源";
+            // 
+            // tabItem_MusicResources
+            // 
+            this.tabItem_MusicResources.AttachedControl = this.superTabControlPanel8;
+            this.tabItem_MusicResources.FixedTabSize = new System.Drawing.Size(150, 50);
+            this.tabItem_MusicResources.GlobalItem = false;
+            this.tabItem_MusicResources.Image = global::ZW_GBwin.Properties.Resources.delete_net_32;
+            this.tabItem_MusicResources.ImagePadding.Left = 5;
+            this.tabItem_MusicResources.Name = "tabItem_MusicResources";
+            this.tabItem_MusicResources.Text = "播放资源";
+            // 
             // superTabControlPanel9
             // 
             this.superTabControlPanel9.Controls.Add(this.panelEx12);
@@ -958,137 +1089,6 @@
             this.buttonItem71.SubItemsExpandWidth = 14;
             this.buttonItem71.Text = "停止任务";
             // 
-            // tabItem_MusicResources
-            // 
-            this.tabItem_MusicResources.AttachedControl = this.superTabControlPanel8;
-            this.tabItem_MusicResources.FixedTabSize = new System.Drawing.Size(150, 50);
-            this.tabItem_MusicResources.GlobalItem = false;
-            this.tabItem_MusicResources.Image = global::ZW_GBwin.Properties.Resources.delete_net_32;
-            this.tabItem_MusicResources.ImagePadding.Left = 5;
-            this.tabItem_MusicResources.Name = "tabItem_MusicResources";
-            this.tabItem_MusicResources.Text = "播放资源";
-            // 
-            // superTabControlPanel8
-            // 
-            this.superTabControlPanel8.Controls.Add(this.panelEx8);
-            this.superTabControlPanel8.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.superTabControlPanel8.Location = new System.Drawing.Point(152, 0);
-            this.superTabControlPanel8.Name = "superTabControlPanel8";
-            this.superTabControlPanel8.Size = new System.Drawing.Size(856, 663);
-            this.superTabControlPanel8.TabIndex = 0;
-            this.superTabControlPanel8.TabItem = this.tabItem_MusicResources;
-            // 
-            // panelEx8
-            // 
-            this.panelEx8.CanvasColor = System.Drawing.SystemColors.Control;
-            this.panelEx8.ColorSchemeStyle = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
-            this.panelEx8.Controls.Add(this.ribbonBar8);
-            this.panelEx8.DisabledBackColor = System.Drawing.Color.Empty;
-            this.panelEx8.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panelEx8.Location = new System.Drawing.Point(0, 0);
-            this.panelEx8.Name = "panelEx8";
-            this.panelEx8.Size = new System.Drawing.Size(856, 73);
-            this.panelEx8.Style.Alignment = System.Drawing.StringAlignment.Center;
-            this.panelEx8.Style.BackColor1.ColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelBackground;
-            this.panelEx8.Style.BackColor2.ColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelBackground2;
-            this.panelEx8.Style.Border = DevComponents.DotNetBar.eBorderType.SingleLine;
-            this.panelEx8.Style.BorderColor.ColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelBorder;
-            this.panelEx8.Style.ForeColor.ColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelText;
-            this.panelEx8.Style.GradientAngle = 90;
-            this.panelEx8.TabIndex = 5;
-            // 
-            // ribbonBar8
-            // 
-            this.ribbonBar8.AutoOverflowEnabled = true;
-            // 
-            // 
-            // 
-            this.ribbonBar8.BackgroundMouseOverStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            // 
-            // 
-            // 
-            this.ribbonBar8.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.ribbonBar8.ContainerControlProcessDialogKey = true;
-            this.ribbonBar8.DragDropSupport = true;
-            this.ribbonBar8.Items.AddRange(new DevComponents.DotNetBar.BaseItem[] {
-            this.btnItem_AddResourcesClass,
-            this.btnItem_EditResourcesClass,
-            this.btnItem_DelResourcesClass,
-            this.btnItem_AddResources,
-            this.btnItem_EditResources,
-            this.btnItem_DelResources,
-            this.btnItem_RefreshResources});
-            this.ribbonBar8.Location = new System.Drawing.Point(3, 3);
-            this.ribbonBar8.Name = "ribbonBar8";
-            this.ribbonBar8.Size = new System.Drawing.Size(535, 61);
-            this.ribbonBar8.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
-            this.ribbonBar8.TabIndex = 0;
-            // 
-            // 
-            // 
-            this.ribbonBar8.TitleStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            // 
-            // 
-            // 
-            this.ribbonBar8.TitleStyleMouseOver.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.ribbonBar8.TitleVisible = false;
-            // 
-            // btnItem_AddResourcesClass
-            // 
-            this.btnItem_AddResourcesClass.Image = global::ZW_GBwin.Properties.Resources.FolderMusicAdd_net_32;
-            this.btnItem_AddResourcesClass.ImagePosition = DevComponents.DotNetBar.eImagePosition.Top;
-            this.btnItem_AddResourcesClass.Name = "btnItem_AddResourcesClass";
-            this.btnItem_AddResourcesClass.SubItemsExpandWidth = 14;
-            this.btnItem_AddResourcesClass.Text = "添加分类";
-            // 
-            // btnItem_EditResourcesClass
-            // 
-            this.btnItem_EditResourcesClass.Image = global::ZW_GBwin.Properties.Resources.FolderMusicEdit_net_32;
-            this.btnItem_EditResourcesClass.ImagePosition = DevComponents.DotNetBar.eImagePosition.Top;
-            this.btnItem_EditResourcesClass.Name = "btnItem_EditResourcesClass";
-            this.btnItem_EditResourcesClass.SubItemsExpandWidth = 14;
-            this.btnItem_EditResourcesClass.Text = "编辑分类";
-            // 
-            // btnItem_DelResourcesClass
-            // 
-            this.btnItem_DelResourcesClass.Image = global::ZW_GBwin.Properties.Resources.FolderMusicDel_net_32;
-            this.btnItem_DelResourcesClass.ImagePosition = DevComponents.DotNetBar.eImagePosition.Top;
-            this.btnItem_DelResourcesClass.Name = "btnItem_DelResourcesClass";
-            this.btnItem_DelResourcesClass.SubItemsExpandWidth = 14;
-            this.btnItem_DelResourcesClass.Text = "删除分类";
-            // 
-            // btnItem_AddResources
-            // 
-            this.btnItem_AddResources.Image = global::ZW_GBwin.Properties.Resources.musicAdd_net_32;
-            this.btnItem_AddResources.ImagePosition = DevComponents.DotNetBar.eImagePosition.Top;
-            this.btnItem_AddResources.Name = "btnItem_AddResources";
-            this.btnItem_AddResources.SubItemsExpandWidth = 14;
-            this.btnItem_AddResources.Text = "添加资源";
-            // 
-            // btnItem_EditResources
-            // 
-            this.btnItem_EditResources.Image = global::ZW_GBwin.Properties.Resources.musicEdit_net_32;
-            this.btnItem_EditResources.ImagePosition = DevComponents.DotNetBar.eImagePosition.Top;
-            this.btnItem_EditResources.Name = "btnItem_EditResources";
-            this.btnItem_EditResources.SubItemsExpandWidth = 14;
-            this.btnItem_EditResources.Text = "编辑资源";
-            // 
-            // btnItem_DelResources
-            // 
-            this.btnItem_DelResources.Image = global::ZW_GBwin.Properties.Resources.musicDel_net_32;
-            this.btnItem_DelResources.ImagePosition = DevComponents.DotNetBar.eImagePosition.Top;
-            this.btnItem_DelResources.Name = "btnItem_DelResources";
-            this.btnItem_DelResources.SubItemsExpandWidth = 14;
-            this.btnItem_DelResources.Text = "删除资源";
-            // 
-            // btnItem_RefreshResources
-            // 
-            this.btnItem_RefreshResources.Image = global::ZW_GBwin.Properties.Resources.refresh_net_32;
-            this.btnItem_RefreshResources.ImagePosition = DevComponents.DotNetBar.eImagePosition.Top;
-            this.btnItem_RefreshResources.Name = "btnItem_RefreshResources";
-            this.btnItem_RefreshResources.SubItemsExpandWidth = 14;
-            this.btnItem_RefreshResources.Text = "刷新资源";
-            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -1120,11 +1120,11 @@
             this.panelEx3.ResumeLayout(false);
             this.superTabControlPanel5.ResumeLayout(false);
             this.panelEx5.ResumeLayout(false);
+            this.superTabControlPanel8.ResumeLayout(false);
+            this.panelEx8.ResumeLayout(false);
             this.superTabControlPanel9.ResumeLayout(false);
             this.panelEx9.ResumeLayout(false);
             this.superTabControlPanel11.ResumeLayout(false);
-            this.superTabControlPanel8.ResumeLayout(false);
-            this.panelEx8.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
