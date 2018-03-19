@@ -12,10 +12,6 @@ namespace ZW_GBwin
 {
     public partial class MainForm : MetroForm
     {
-        private bool isClosing = false;
-        private string todayWeekString = "";
-
-
         public MainForm()
         {
             InitializeComponent();
@@ -66,36 +62,6 @@ namespace ZW_GBwin
         private void panelEx_Title_MouseDoubleClick(object sender, MouseEventArgs e)
         {
             btn_Max_Click(sender, e);
-        }
-
-        private void timerSecond_Tick(object sender, EventArgs e)
-        {
-            if (!isClosing && lab_TodayDateTime != null)
-            {
-                DateTime theTine = DateTime.Now;
-                if (String.IsNullOrEmpty(todayWeekString) || (theTine.Hour == 0 && theTine.TimeOfDay.Minutes == 0 && theTine.Second == 0))
-                {
-                    todayWeekString = DataHelper.DataTypeConvert.DateTimeToWeekCNStr(theTine.DayOfWeek);
-                }
-                if (lab_TodayDateTime.Size.Width > 200)
-                {
-                    lab_TodayDateTime.Text = todayWeekString + "  " + theTine.ToString("yyyy年MM月dd日 HH:mm:ss");
-                }
-                else
-                {
-                    lab_TodayDateTime.Text = todayWeekString + "  " + theTine.ToLongTimeString();
-                }
-            }
-        }
-
-        private void MainForm_Load(object sender, EventArgs e)
-        {
-            timer_Second.Enabled = true;
-        }
-
-        private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
-        {
-
         }
     }
 }
