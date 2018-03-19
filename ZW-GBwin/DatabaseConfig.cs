@@ -44,16 +44,6 @@ namespace ZW_GBwin
         /// </summary>
         private string dataDbConnectStr = "";//.
 
-        /// <summary>
-        /// The system database connect password
-        /// </summary>
-        private const string sysDbConnectPassword = "4EDA73E1A871F58B";//ConnectPassword.
-
-        /// <summary>
-        /// The system database connect string
-        /// </summary>
-        private string sysDbConnectStr = "";//.
-
         AutoResetEvent waitHandler = new AutoResetEvent(false);//false 即非终止，未触发。
 
 
@@ -85,28 +75,13 @@ namespace ZW_GBwin
             }
         }
 
-        /// <summary>
-        /// Gets the system database version string.
-        /// </summary>
-        /// <value>The system database version string.</value>
-        public string SysDbVersionStr
+        public string GetDataDbConnectStr()
         {
-            get
-            {
-                return getConfigDbCurrentVersionStr();
-            }
-        }
-
-        /// <summary>
-        /// Gets the system database version number.
-        /// </summary>
-        /// <value>The system database version number.</value>
-        public Double SysDbVersionNumber
-        {
-            get
-            {
-                return getConfigDbCurrentVersion();
-            }
+            SQLiteConnectionStringBuilder connStr = new SQLiteConnectionStringBuilder();
+            connStr.DataSource = getDataDbDataSource();//
+            connStr.Password = "Z*+Wei";//
+            dataDbConnectStr = connStr.ToString();
+            return dataDbConnectStr;
         }
 
 
@@ -125,43 +100,6 @@ namespace ZW_GBwin
             {
                 // returnStr = EncryptAndDecrypt.DESDecrypt(dataDbDataSource, "%D*E4@m,");
                 returnStr = appStartPath + @"\Data\" + "SAPSCHOOLDB2.db";
-            }
-            catch (Exception ex)
-            {
-                Moon.Orm.Util.LogUtil.Exception(ex);
-            }
-            return returnStr;
-        }
-
-        /// <summary>
-        /// Gets the system database data source.
-        /// </summary>
-        /// <returns>System.String.</returns>
-        private string getSysDbDataSource()
-        {
-            string returnStr = "";
-            try
-            {
-                //returnStr = EncryptAndDecrypt.DESDecrypt(sysDbDataSource, "#Z/n4@x;");
-                returnStr = appStartPath + @"\Data\" + "SAPSCHOOLCONFIG.db";
-            }
-            catch (Exception ex)
-            {
-                Moon.Orm.Util.LogUtil.Exception(ex);
-            }
-            return returnStr;
-        }
-
-        /// <summary>
-        /// Gets the system database data pass.
-        /// </summary>
-        /// <returns>System.String.</returns>
-        private static string getSysDbDataPass()
-        {
-            string returnStr = "";
-            try
-            {
-                returnStr = EncryptAndDecrypt.DESDecrypt(sysDbConnectPassword, "#Z/n4@x;");
             }
             catch (Exception ex)
             {
@@ -225,59 +163,6 @@ namespace ZW_GBwin
             return version;
         }
 
-        /// <summary>
-        /// Gets the configuration database current version.
-        /// </summary>
-        /// <returns>Double.</returns>
-        private Double getConfigDbCurrentVersion()
-        {
-            Double version = 0;
-            using (var db = new Sqlite(sysDbConnectStr))
-            {
-                try
-                {
-                    db.DebugEnabled = true;
-                    var list = db.GetDictionaryList(ZWGB_DbUpdateRecordSet.Select(ZWGB_DbUpdateRecordSet.VersionNumber).Where(ZWGB_DbUpdateRecordSet.IsSuccessful.Equal(true)).Top(1).OrderByDESC(ZWGB_DbUpdateRecordSet.VersionNumber));
-                    if (list.Count > 0 && !list[0]["VersionNumber"].IsNull())
-                    {
-                        version = list[0]["VersionNumber"].To<Double>();
-                    }
-                }
-                catch (Exception ex)
-                {
-                    Moon.Orm.Util.LogUtil.Exception(ex);
-                    throw ex;
-                }
-            }
-            return version;
-        }
-
-        /// <summary>
-        /// Gets the configuration database current version string.
-        /// </summary>
-        /// <returns>System.String.</returns>
-        private string getConfigDbCurrentVersionStr()
-        {
-            string version = "";
-            using (var db = new Sqlite(sysDbConnectStr))
-            {
-                try
-                {
-                    db.DebugEnabled = true;
-                    var list = db.GetDictionaryList(ZWGB_DbUpdateRecordSet.Select(ZWGB_DbUpdateRecordSet.VersionStr).Where(ZWGB_DbUpdateRecordSet.IsSuccessful.Equal(true)).Top(1).OrderByDESC(ZWGB_DbUpdateRecordSet.VersionNumber));
-                    if (list.Count > 0 && !list[0]["VersionStr"].IsNull())
-                    {
-                        version = list[0]["VersionStr"].To<string>();
-                    }
-                }
-                catch (Exception ex)
-                {
-                    Moon.Orm.Util.LogUtil.Exception(ex);
-                    throw ex;
-                }
-            }
-            return version;
-        }
 
         # endregion 基础私有方法
 
@@ -291,7 +176,6 @@ namespace ZW_GBwin
         {
             appStartPath = startPath;
             dataDbConnectStr = "";
-            sysDbConnectStr = "";
         }
 
         /// <summary>

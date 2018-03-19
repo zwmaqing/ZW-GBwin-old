@@ -62,7 +62,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DatabaseConfig.cs" />
-    <Compile Include="DataHelper.cs" />
+    <Compile Include="DbDataService.cs" />
     <Compile Include="MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -182,6 +182,12 @@
     <None Include="Resources\Sound_on_32px-r.png" />
     <None Include="Resources\clear_net_32.png" />
     <Content Include="zhiweiart_32X32.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\DataHelper\DataHelper.csproj">
+      <Project>{7ba9350f-2e0d-48ea-a615-f397fcd88c38}</Project>
+      <Name>DataHelper</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
