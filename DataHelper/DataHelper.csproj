@@ -10,7 +10,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>DataHelper</RootNamespace>
     <AssemblyName>DataHelper</AssemblyName>
-    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile />
   </PropertyGroup>
@@ -33,6 +33,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Interop.Shell32">
+      <HintPath>..\ZW-GBwin\bin\Debug\Interop.Shell32.dll</HintPath>
+      <EmbedInteropTypes>False</EmbedInteropTypes>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Data" />
@@ -47,6 +51,7 @@
     <Compile Include="FilesIO.cs" />
     <Compile Include="DataTypeConvert.cs" />
     <Compile Include="EncryptAndDecrypt.cs" />
+    <Compile Include="MedFileHelper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RegexpHelper.cs" />
     <Compile Include="SapSyncPipe.cs" />

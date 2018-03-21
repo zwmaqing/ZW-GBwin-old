@@ -73,6 +73,16 @@ namespace ZW_GBwin.Properties {
         /// <summary>
         ///   查找 System.Drawing.Bitmap 类型的本地化资源。
         /// </summary>
+        internal static System.Drawing.Bitmap alert_net_32 {
+            get {
+                object obj = ResourceManager.GetObject("alert_net_32", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
+        /// </summary>
         internal static System.Drawing.Bitmap close_net_32 {
             get {
                 object obj = ResourceManager.GetObject("close_net_32", resourceCulture);
@@ -116,6 +126,16 @@ namespace ZW_GBwin.Properties {
         internal static System.Drawing.Bitmap FolderMusicEdit_net_32 {
             get {
                 object obj = ResourceManager.GetObject("FolderMusicEdit_net_32", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
+        /// </summary>
+        internal static System.Drawing.Bitmap information_net_32 {
+            get {
+                object obj = ResourceManager.GetObject("information_net_32", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

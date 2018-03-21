@@ -99,7 +99,7 @@ namespace ZW_GBwin
             try
             {
                 // returnStr = EncryptAndDecrypt.DESDecrypt(dataDbDataSource, "%D*E4@m,");
-                returnStr = appStartPath + @"\Data\" + "SAPSCHOOLDB2.db";
+                returnStr = appStartPath + @"\Data\" + "GbmgData.db";
             }
             catch (Exception ex)
             {
