@@ -962,6 +962,9 @@ namespace DataHelper
         }
 
         #endregion 金额数字转换为大写
+
+
+
     }
 
     /// <summary>

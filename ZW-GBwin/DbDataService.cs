@@ -1,4 +1,5 @@
-﻿using Moon.Orm;
+﻿using DataHelper;
+using Moon.Orm;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -597,6 +598,209 @@ namespace ZW_GBwin
 
 
         #endregion
+
+
+        #region 设备管理
+
+
+        public bool AddDeviceInfo(deviceInfo devInfo)
+        {
+            bool isSucceed = false;
+            if (devInfo == null)
+            { return isSucceed; }
+
+            ZWGB_TerminalDev oneDev = new ZWGB_TerminalDev();
+            oneDev.AliasName = devInfo.AliasName;
+            oneDev.DefaultVolume = devInfo.DefaultVolume;
+            oneDev.DNS = devInfo.DNS;
+            oneDev.Gateway = devInfo.Gateway;
+            oneDev.HardwareVersion = devInfo.HardwareVersion;
+            oneDev.IPV4 = devInfo.IPV4;
+            oneDev.IPV6 = devInfo.IPV6;
+            oneDev.IsDHCP = devInfo.IsDHCP;
+            oneDev.IsMulticastTo = false;
+            oneDev.IsOnLine = false;
+            oneDev.MAC = devInfo.MAC;
+            oneDev.ModeStr = devInfo.ModeStr;
+            oneDev.MonitorStatus = devInfo.MonitorStatus;
+            oneDev.SN = devInfo.SN;
+            oneDev.FirmwareVersion = devInfo.SoftwareVersion;
+            oneDev.TaskStatus = devInfo.TaskStatus;
+            oneDev.Type = devInfo.Type;
+            oneDev.SubnetMask = devInfo.SubnetMask;
+
+            using (var db = new Sqlite(connectStr))
+            {
+                try
+                {
+                    db.Add(oneDev);
+
+                    isSucceed = true;
+                }
+                catch (Exception ex)
+                {
+                    Moon.Orm.Util.LogUtil.Exception(ex);//
+                    throw ex;
+                }
+            }
+            return isSucceed;
+        }
+
+        public void UpdateDeviceInfo(ZWGB_TerminalDev theDev)
+        {
+            if (theDev == null || String.IsNullOrEmpty(theDev.SN))
+            {
+                return;
+            }
+            using (var db = new Sqlite(connectStr))
+            {
+                try
+                {
+                    theDev.WhereExpression = ZWGB_TerminalDevSet.SN.Equal(theDev.SN);//条件
+                    db.Update(theDev);
+                    //   db.ExecuteSqlWithNonQuery
+                }
+                catch (Exception ex)
+                {
+                    Moon.Orm.Util.LogUtil.Exception(ex);
+                    throw ex;
+                }
+            }
+
+        }
+
+        public void UpdateDeviceInfo(deviceInfo theDev)
+        {
+            if (theDev == null || String.IsNullOrEmpty(theDev.SN))
+            {
+                return;
+            }
+            using (var db = new Sqlite(connectStr))
+            {
+                try
+                {
+                    ZWGB_TerminalDev en = new ZWGB_TerminalDev();
+                    en.SN = theDev.SN;
+                    en.IPV4 = theDev.IPV4;
+                    en.AliasName = theDev.AliasName;
+                    en.IsDHCP = theDev.IsDHCP;
+                    en.FirmwareVersion = theDev.SoftwareVersion;
+
+                    en.WhereExpression = ZWGB_TerminalDevSet.SN.Equal(theDev.SN);//条件
+                    db.Update(en);
+                    //   db.ExecuteSqlWithNonQuery
+                }
+                catch (Exception ex)
+                {
+                    Moon.Orm.Util.LogUtil.Exception(ex);
+                    throw ex;
+                }
+            }
+
+        }
+
+        public List<deviceInfo> LoadAllStoredDevices()
+        {
+            List<deviceInfo> devList = new List<deviceInfo>();
+            using (var db = new Sqlite(connectStr))
+            {
+                try
+                {
+                    var theEntities = db.GetEntities<ZWGB_TerminalDev>(ZWGB_TerminalDevSet.SelectAll().Where(ZWGB_TerminalDevSet.SN.NotEqual("")));
+                    foreach (var one in theEntities)
+                    {
+                        devList.Add(ZWGB_TerminalDevToDevInfo(one));
+                    }
+
+                    return devList;
+                }
+                catch (Exception ex)
+                {
+                    Moon.Orm.Util.LogUtil.Exception(ex);
+                    throw ex;
+                }
+            }
+        }
+
+        public void DelDeviceInfo(string sn)
+        {
+            if ( String.IsNullOrEmpty(sn))
+            {
+                return;
+            }
+            using (var db = new Sqlite(connectStr))
+            {
+                try
+                {
+                    db.Remove<ZWGB_TerminalDevSet>(ZWGB_TerminalDevSet.SN.Equal(sn));
+                }
+                catch (Exception ex)
+                {
+                    Moon.Orm.Util.LogUtil.Exception(ex);
+                    throw ex;
+                }
+            }
+
+        }
+
+
+
+        #endregion 设备管理
+
+
+
+
+
+        public deviceInfo ZWGB_TerminalDevToDevInfo(ZWGB_TerminalDev dbDev)
+        {
+            deviceInfo oneInfo = new deviceInfo();
+            oneInfo.AliasName = dbDev.AliasName;
+            oneInfo.DefaultVolume = dbDev.DefaultVolume;
+            oneInfo.DNS = dbDev.DNS;
+            oneInfo.Gateway = dbDev.Gateway;
+            oneInfo.HardwareVersion = dbDev.HardwareVersion;
+            oneInfo.IPV4 = dbDev.IPV4;
+            oneInfo.IPV6 = dbDev.IPV6;
+            oneInfo.IsDHCP = dbDev.IsDHCP;
+            oneInfo.IsMulticastTo = dbDev.IsMulticastTo;
+            oneInfo.IsOnLine = dbDev.IsOnLine;
+            oneInfo.MAC = dbDev.MAC;
+            oneInfo.ModeStr = dbDev.ModeStr;
+            oneInfo.MonitorStatus = dbDev.MonitorStatus;
+            oneInfo.SN = dbDev.SN;
+            oneInfo.SoftwareVersion = dbDev.FirmwareVersion;
+            oneInfo.TaskStatus = dbDev.TaskStatus;
+            oneInfo.TerminalID = dbDev.TerminalID;
+            oneInfo.Type = dbDev.Type;
+            oneInfo.SubnetMask = dbDev.SubnetMask;
+            return oneInfo;
+        }
+
+        public ZWGB_TerminalDev DevInfoToZWGB_TerminalDev(deviceInfo devInfo)
+        {
+            ZWGB_TerminalDev oneDev = new ZWGB_TerminalDev();
+            oneDev.AliasName = devInfo.AliasName;
+            oneDev.DefaultVolume = devInfo.DefaultVolume;
+            oneDev.DNS = devInfo.DNS;
+            oneDev.Gateway = devInfo.Gateway;
+            oneDev.HardwareVersion = devInfo.HardwareVersion;
+            oneDev.IPV4 = devInfo.IPV4;
+            oneDev.IPV6 = devInfo.IPV6;
+            oneDev.IsDHCP = devInfo.IsDHCP;
+            oneDev.IsMulticastTo = devInfo.IsMulticastTo;
+            oneDev.IsOnLine = devInfo.IsOnLine;
+            oneDev.MAC = devInfo.MAC;
+            oneDev.ModeStr = devInfo.ModeStr;
+            oneDev.MonitorStatus = devInfo.MonitorStatus;
+            oneDev.SN = devInfo.SN;
+            oneDev.FirmwareVersion = devInfo.SoftwareVersion;
+            oneDev.TaskStatus = devInfo.TaskStatus;
+            oneDev.TerminalID = devInfo.TerminalID;
+            oneDev.Type = devInfo.Type;
+            oneDev.SubnetMask = devInfo.SubnetMask;
+
+            return oneDev;
+        }
     }
 
     public class ResourceFile

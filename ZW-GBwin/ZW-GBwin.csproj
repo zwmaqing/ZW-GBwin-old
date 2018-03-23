@@ -43,6 +43,9 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>bin\Debug\Moon.Orm.dll</HintPath>
     </Reference>
+    <Reference Include="Newtonsoft.Json, Version=11.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.11.0.1\lib\net40\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Data.SQLite, Version=1.0.89.0, Culture=neutral, PublicKeyToken=db937bc2d44ff139, processorArchitecture=MSIL">
@@ -61,8 +64,20 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AddDeviceForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AddDeviceForm.Designer.cs">
+      <DependentUpon>AddDeviceForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="DatabaseConfig.cs" />
     <Compile Include="DbDataService.cs" />
+    <Compile Include="DeviceSettingsForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DeviceSettingsForm.Designer.cs">
+      <DependentUpon>DeviceSettingsForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -96,6 +111,12 @@
     <Compile Include="SendFileToAreasDevForm.Designer.cs">
       <DependentUpon>SendFileToAreasDevForm.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="AddDeviceForm.resx">
+      <DependentUpon>AddDeviceForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DeviceSettingsForm.resx">
+      <DependentUpon>DeviceSettingsForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -121,6 +142,7 @@
     <EmbeddedResource Include="SendFileToAreasDevForm.resx">
       <DependentUpon>SendFileToAreasDevForm.cs</DependentUpon>
     </EmbeddedResource>
+    <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -216,6 +238,10 @@
     <ProjectReference Include="..\DataHelper\DataHelper.csproj">
       <Project>{7ba9350f-2e0d-48ea-a615-f397fcd88c38}</Project>
       <Name>DataHelper</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\TCPHelper\TCPHelper.csproj">
+      <Project>{9ad48382-4e1e-4a67-ac2a-695586d4fce2}</Project>
+      <Name>TCPHelper</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

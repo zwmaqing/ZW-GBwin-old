@@ -18,6 +18,10 @@ using System.Text;
 using System.Diagnostics;
 using System.Runtime.InteropServices;
 using System.Threading;
+using System.Net.NetworkInformation;
+using System.Net.Sockets;
+using System.Net;
+using System.Text.RegularExpressions;
 
 /// <summary>
 /// The DataHelper namespace.
@@ -1147,7 +1151,7 @@ namespace DataHelper
             IntPtr hWnd,        // 信息发往的窗口的句柄
             int Msg,            // 消息ID
             int wParam,         // 参数1
-            ref  COPYDATASTRUCT lParam  //参数2
+            ref COPYDATASTRUCT lParam  //参数2
         );
 
         //消息发送API
@@ -1188,4 +1192,194 @@ namespace DataHelper
         #endregion Win Message
     }
 
+    public class NetHelper
+    {
+        public static List<netCard> loadAllNetCards()
+        {
+            List<netCard> allCards = new List<netCard>();
+            //获取说有网卡信息
+            NetworkInterface[] nics = NetworkInterface.GetAllNetworkInterfaces();
+            foreach (NetworkInterface adapter in nics)
+            {
+                //判断是否为以太网卡
+                //Wireless80211         无线网卡    Ppp     宽带连接
+                //Ethernet              以太网卡   
+                //这里篇幅有限贴几个常用的，其他的返回值大家就自己百度吧！
+                if (adapter.NetworkInterfaceType == NetworkInterfaceType.Ethernet)
+                {
+                    //获取以太网卡网络接口信息
+                    IPInterfaceProperties ip = adapter.GetIPProperties();
+
+                    //获取单播地址集
+                    UnicastIPAddressInformationCollection ipCollection = ip.UnicastAddresses;
+
+                    //获取该IP对象的网关
+                    GatewayIPAddressInformationCollection gateways = ip.GatewayAddresses;
+
+                    foreach (UnicastIPAddressInformation ipadd in ipCollection)
+                    {
+                        netCard oneCard = new netCard();
+
+                        foreach (var gateWay in gateways)
+                        {
+                            //如果能够Ping通网关
+                            if (IsPingIP(gateWay.Address.ToString()))
+                            {
+                                //得到网关地址
+                                oneCard.Gateway = gateWay.Address.ToString();
+                                //跳出循环
+                                break;
+                            }
+                        }
+
+                        //InterNetwork    IPV4地址      
+                        //InterNetworkV6        IPV6地址
+                        //Max            MAX 位址
+                        //判断是否为ipv4
+                        if (ipadd.Address.AddressFamily == AddressFamily.InterNetwork)
+                        {
+
+                            oneCard.Name = adapter.Name;
+                            if (ip.DnsAddresses[0] != null)
+                                oneCard.DNS = ip.DnsAddresses[0].ToString();
+
+                            oneCard.IPV4 = ipadd.Address.ToString();//获取ip
+                            if (ipadd.IPv4Mask != null)
+                                oneCard.SubnetMask = ipadd.IPv4Mask.ToString();
+
+                            allCards.Add(oneCard);
+                        }
+                    }
+                }
+            }
+            return allCards;
+        }
+
+        /// 尝试Ping指定IP是否能够Ping通      
+        /// <param name="strIP">指定IP</param>
+        /// <returns>true 是 false 否</returns>
+        public static bool IsPingIP(string strIP)
+        {
+            try
+            {
+                Ping ping = new Ping();
+                IPAddress ip;
+                if (!IPAddress.TryParse(strIP, out ip))
+                {
+                    return false;
+                }
+                //接受Ping返回值
+                PingReply reply = ping.Send(strIP, 1000);
+                //Ping通
+                return true;
+            }
+            catch
+            {
+                //Ping失败
+                return false;
+            }
+        }
+
+        /// <summary>  
+        /// 获取当前使用的IP  
+        /// </summary>  
+        /// <returns></returns>  
+        public static string GetLocalIP()
+        {
+            string result = RunApp("route", "print", true);
+            Match m = Regex.Match(result, @"0.0.0.0\s+0.0.0.0\s+(\d+.\d+.\d+.\d+)\s+(\d+.\d+.\d+.\d+)");
+            if (m.Success)
+            {
+                return m.Groups[2].Value;
+            }
+            else
+            {
+                try
+                {
+                    System.Net.Sockets.TcpClient c = new System.Net.Sockets.TcpClient();
+                    c.Connect("www.baidu.com", 80);
+                    string ip = ((System.Net.IPEndPoint)c.Client.LocalEndPoint).Address.ToString();
+                    c.Close();
+                    return ip;
+                }
+                catch (Exception)
+                {
+                    return null;
+                }
+            }
+        }
+
+        /// <summary>  
+        /// 获取本机主DNS  
+        /// </summary>  
+        /// <returns></returns>  
+        public static string GetPrimaryDNS()
+        {
+            string result = RunApp("nslookup", "", true);
+            Match m = Regex.Match(result, @"\d+\.\d+\.\d+\.\d+");
+            if (m.Success)
+            {
+                return m.Value;
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+        /// <summary>  
+        /// 运行一个控制台程序并返回其输出参数。  
+        /// </summary>  
+        /// <param name="filename">程序名</param>  
+        /// <param name="arguments">输入参数</param>  
+        /// <returns></returns>  
+        public static string RunApp(string filename, string arguments, bool recordLog)
+        {
+            try
+            {
+                if (recordLog)
+                {
+                    Trace.WriteLine(filename + " " + arguments);
+                }
+                Process proc = new Process();
+                proc.StartInfo.FileName = filename;
+                proc.StartInfo.CreateNoWindow = true;
+                proc.StartInfo.Arguments = arguments;
+                proc.StartInfo.RedirectStandardOutput = true;
+                proc.StartInfo.UseShellExecute = false;
+                proc.Start();
+
+                using (System.IO.StreamReader sr = new System.IO.StreamReader(proc.StandardOutput.BaseStream, Encoding.Default))
+                {
+                    //string txt = sr.ReadToEnd();  
+                    //sr.Close();  
+                    //if (recordLog)  
+                    //{  
+                    //    Trace.WriteLine(txt);  
+                    //}  
+                    //if (!proc.HasExited)  
+                    //{  
+                    //    proc.Kill();  
+                    //}  
+                    //上面标记的是原文，下面是我自己调试错误后自行修改的  
+                    Thread.Sleep(100);           //貌似调用系统的nslookup还未返回数据或者数据未编码完成，程序就已经跳过直接执行  
+                                                 //txt = sr.ReadToEnd()了，导致返回的数据为空，故睡眠令硬件反应  
+                    if (!proc.HasExited)         //在无参数调用nslookup后，可以继续输入命令继续操作，如果进程未停止就直接执行  
+                    {                            //txt = sr.ReadToEnd()程序就在等待输入，而且又无法输入，直接掐住无法继续运行  
+                        proc.Kill();
+                    }
+                    string txt = sr.ReadToEnd();
+                    sr.Close();
+                    if (recordLog)
+                        Trace.WriteLine(txt);
+                    return txt;
+                }
+            }
+            catch (Exception ex)
+            {
+                Trace.WriteLine(ex);
+                return ex.Message;
+            }
+        }
+    }
 }

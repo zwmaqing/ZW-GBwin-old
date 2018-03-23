@@ -157,6 +157,7 @@
             this.Controls.Add(this.label3);
             this.Controls.Add(this.textBoxX_ResourceName);
             this.DoubleBuffered = true;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Name = "ResourceFilesForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "资源文件";
