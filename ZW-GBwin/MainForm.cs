@@ -110,6 +110,11 @@ namespace ZW_GBwin
                         loadResourcesClassToUi();
                         break;
                     }
+                case "tabItem_ChannlsGroup":
+                    {
+                        loadAreaMenustrip(advTree_Area);
+                        break;
+                    }
                 default:
                     {
                         MessageBox.Show(e.NewValue.Name);
@@ -779,7 +784,7 @@ namespace ZW_GBwin
             {
                 System.Timers.ElapsedEventHandler callBack = (Object o, System.Timers.ElapsedEventArgs a) =>
                 {
-                    showToastNotice("修改配置命令已发出，请40秒后[搜索设备]以获取更改.", null,eToastPosition.MiddleCenter,8);
+                    showToastNotice("修改配置命令已发出，请40秒后[搜索设备]以获取更改.", null, eToastPosition.MiddleCenter, 8);
                 };
                 string cmdStr = JsonConvert.SerializeObject(param);
                 UdpSendStringWaitCallback(new IPEndPoint(IPAddress.Parse(currentIP), 65000), cmdStr, 1000, callBack);
@@ -864,6 +869,131 @@ namespace ZW_GBwin
         #endregion 设备管理
 
 
+        #region 区域管理
+
+        #region 缓存
+
+        DevComponents.AdvTree.Node _selectedAreaNode;
+
+        #endregion 缓存
+
+        #region 私有方法
+
+        private void loadAreaMenustrip(Control Control)
+        {
+            ContextMenuStrip ms = new ContextMenuStrip();
+            ms.Items.Add("添加子区域");
+            ms.Items.Add("修改区域名");
+            ms.Items.Add("添加设备");
+            ms.Items.Add("移除该设备");
+            ms.BackColor = System.Drawing.SystemColors.ControlDark;
+            ms.Opening += Ms_Opening;
+            ms.ItemClicked += new ToolStripItemClickedEventHandler(ms_AreaClicked);
+
+            ms.Items[0].Image = this.imageList1.Images["group_32_Add"];
+            ms.Items[1].Image = this.imageList1.Images["group_32_Edit"];
+            ms.Items[2].Image = this.imageList1.Images["SoundAdd_net_32"];
+            ms.Items[2].Enabled = false;
+            ms.Items[3].Image = this.imageList1.Images["soundDelete_net_32"];
+            ms.Items[3].Enabled = false;
+            Control.ContextMenuStrip = ms;
+        }
+
+        private void Ms_Opening(object sender, CancelEventArgs e)
+        {
+            ContextMenuStrip contextMenu = (ContextMenuStrip)sender;
+            if (_selectedAreaNode != null)
+            {
+                contextMenu.Items[2].Enabled = true;
+                contextMenu.Items[3].Enabled = true;
+            }
+        }
+
+        private void ms_AreaClicked(object sender, ToolStripItemClickedEventArgs e)
+        {
+            ContextMenuStrip contextMenu = (ContextMenuStrip)sender;
+
+            if ((contextMenu).Items[0] == e.ClickedItem)
+            {
+                //if (this.dataGridStuInfo != null && this.dataGridStuInfo.SelectedRows.Count > 0)
+                //{
+                //    List<UserBaseInfo> selectUsers = getSelectedStudentsList();
+                //    ChangeUsersUnitForm changeUnitForm = new ChangeUsersUnitForm(CardUserType.Student, selectUsers, stuClass, _archivesManager);
+                //    if (changeUnitForm.ShowDialog(this) == System.Windows.Forms.DialogResult.OK)
+                //    {
+                //        isStuInfoInputEnabled(false);
+                //        clearStuInfoInputData();
+                //        displaySelectClassStu();
+                //    }
+                //    //MessageBox.Show("调整选定学生班级  选择人数：" + selectUsers.Count);
+                //}
+            }
+            else if ((contextMenu).Items[1] == e.ClickedItem)
+            {
+                //if (this.dataGridStuInfo != null && this.dataGridStuInfo.SelectedRows.Count > 0)
+                //{
+                //    int leaveUnitId = getLeaveUnitId(stuClass);
+                //    if (leaveUnitId < 1)
+                //    {
+                //        showToastNotice("未发现系统的离园分组，因此不能移动!", null, eToastPosition.MiddleCenter, 3);
+                //        return;
+                //    }
+                //    List<UserBaseInfo> selectUsers = getSelectedStudentsList();
+                //    string message = "真的要将选择的 " + selectUsers.Count + " 位学生设为离园（分组）？设定到离园分组后相应持卡将暂停。";
+                //    string caption = "请选择是否移动设定";
+                //    MessageBoxButtons buttons = MessageBoxButtons.YesNo;
+                //    DialogResult result = MessageBox.Show(message, caption, buttons);
+
+                //    if (result == System.Windows.Forms.DialogResult.Yes)
+                //    {
+                //        _archivesManager.SetUsersCardState(selectUsers, CheckCardState.Suspended);
+                //        if (_archivesManager.ChangeUsersUnit(selectUsers, leaveUnitId))
+                //        {
+                //            showToastNotice("设定选定人员为离园分组成功!", null, eToastPosition.MiddleCenter, 3);
+                //            displaySelectClassStu();
+                //        }
+                //        else
+                //        {
+                //            showToastNotice("设定选定人员为离园分组失败!", null, eToastPosition.MiddleCenter, 3);
+                //        }
+                //    }
+                //}
+            }
+            else
+            {
+                //if (this.dataGridStuInfo != null && this.dataGridStuInfo.SelectedRows.Count > 0)
+                //{
+                //    List<UserBaseInfo> selectUsers = getSelectedStudentsList();
+                //    string message = "真的要删除选择的 " + selectUsers.Count + " 位学生信息？删除后将不能恢复！";
+                //    string caption = "请选择是否删除信息";
+                //    MessageBoxButtons buttons = MessageBoxButtons.YesNo;
+                //    DialogResult result = MessageBox.Show(message, caption, buttons);
+
+                //    if (result == System.Windows.Forms.DialogResult.Yes)
+                //    {
+                //        if (_archivesManager.DelStudentsInfo(selectUsers))
+                //        {
+                //            showToastNotice("删除选定人员档案信息成功!", null, eToastPosition.MiddleCenter, 3);
+                //            displaySelectClassStu();
+                //        }
+                //        else
+                //        {
+                //            showToastNotice("删除选定人员档案失败!", null, eToastPosition.MiddleCenter, 3);
+                //        }
+                //    }
+                //}
+            }
+        }
+
+        #endregion 私有方法
+
+        #region Click
+
+
+
+        #endregion Click
+
+        #endregion 区域管理
 
         private void buttonX1_Click(object sender, EventArgs e)
         {
@@ -903,8 +1033,15 @@ namespace ZW_GBwin
             UdpSendStringWaitCallback(point, "Hello", 1000, callBack);
         }
 
+        private void advTree_Area_NodeClick(object sender, DevComponents.AdvTree.TreeNodeMouseEventArgs e)
+        {
+            _selectedAreaNode = e.Node;
+            // e.Button == MouseButtons.Right;
+        }
 
+        private void advTree_Area_AfterNodeSelect(object sender, DevComponents.AdvTree.AdvTreeNodeEventArgs e)
+        {
 
-
+        }
     }
 }
