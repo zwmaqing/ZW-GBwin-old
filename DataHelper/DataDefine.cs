@@ -59,8 +59,8 @@ namespace DataHelper
         public String MonitorStatus { get; set; }
         public Int32 DefaultVolume { get; set; }
         public String ModeStr { get; set; }
-
-
+        public Int64 AreaID { get; set; }
+        public Int32 Channals { get; set; }
 
         public deviceInfo() { }
 

@@ -208,4 +208,43 @@
   <data name="information_net_32" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\information_net_32.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="addEvent_32" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\addEvent_32.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="connectCheckmark_net_32" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\connectCheckmark_net_32.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="connectClose_net_32" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\connectClose_net_32.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="disk_save_22px" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\disk_save_22px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="FolderMusicLoaction_net_32" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\FolderMusicLoaction_net_32.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="group_32" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\group_32.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="knob_net_32" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\knob_net_32.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Music_2_net_32" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Music-2_net_32.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="PlayPowerDevice_32" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\PlayPowerDevice_32.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="alert_horn_32" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\alert_horn_32.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="group_32_Add" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\group_32_Add.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="group_32_Del" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\group_32_Del.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="group_32_Edit" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\group_32_Edit.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
 </root>

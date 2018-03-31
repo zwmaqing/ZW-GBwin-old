@@ -73,6 +73,26 @@ namespace ZW_GBwin.Properties {
         /// <summary>
         ///   查找 System.Drawing.Bitmap 类型的本地化资源。
         /// </summary>
+        internal static System.Drawing.Bitmap addEvent_32 {
+            get {
+                object obj = ResourceManager.GetObject("addEvent_32", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
+        /// </summary>
+        internal static System.Drawing.Bitmap alert_horn_32 {
+            get {
+                object obj = ResourceManager.GetObject("alert_horn_32", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
+        /// </summary>
         internal static System.Drawing.Bitmap alert_net_32 {
             get {
                 object obj = ResourceManager.GetObject("alert_net_32", resourceCulture);
@@ -93,9 +113,39 @@ namespace ZW_GBwin.Properties {
         /// <summary>
         ///   查找 System.Drawing.Bitmap 类型的本地化资源。
         /// </summary>
+        internal static System.Drawing.Bitmap connectCheckmark_net_32 {
+            get {
+                object obj = ResourceManager.GetObject("connectCheckmark_net_32", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
+        /// </summary>
+        internal static System.Drawing.Bitmap connectClose_net_32 {
+            get {
+                object obj = ResourceManager.GetObject("connectClose_net_32", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
+        /// </summary>
         internal static System.Drawing.Bitmap delete_net_32 {
             get {
                 object obj = ResourceManager.GetObject("delete_net_32", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
+        /// </summary>
+        internal static System.Drawing.Bitmap disk_save_22px {
+            get {
+                object obj = ResourceManager.GetObject("disk_save_22px", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -133,9 +183,79 @@ namespace ZW_GBwin.Properties {
         /// <summary>
         ///   查找 System.Drawing.Bitmap 类型的本地化资源。
         /// </summary>
+        internal static System.Drawing.Bitmap FolderMusicLoaction_net_32 {
+            get {
+                object obj = ResourceManager.GetObject("FolderMusicLoaction_net_32", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
+        /// </summary>
+        internal static System.Drawing.Bitmap group_32 {
+            get {
+                object obj = ResourceManager.GetObject("group_32", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
+        /// </summary>
+        internal static System.Drawing.Bitmap group_32_Add {
+            get {
+                object obj = ResourceManager.GetObject("group_32_Add", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
+        /// </summary>
+        internal static System.Drawing.Bitmap group_32_Del {
+            get {
+                object obj = ResourceManager.GetObject("group_32_Del", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
+        /// </summary>
+        internal static System.Drawing.Bitmap group_32_Edit {
+            get {
+                object obj = ResourceManager.GetObject("group_32_Edit", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
+        /// </summary>
         internal static System.Drawing.Bitmap information_net_32 {
             get {
                 object obj = ResourceManager.GetObject("information_net_32", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
+        /// </summary>
+        internal static System.Drawing.Bitmap knob_net_32 {
+            get {
+                object obj = ResourceManager.GetObject("knob_net_32", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
+        /// </summary>
+        internal static System.Drawing.Bitmap Music_2_net_32 {
+            get {
+                object obj = ResourceManager.GetObject("Music_2_net_32", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -266,6 +386,16 @@ namespace ZW_GBwin.Properties {
         internal static System.Drawing.Bitmap play_32px {
             get {
                 object obj = ResourceManager.GetObject("play_32px", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
+        /// </summary>
+        internal static System.Drawing.Bitmap PlayPowerDevice_32 {
+            get {
+                object obj = ResourceManager.GetObject("PlayPowerDevice_32", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

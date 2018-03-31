@@ -628,7 +628,8 @@ namespace ZW_GBwin
             oneDev.TaskStatus = devInfo.TaskStatus;
             oneDev.Type = devInfo.Type;
             oneDev.SubnetMask = devInfo.SubnetMask;
-
+            oneDev.AreaID = devInfo.AreaID;
+            oneDev.Channals = devInfo.Channals;
             using (var db = new Sqlite(connectStr))
             {
                 try
@@ -685,6 +686,7 @@ namespace ZW_GBwin
                     en.AliasName = theDev.AliasName;
                     en.IsDHCP = theDev.IsDHCP;
                     en.FirmwareVersion = theDev.SoftwareVersion;
+                    en.AreaID = theDev.AreaID;
 
                     en.WhereExpression = ZWGB_TerminalDevSet.SN.Equal(theDev.SN);//条件
                     db.Update(en);
@@ -724,7 +726,7 @@ namespace ZW_GBwin
 
         public void DelDeviceInfo(string sn)
         {
-            if ( String.IsNullOrEmpty(sn))
+            if (String.IsNullOrEmpty(sn))
             {
                 return;
             }
@@ -748,7 +750,90 @@ namespace ZW_GBwin
         #endregion 设备管理
 
 
+        #region 区域管理
 
+        public List<ZWGB_Area> LoadAllArea()
+        {
+            using (var db = new Sqlite(connectStr))
+            {
+                try
+                {
+                    var theEntities = db.GetEntities<ZWGB_Area>(ZWGB_AreaSet.SelectAll().Where(ZWGB_AreaSet.AreaID.BiggerThanOrEqual(0)));
+
+                    return theEntities;
+                }
+                catch (Exception ex)
+                {
+                    Moon.Orm.Util.LogUtil.Exception(ex);
+                    throw ex;
+                }
+            }
+        }
+
+        public void UpdateAreaInfo(ZWGB_Area theArea)
+        {
+            if (theArea == null || theArea.AreaID < 2)
+            {
+                return;
+            }
+            using (var db = new Sqlite(connectStr))
+            {
+                try
+                {
+                    theArea.WhereExpression = ZWGB_AreaSet.AreaID.Equal(theArea.AreaID);//条件
+                    db.Update(theArea);
+                }
+                catch (Exception ex)
+                {
+                    Moon.Orm.Util.LogUtil.Exception(ex);
+                    throw ex;
+                }
+            }
+        }
+
+        public bool AddAreaInfo(ZWGB_Area areaInfo)
+        {
+            bool isSucceed = false;
+            if (areaInfo == null)
+            { return isSucceed; }
+
+            using (var db = new Sqlite(connectStr))
+            {
+                try
+                {
+                    db.Add(areaInfo);
+                    isSucceed = true;
+                }
+                catch (Exception ex)
+                {
+                    Moon.Orm.Util.LogUtil.Exception(ex);//
+                    throw ex;
+                }
+            }
+            return isSucceed;
+        }
+
+        public bool DelTheAreaInfo(Int64 areaID)
+        {
+            if (areaID < 2)
+            {
+                return false;
+            }
+            using (var db = new Sqlite(connectStr))
+            {
+                try
+                {
+                    return db.Remove<ZWGB_AreaSet>(ZWGB_AreaSet.AreaID.Equal(areaID)) > 0;
+                }
+                catch (Exception ex)
+                {
+                    Moon.Orm.Util.LogUtil.Exception(ex);
+                    throw ex;
+                }
+            }
+        }
+
+        #endregion 区域管理
 
 
         public deviceInfo ZWGB_TerminalDevToDevInfo(ZWGB_TerminalDev dbDev)
@@ -773,6 +858,8 @@ namespace ZW_GBwin
             oneInfo.TerminalID = dbDev.TerminalID;
             oneInfo.Type = dbDev.Type;
             oneInfo.SubnetMask = dbDev.SubnetMask;
+            oneInfo.AreaID = dbDev.AreaID;
+            oneInfo.Channals = dbDev.Channals;
             return oneInfo;
         }
 
@@ -798,9 +885,13 @@ namespace ZW_GBwin
             oneDev.TerminalID = devInfo.TerminalID;
             oneDev.Type = devInfo.Type;
             oneDev.SubnetMask = devInfo.SubnetMask;
-
+            oneDev.AreaID = devInfo.AreaID;
+            oneDev.Channals = devInfo.Channals;
             return oneDev;
         }
+
+
+
     }
 
     public class ResourceFile

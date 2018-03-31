@@ -56,7 +56,7 @@ namespace ZW_GBwin
             resources.CurrentItemChanged += Resources_CurrentItemChanged;
 
             currentLocalIP = NetHelper.GetLocalIP();//获取电脑当前本地IP
-            loadAllStoregDev();//加载已存储的设备信息
+            loadAllDevFromDB();//加载已存储的设备信息
             BindDeviceList = new BindingList<deviceInfo>(DeviceList);
             this.dGrid_devList.DataSourceChanged += DGrid_devList_DataSourceChanged;
             this.dGrid_devList.DataSource = BindDeviceList;
@@ -113,11 +113,12 @@ namespace ZW_GBwin
                 case "tabItem_ChannlsGroup":
                     {
                         loadAreaMenustrip(advTree_Area);
+                        loadAllAreaAndDeviceToTree();
                         break;
                     }
                 default:
                     {
-                        MessageBox.Show(e.NewValue.Name);
+                        // MessageBox.Show(e.NewValue.Name);
                         break;
                     }
             }
@@ -151,10 +152,7 @@ namespace ZW_GBwin
 
         private void ResourcesClass_CurrentItemChanged(object sender, EventArgs e)
         {
-            if (resourcesClass.Current == null)
-            {
 
-            }
         }
 
         private void Resources_CurrentItemChanged(object sender, EventArgs e)
@@ -593,7 +591,7 @@ namespace ZW_GBwin
 
         #region 私有方法
 
-        private void loadAllStoregDev()
+        private void loadAllDevFromDB()
         {
             DeviceList = _dbHelper.LoadAllStoredDevices();
         }
@@ -604,6 +602,7 @@ namespace ZW_GBwin
             deviceInfo oneDev = JsonConvert.DeserializeObject<deviceInfo>(arg3);
             oneDev.IsOnLine = true;
             oneDev.IsMulticastTo = true;
+
             foreach (var one in BindDeviceList)
             {
                 if (one.SN == oneDev.SN)
@@ -623,6 +622,15 @@ namespace ZW_GBwin
             if (this.dGrid_devList.IsHandleCreated && !ex && oneDev.SN.Length > 0)
                 this.dGrid_devList.BeginInvoke(new Action(delegate
                 {
+                    if (oneDev.Type == "IPCHPOWER")
+                    {
+                        oneDev.Channals = 16;
+                    }
+                    else
+                    {
+                        oneDev.Channals = 1;
+                    }
+                    oneDev.AreaID = 0;
                     //发送到UI 线程执行的代码
                     _dbHelper.AddDeviceInfo(oneDev);
                     BindDeviceList.Add(oneDev);
@@ -774,7 +782,7 @@ namespace ZW_GBwin
 
         private void dGrid_devList_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (DeviceList.Count > 0)
+            if (DeviceList.Count > 0 && e.RowIndex > -1)
                 selectDevice = DeviceList[e.RowIndex];
         }
 
@@ -875,6 +883,10 @@ namespace ZW_GBwin
 
         DevComponents.AdvTree.Node _selectedAreaNode;
 
+        private List<ZWGB_Area> allArea;//区域数据缓存
+
+
+
         #endregion 缓存
 
         #region 私有方法
@@ -886,6 +898,9 @@ namespace ZW_GBwin
             ms.Items.Add("修改区域名");
             ms.Items.Add("添加设备");
             ms.Items.Add("移除该设备");
+            ms.Items.Add("添加分区设备组");//4
+            ms.Items.Add("修改分区设备组");//5
+            ms.Items.Add("删除分区设备组");//6
             ms.BackColor = System.Drawing.SystemColors.ControlDark;
             ms.Opening += Ms_Opening;
             ms.ItemClicked += new ToolStripItemClickedEventHandler(ms_AreaClicked);
@@ -893,19 +908,64 @@ namespace ZW_GBwin
             ms.Items[0].Image = this.imageList1.Images["group_32_Add"];
             ms.Items[1].Image = this.imageList1.Images["group_32_Edit"];
             ms.Items[2].Image = this.imageList1.Images["SoundAdd_net_32"];
-            ms.Items[2].Enabled = false;
             ms.Items[3].Image = this.imageList1.Images["soundDelete_net_32"];
-            ms.Items[3].Enabled = false;
+
+            ms.Items[4].Image = this.imageList1.Images["group_32_Add"];
+
+            ms.Items[5].Image = this.imageList1.Images["group_32_Edit"];
+
+            ms.Items[6].Image = this.imageList1.Images["group_32_Del"];
             Control.ContextMenuStrip = ms;
         }
 
         private void Ms_Opening(object sender, CancelEventArgs e)
         {
             ContextMenuStrip contextMenu = (ContextMenuStrip)sender;
+            contextMenu.Items[0].Enabled = false;
+            contextMenu.Items[1].Enabled = false;
+            contextMenu.Items[2].Enabled = false;
+            contextMenu.Items[3].Enabled = false;
+            contextMenu.Items[4].Enabled = false;
+            contextMenu.Items[5].Enabled = false;
+            contextMenu.Items[6].Enabled = false;
+
+            // showToastNotice("selectedAreaNode"+ advTree_Area.SelectedNode.Text, null, eToastPosition.BottomCenter, 1);
+            _selectedAreaNode = advTree_Area.SelectedNode;
+
             if (_selectedAreaNode != null)
             {
-                contextMenu.Items[2].Enabled = true;
-                contextMenu.Items[3].Enabled = true;
+                if (_selectedAreaNode.Tag.GetType() == typeof(deviceInfo))
+                {
+                    contextMenu.Items[0].Enabled = false;
+                    contextMenu.Items[1].Enabled = false;
+                    contextMenu.Items[2].Enabled = false;
+
+                    contextMenu.Items[3].Enabled = true;
+                    deviceInfo theDev = (deviceInfo)_selectedAreaNode.Tag;
+                    if (theDev.Type == "IPCHPOWER")
+                    {
+                        contextMenu.Items[4].Enabled = true;
+                    }
+                }
+                if (_selectedAreaNode.Tag.GetType() == typeof(ZWGB_Area))
+                {
+                    contextMenu.Items[0].Enabled = true;
+                    contextMenu.Items[1].Enabled = true;
+                    contextMenu.Items[2].Enabled = true;
+                }
+                if (_selectedAreaNode.Tag.GetType() == typeof(int))
+                {
+                    int groupID = (int)_selectedAreaNode.Tag;
+                    if (groupID > 100)
+                    {
+                        contextMenu.Items[5].Enabled = true;
+                        contextMenu.Items[6].Enabled = true;
+                    }
+                }
+            }
+            else
+            {
+                e.Cancel = true;
             }
         }
 
@@ -913,75 +973,160 @@ namespace ZW_GBwin
         {
             ContextMenuStrip contextMenu = (ContextMenuStrip)sender;
 
-            if ((contextMenu).Items[0] == e.ClickedItem)
+            switch (e.ClickedItem.Text)
             {
-                //if (this.dataGridStuInfo != null && this.dataGridStuInfo.SelectedRows.Count > 0)
-                //{
-                //    List<UserBaseInfo> selectUsers = getSelectedStudentsList();
-                //    ChangeUsersUnitForm changeUnitForm = new ChangeUsersUnitForm(CardUserType.Student, selectUsers, stuClass, _archivesManager);
-                //    if (changeUnitForm.ShowDialog(this) == System.Windows.Forms.DialogResult.OK)
-                //    {
-                //        isStuInfoInputEnabled(false);
-                //        clearStuInfoInputData();
-                //        displaySelectClassStu();
-                //    }
-                //    //MessageBox.Show("调整选定学生班级  选择人数：" + selectUsers.Count);
-                //}
-            }
-            else if ((contextMenu).Items[1] == e.ClickedItem)
-            {
-                //if (this.dataGridStuInfo != null && this.dataGridStuInfo.SelectedRows.Count > 0)
-                //{
-                //    int leaveUnitId = getLeaveUnitId(stuClass);
-                //    if (leaveUnitId < 1)
-                //    {
-                //        showToastNotice("未发现系统的离园分组，因此不能移动!", null, eToastPosition.MiddleCenter, 3);
-                //        return;
-                //    }
-                //    List<UserBaseInfo> selectUsers = getSelectedStudentsList();
-                //    string message = "真的要将选择的 " + selectUsers.Count + " 位学生设为离园（分组）？设定到离园分组后相应持卡将暂停。";
-                //    string caption = "请选择是否移动设定";
-                //    MessageBoxButtons buttons = MessageBoxButtons.YesNo;
-                //    DialogResult result = MessageBox.Show(message, caption, buttons);
+                case "添加子区域":
+                    {
+                        ZWGB_Area newArea = new Model.ZWGB_Area();
+                        ZWGB_Area perentArea = (ZWGB_Area)_selectedAreaNode.Tag;
+                        newArea.ParentAreaID = perentArea.AreaID;
+                        if (new AreaForm(newArea).ShowDialog() == DialogResult.OK)
+                        {
+                            _dbHelper.AddAreaInfo(newArea);
+                            DevComponents.AdvTree.Node tempNode = new DevComponents.AdvTree.Node();
+                            tempNode.Text = newArea.AreaName;
+                            tempNode.Tag = newArea;
+                            _selectedAreaNode.Nodes.Add(tempNode);
+                        }
 
-                //    if (result == System.Windows.Forms.DialogResult.Yes)
-                //    {
-                //        _archivesManager.SetUsersCardState(selectUsers, CheckCardState.Suspended);
-                //        if (_archivesManager.ChangeUsersUnit(selectUsers, leaveUnitId))
-                //        {
-                //            showToastNotice("设定选定人员为离园分组成功!", null, eToastPosition.MiddleCenter, 3);
-                //            displaySelectClassStu();
-                //        }
-                //        else
-                //        {
-                //            showToastNotice("设定选定人员为离园分组失败!", null, eToastPosition.MiddleCenter, 3);
-                //        }
-                //    }
-                //}
-            }
-            else
-            {
-                //if (this.dataGridStuInfo != null && this.dataGridStuInfo.SelectedRows.Count > 0)
-                //{
-                //    List<UserBaseInfo> selectUsers = getSelectedStudentsList();
-                //    string message = "真的要删除选择的 " + selectUsers.Count + " 位学生信息？删除后将不能恢复！";
-                //    string caption = "请选择是否删除信息";
-                //    MessageBoxButtons buttons = MessageBoxButtons.YesNo;
-                //    DialogResult result = MessageBox.Show(message, caption, buttons);
+                        break;
+                    }
+                case "修改区域名":
+                    {
+                        ZWGB_Area theArea = (ZWGB_Area)_selectedAreaNode.Tag;
+                        if (theArea.AreaID < 2)
+                        {
+                            showToastNotice("不能编辑此默认区域.", null, eToastPosition.MiddleCenter, 2);
+                            return;
+                        }
+                        if (new AreaForm(theArea).ShowDialog() == DialogResult.OK)
+                        {
+                            _dbHelper.UpdateAreaInfo(theArea);
+                            _selectedAreaNode.Text = theArea.AreaName;
+                        }
+                        break;
+                    }
+                case "添加设备":
+                    {
 
-                //    if (result == System.Windows.Forms.DialogResult.Yes)
-                //    {
-                //        if (_archivesManager.DelStudentsInfo(selectUsers))
-                //        {
-                //            showToastNotice("删除选定人员档案信息成功!", null, eToastPosition.MiddleCenter, 3);
-                //            displaySelectClassStu();
-                //        }
-                //        else
-                //        {
-                //            showToastNotice("删除选定人员档案失败!", null, eToastPosition.MiddleCenter, 3);
-                //        }
-                //    }
-                //}
+                        break;
+                    }
+                case "移除该设备":
+                    {
+
+                        break;
+                    }
+                case "添加分区设备组":
+                    {
+
+                        break;
+                    }
+                case "修改分区设备组":
+                    {
+
+                        break;
+                    }
+                case "删除分区设备组":
+                    {
+
+                        break;
+                    }
+                default:
+                    {
+                        break;
+                    }
+            }
+        }
+
+        private void loadAllAreaAndDeviceToTree()
+        {
+            loadAllDevFromDB();//加载存储的设备
+            allArea = _dbHelper.LoadAllArea();//读取所有的区域数据
+            advTree_Area.Nodes.Clear();
+            if (allArea == null || allArea.Count == 0)
+            {
+                allArea.Add(new Model.ZWGB_Area { AreaName = "默认区域", AreaID = 1, ParentAreaID = 0 });
+            }
+
+            var treeNodes = new List<DevComponents.AdvTree.Node>();
+            DevComponents.AdvTree.Node theNode;
+            //加载根节点
+            var rootNodes = allArea.FindAll(x => x.ParentAreaID == 0);
+            foreach (var oneRoot in rootNodes)
+            {
+                theNode = new DevComponents.AdvTree.Node();
+                theNode.Text = oneRoot.AreaName;
+                theNode.Tag = oneRoot;
+                theNode.DragDropEnabled = false;
+                var dev = DeviceList.FindAll(x => x.AreaID == oneRoot.AreaID);
+                if (dev != null && dev.Count > 0)
+                {
+                    loadDeviceToAreaNode(theNode, dev);//加载此区域下的设备节点
+                }
+                treeNodes.Add(theNode);
+                advTree_Area.Nodes.Add(theNode);
+            }
+
+
+            while (treeNodes.Count > 0)
+            {
+                theNode = treeNodes[0];
+                //每次循环都去掉第一个结点，下次循环就是第二个结点
+                treeNodes.Remove(theNode);
+                var childNodes = allArea.FindAll(x => x.ParentAreaID == ((ZWGB_Area)theNode.Tag).AreaID);
+
+                for (int i = 0; i < childNodes.Count; i++)
+                {
+                    DevComponents.AdvTree.Node tempNode = new DevComponents.AdvTree.Node();
+                    tempNode.Text = childNodes[i].AreaName;
+                    tempNode.Tag = childNodes[i];
+
+                    var dev = DeviceList.FindAll(x => x.AreaID == childNodes[i].AreaID);
+                    if (dev != null && dev.Count > 0)
+                    {
+                        loadDeviceToAreaNode(tempNode, dev);//加载此区域下的设备节点
+                    }
+
+                    treeNodes.Add(tempNode);
+                    theNode.Nodes.Add(tempNode);
+                }
+            }
+
+        }
+
+        /// <summary>
+        /// 将区域下的设备加载
+        /// </summary>
+        /// <param name="theNode"></param>
+        /// <param name="devList"></param>
+        private void loadDeviceToAreaNode(DevComponents.AdvTree.Node theNode, List<deviceInfo> devList)
+        {
+            foreach (var oneDev in devList)
+            {
+                DevComponents.AdvTree.Node theDevNode = new DevComponents.AdvTree.Node();
+                theDevNode.Text = oneDev.AliasName;
+                theDevNode.Tag = oneDev;
+
+                if (oneDev.Type == "IPCHPOWER")
+                {
+                    theDevNode.ImageIndex = 2;
+                    //加载物理分区；
+                    for (int i = 1; i <= oneDev.Channals; i++)
+                    {
+                        DevComponents.AdvTree.Node node = new DevComponents.AdvTree.Node();
+                        node.Text = "第 " + i + " 分区";
+                        node.Tag = i;
+                        node.ImageIndex = 12;
+                        theDevNode.Nodes.Add(node);
+                    }
+                    //加载分区组；
+
+                }
+                if (oneDev.Type == "IPTRUMPET")
+                {
+                    theDevNode.ImageIndex = 1;
+                }
+                theNode.Nodes.Add(theDevNode);
             }
         }
 
@@ -989,26 +1134,129 @@ namespace ZW_GBwin
 
         #region Click
 
+        private void btnItem_AddArea_Click(object sender, EventArgs e)
+        {
+            ZWGB_Area newArea = new Model.ZWGB_Area();
+            newArea.ParentAreaID = 1;
+            if (new AreaForm(newArea).ShowDialog() == DialogResult.OK)
+            {
+                _dbHelper.AddAreaInfo(newArea);
+                DevComponents.AdvTree.Node tempNode = new DevComponents.AdvTree.Node();
+                tempNode.Text = newArea.AreaName;
+                tempNode.Tag = newArea;
+                advTree_Area.Nodes.Add(tempNode);
+            }
+        }
 
+        private void btnItem_EditArea_Click(object sender, EventArgs e)
+        {
+            _selectedAreaNode = advTree_Area.SelectedNode;
+            if (_selectedAreaNode.Tag.GetType() == typeof(ZWGB_Area))
+            {
+                ZWGB_Area theArea = (ZWGB_Area)_selectedAreaNode.Tag;
+                if (theArea.AreaID < 2)
+                {
+                    showToastNotice("不能编辑此默认区域.", null, eToastPosition.MiddleCenter, 2);
+                    return;
+                }
+                if (new AreaForm(theArea).ShowDialog() == DialogResult.OK)
+                {
+                    _dbHelper.UpdateAreaInfo(theArea);
+                    _selectedAreaNode.Text = theArea.AreaName;
+                }
+            }
+        }
+
+        private void btnItem_DelArea_Click(object sender, EventArgs e)
+        {
+            _selectedAreaNode = advTree_Area.SelectedNode;
+            if (_selectedAreaNode.Tag.GetType() == typeof(ZWGB_Area))
+            {
+                ZWGB_Area theArea = (ZWGB_Area)_selectedAreaNode.Tag;
+                if (theArea.AreaID < 2)
+                {
+                    showToastNotice("不能删除此默认区域.", null, eToastPosition.MiddleCenter, 2);
+                    return;
+                }
+                if (_selectedAreaNode.Nodes.Count > 0)
+                {
+                    showToastNotice("请先删除子节点！再删除此区域.", null, eToastPosition.MiddleCenter, 2);
+                    return;
+                }
+
+                if (_dbHelper.DelTheAreaInfo(theArea.AreaID))
+                {
+                    _selectedAreaNode.Parent.Nodes.Remove(_selectedAreaNode);
+                }
+            }
+        }
+
+        private void advTree_Area_NodeClick(object sender, DevComponents.AdvTree.TreeNodeMouseEventArgs e)
+        {
+            if (e.Node != null && e.Node.Tag.GetType() == typeof(ZWGB_Area))
+            {
+                btnItem_EditArea.Enabled = true;
+                btnItem_DelArea.Enabled = true;
+            }
+        }
+
+        private void advTree_Area_Click(object sender, EventArgs e)
+        {
+            //_selectedAreaNode = null;
+
+            btnItem_EditArea.Enabled = false;
+            btnItem_DelArea.Enabled = false;
+        }
+
+
+        private void advTree_Area_BeforeNodeInsert(object sender, DevComponents.AdvTree.TreeNodeCollectionEventArgs e)
+        {
+            //  showToastNotice("BeforeNodeInsert", null, eToastPosition.BottomCenter, 1);
+        }
+
+
+        private void advTree_Area_BeforeNodeDragStart(object sender, DevComponents.AdvTree.AdvTreeNodeCancelEventArgs e)
+        {
+            //分区节点不能拖动
+            if (e.Node.Tag.GetType() == typeof(int))
+            {
+                e.Cancel = true;
+            }
+        }
+
+        private void advTree_Area_BeforeNodeDrop(object sender, DevComponents.AdvTree.TreeDragDropEventArgs e)
+        {
+            //父节点是设备的，不接受拖入
+            Type parentType = e.NewParentNode.Tag.GetType();
+            if (parentType == typeof(deviceInfo) || parentType == typeof(int))
+            {
+                e.Cancel = true;
+            }
+            else
+            {
+                ZWGB_Area parentArea = (ZWGB_Area)e.NewParentNode.Tag;
+
+                Type nodeType = e.Node.Tag.GetType();
+                if (nodeType == typeof(deviceInfo))
+                {
+                    var theDev = (deviceInfo)e.Node.Tag;
+                    //更新区域ID
+                    theDev.AreaID = parentArea.AreaID;
+                    _dbHelper.UpdateDeviceInfo(theDev);
+                }
+                if (nodeType == typeof(ZWGB_Area))
+                {
+                    var theArea = (ZWGB_Area)e.Node.Tag;
+                    //更新父区域ID
+                    theArea.ParentAreaID = parentArea.AreaID;
+                    _dbHelper.UpdateAreaInfo(theArea);
+                }
+            }
+        }
 
         #endregion Click
 
         #endregion 区域管理
-
-        private void buttonX1_Click(object sender, EventArgs e)
-        {
-            udp65000 = new udpReceiver();
-            udp65000.Received -= Udp65000_Received;
-            udp65000.Received += Udp65000_Received;
-
-            //判断IP是否有效
-            string currentLocalIPV4 = NetHelper.GetLocalIP();
-            // 创建接收套接字
-            IPAddress localIp = IPAddress.Parse(currentLocalIPV4);//选定当前系统的IP
-
-            //  udp65000.StartUdpReceive(localIp, integerInput1.Value);
-
-        }
 
         private void Udp65000_Received(System.Net.IPAddress arg1, byte[] arg2, string arg3)
         {
@@ -1020,28 +1268,6 @@ namespace ZW_GBwin
             udp65000.Close();
         }
 
-        private void buttonX3_Click(object sender, EventArgs e)
-        {
-            IPAddress ip = IPAddress.Parse("192.168.10.149");
-            IPEndPoint point = new IPEndPoint(ip, 65000);
 
-            System.Timers.ElapsedEventHandler callBack = (Object o, System.Timers.ElapsedEventArgs a) =>
-            {
-                MessageBox.Show("shijiandao");
-            };
-            //UdpSendString(point, "你好");
-            UdpSendStringWaitCallback(point, "Hello", 1000, callBack);
-        }
-
-        private void advTree_Area_NodeClick(object sender, DevComponents.AdvTree.TreeNodeMouseEventArgs e)
-        {
-            _selectedAreaNode = e.Node;
-            // e.Button == MouseButtons.Right;
-        }
-
-        private void advTree_Area_AfterNodeSelect(object sender, DevComponents.AdvTree.AdvTreeNodeEventArgs e)
-        {
-
-        }
     }
 }

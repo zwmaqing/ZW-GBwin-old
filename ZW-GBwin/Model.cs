@@ -4,6 +4,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Moon.Orm;
 
+
 namespace ZW_GBwin.Model
 {
 
@@ -12,11 +13,11 @@ namespace ZW_GBwin.Model
     {
         public static new MQLBase Select(params FieldBase[] fields)
         {
-            return MQLBase.Select(DbType.Sqlite,"[ZWGB_DbUpdateRecord]",fields);
+            return MQLBase.Select(DbType.Sqlite, "[ZWGB_DbUpdateRecord]", fields);
         }
         public static new MQLBase SelectAll()
         {
-            return MQLBase.SelectAll(DbType.Sqlite,"[ZWGB_DbUpdateRecord]");
+            return MQLBase.SelectAll(DbType.Sqlite, "[ZWGB_DbUpdateRecord]");
         }
         public static readonly FieldBase RID = new FieldBase(DbType.Sqlite, "[ZWGB_DbUpdateRecord]", FieldType.OnlyPrimaryKey, "[RID]");
         public static readonly FieldBase VersionStr = new FieldBase(DbType.Sqlite, "[ZWGB_DbUpdateRecord]", FieldType.Common, "[VersionStr]");
@@ -34,11 +35,11 @@ namespace ZW_GBwin.Model
     {
         public static new MQLBase Select(params FieldBase[] fields)
         {
-            return MQLBase.Select(DbType.Sqlite,"[ZWGB_ResourceClass]",fields);
+            return MQLBase.Select(DbType.Sqlite, "[ZWGB_ResourceClass]", fields);
         }
         public static new MQLBase SelectAll()
         {
-            return MQLBase.SelectAll(DbType.Sqlite,"[ZWGB_ResourceClass]");
+            return MQLBase.SelectAll(DbType.Sqlite, "[ZWGB_ResourceClass]");
         }
         public static readonly FieldBase RID = new FieldBase(DbType.Sqlite, "[ZWGB_ResourceClass]", FieldType.OnlyPrimaryKey, "[RID]");
         public static readonly FieldBase ClassifyName = new FieldBase(DbType.Sqlite, "[ZWGB_ResourceClass]", FieldType.Common, "[ClassifyName]");
@@ -56,11 +57,11 @@ namespace ZW_GBwin.Model
     {
         public static new MQLBase Select(params FieldBase[] fields)
         {
-            return MQLBase.Select(DbType.Sqlite,"[ZWGB_ResourceFiles]",fields);
+            return MQLBase.Select(DbType.Sqlite, "[ZWGB_ResourceFiles]", fields);
         }
         public static new MQLBase SelectAll()
         {
-            return MQLBase.SelectAll(DbType.Sqlite,"[ZWGB_ResourceFiles]");
+            return MQLBase.SelectAll(DbType.Sqlite, "[ZWGB_ResourceFiles]");
         }
         public static readonly FieldBase RID = new FieldBase(DbType.Sqlite, "[ZWGB_ResourceFiles]", FieldType.OnlyPrimaryKey, "[RID]");
         public static readonly FieldBase FileName = new FieldBase(DbType.Sqlite, "[ZWGB_ResourceFiles]", FieldType.Common, "[FileName]");
@@ -79,11 +80,11 @@ namespace ZW_GBwin.Model
     {
         public static new MQLBase Select(params FieldBase[] fields)
         {
-            return MQLBase.Select(DbType.Sqlite,"[ZWGB_Plans]",fields);
+            return MQLBase.Select(DbType.Sqlite, "[ZWGB_Plans]", fields);
         }
         public static new MQLBase SelectAll()
         {
-            return MQLBase.SelectAll(DbType.Sqlite,"[ZWGB_Plans]");
+            return MQLBase.SelectAll(DbType.Sqlite, "[ZWGB_Plans]");
         }
         public static readonly FieldBase PID = new FieldBase(DbType.Sqlite, "[ZWGB_Plans]", FieldType.OnlyPrimaryKey, "[PID]");
         public static readonly FieldBase PlanName = new FieldBase(DbType.Sqlite, "[ZWGB_Plans]", FieldType.Common, "[PlanName]");
@@ -100,11 +101,11 @@ namespace ZW_GBwin.Model
     {
         public static new MQLBase Select(params FieldBase[] fields)
         {
-            return MQLBase.Select(DbType.Sqlite,"[ZWGB_PlayTask]",fields);
+            return MQLBase.Select(DbType.Sqlite, "[ZWGB_PlayTask]", fields);
         }
         public static new MQLBase SelectAll()
         {
-            return MQLBase.SelectAll(DbType.Sqlite,"[ZWGB_PlayTask]");
+            return MQLBase.SelectAll(DbType.Sqlite, "[ZWGB_PlayTask]");
         }
         public static readonly FieldBase TaskID = new FieldBase(DbType.Sqlite, "[ZWGB_PlayTask]", FieldType.OnlyPrimaryKey, "[TaskID]");
         public static readonly FieldBase PlanID = new FieldBase(DbType.Sqlite, "[ZWGB_PlayTask]", FieldType.Common, "[PlanID]");
@@ -142,11 +143,11 @@ namespace ZW_GBwin.Model
     {
         public static new MQLBase Select(params FieldBase[] fields)
         {
-            return MQLBase.Select(DbType.Sqlite,"[ZWGB_PlayFileProject]",fields);
+            return MQLBase.Select(DbType.Sqlite, "[ZWGB_PlayFileProject]", fields);
         }
         public static new MQLBase SelectAll()
         {
-            return MQLBase.SelectAll(DbType.Sqlite,"[ZWGB_PlayFileProject]");
+            return MQLBase.SelectAll(DbType.Sqlite, "[ZWGB_PlayFileProject]");
         }
         public static readonly FieldBase ProjectID = new FieldBase(DbType.Sqlite, "[ZWGB_PlayFileProject]", FieldType.OnlyPrimaryKey, "[ProjectID]");
         public static readonly FieldBase TaskID = new FieldBase(DbType.Sqlite, "[ZWGB_PlayFileProject]", FieldType.Common, "[TaskID]");
@@ -170,11 +171,11 @@ namespace ZW_GBwin.Model
     {
         public static new MQLBase Select(params FieldBase[] fields)
         {
-            return MQLBase.Select(DbType.Sqlite,"[ZWGB_TerminalDev]",fields);
+            return MQLBase.Select(DbType.Sqlite, "[ZWGB_TerminalDev]", fields);
         }
         public static new MQLBase SelectAll()
         {
-            return MQLBase.SelectAll(DbType.Sqlite,"[ZWGB_TerminalDev]");
+            return MQLBase.SelectAll(DbType.Sqlite, "[ZWGB_TerminalDev]");
         }
         public static readonly FieldBase TerminalID = new FieldBase(DbType.Sqlite, "[ZWGB_TerminalDev]", FieldType.OnlyPrimaryKey, "[TerminalID]");
         public static readonly FieldBase AliasName = new FieldBase(DbType.Sqlite, "[ZWGB_TerminalDev]", FieldType.Common, "[AliasName]");
@@ -195,40 +196,8 @@ namespace ZW_GBwin.Model
         public static readonly FieldBase FirmwareVersion = new FieldBase(DbType.Sqlite, "[ZWGB_TerminalDev]", FieldType.Common, "[FirmwareVersion]");
         public static readonly FieldBase HardwareVersion = new FieldBase(DbType.Sqlite, "[ZWGB_TerminalDev]", FieldType.Common, "[HardwareVersion]");
         public static readonly FieldBase DefaultVolume = new FieldBase(DbType.Sqlite, "[ZWGB_TerminalDev]", FieldType.Common, "[DefaultVolume]");
-    }
-
-    [Table("[ZWGB_Area]", DbType.Sqlite)]
-    public class ZWGB_AreaSet : MQLBase
-    {
-        public static new MQLBase Select(params FieldBase[] fields)
-        {
-            return MQLBase.Select(DbType.Sqlite,"[ZWGB_Area]",fields);
-        }
-        public static new MQLBase SelectAll()
-        {
-            return MQLBase.SelectAll(DbType.Sqlite,"[ZWGB_Area]");
-        }
-        public static readonly FieldBase AreaID = new FieldBase(DbType.Sqlite, "[ZWGB_Area]", FieldType.OnlyPrimaryKey, "[AreaID]");
-        public static readonly FieldBase AreaName = new FieldBase(DbType.Sqlite, "[ZWGB_Area]", FieldType.Common, "[AreaName]");
-        public static readonly FieldBase DefaultVolume = new FieldBase(DbType.Sqlite, "[ZWGB_Area]", FieldType.Common, "[DefaultVolume]");
-    }
-
-    [Table("[ZWGB_AreaPoint]", DbType.Sqlite)]
-    public class ZWGB_AreaPointSet : MQLBase
-    {
-        public static new MQLBase Select(params FieldBase[] fields)
-        {
-            return MQLBase.Select(DbType.Sqlite,"[ZWGB_AreaPoint]",fields);
-        }
-        public static new MQLBase SelectAll()
-        {
-            return MQLBase.SelectAll(DbType.Sqlite,"[ZWGB_AreaPoint]");
-        }
-        public static readonly FieldBase APID = new FieldBase(DbType.Sqlite, "[ZWGB_AreaPoint]", FieldType.OnlyPrimaryKey, "[APID]");
-        public static readonly FieldBase TerminalID = new FieldBase(DbType.Sqlite, "[ZWGB_AreaPoint]", FieldType.Common, "[TerminalID]");
-        public static readonly FieldBase GroupID = new FieldBase(DbType.Sqlite, "[ZWGB_AreaPoint]", FieldType.Common, "[GroupID]");
-        public static readonly FieldBase DefaultVolume = new FieldBase(DbType.Sqlite, "[ZWGB_AreaPoint]", FieldType.Common, "[DefaultVolume]");
-        public static readonly FieldBase AreaID = new FieldBase(DbType.Sqlite, "[ZWGB_AreaPoint]", FieldType.Common, "[AreaID]");
+        public static readonly FieldBase AreaID = new FieldBase(DbType.Sqlite, "[ZWGB_TerminalDev]", FieldType.Common, "[AreaID]");
+        public static readonly FieldBase Channals = new FieldBase(DbType.Sqlite, "[ZWGB_TerminalDev]", FieldType.Common, "[Channals]");
     }
 
     [Table("[ZWGB_TerminalGroup]", DbType.Sqlite)]
@@ -236,11 +205,11 @@ namespace ZW_GBwin.Model
     {
         public static new MQLBase Select(params FieldBase[] fields)
         {
-            return MQLBase.Select(DbType.Sqlite,"[ZWGB_TerminalGroup]",fields);
+            return MQLBase.Select(DbType.Sqlite, "[ZWGB_TerminalGroup]", fields);
         }
         public static new MQLBase SelectAll()
         {
-            return MQLBase.SelectAll(DbType.Sqlite,"[ZWGB_TerminalGroup]");
+            return MQLBase.SelectAll(DbType.Sqlite, "[ZWGB_TerminalGroup]");
         }
         public static readonly FieldBase GID = new FieldBase(DbType.Sqlite, "[ZWGB_TerminalGroup]", FieldType.OnlyPrimaryKey, "[GID]");
         public static readonly FieldBase GroupID = new FieldBase(DbType.Sqlite, "[ZWGB_TerminalGroup]", FieldType.Common, "[GroupID]");
@@ -253,11 +222,11 @@ namespace ZW_GBwin.Model
     {
         public static new MQLBase Select(params FieldBase[] fields)
         {
-            return MQLBase.Select(DbType.Sqlite,"[ZWGB_PlayFileSync]",fields);
+            return MQLBase.Select(DbType.Sqlite, "[ZWGB_PlayFileSync]", fields);
         }
         public static new MQLBase SelectAll()
         {
-            return MQLBase.SelectAll(DbType.Sqlite,"[ZWGB_PlayFileSync]");
+            return MQLBase.SelectAll(DbType.Sqlite, "[ZWGB_PlayFileSync]");
         }
         public static readonly FieldBase SyncID = new FieldBase(DbType.Sqlite, "[ZWGB_PlayFileSync]", FieldType.OnlyPrimaryKey, "[SyncID]");
         public static readonly FieldBase APID = new FieldBase(DbType.Sqlite, "[ZWGB_PlayFileSync]", FieldType.Common, "[APID]");
@@ -265,6 +234,23 @@ namespace ZW_GBwin.Model
         public static readonly FieldBase IsSync = new FieldBase(DbType.Sqlite, "[ZWGB_PlayFileSync]", FieldType.Common, "[IsSync]");
         public static readonly FieldBase ProjectID = new FieldBase(DbType.Sqlite, "[ZWGB_PlayFileSync]", FieldType.Common, "[ProjectID]");
         public static readonly FieldBase FileRID = new FieldBase(DbType.Sqlite, "[ZWGB_PlayFileSync]", FieldType.Common, "[FileRID]");
+    }
+
+    [Table("[ZWGB_Area]", DbType.Sqlite)]
+    public class ZWGB_AreaSet : MQLBase
+    {
+        public static new MQLBase Select(params FieldBase[] fields)
+        {
+            return MQLBase.Select(DbType.Sqlite, "[ZWGB_Area]", fields);
+        }
+        public static new MQLBase SelectAll()
+        {
+            return MQLBase.SelectAll(DbType.Sqlite, "[ZWGB_Area]");
+        }
+        public static readonly FieldBase AreaID = new FieldBase(DbType.Sqlite, "[ZWGB_Area]", FieldType.OnlyPrimaryKey, "[AreaID]");
+        public static readonly FieldBase AreaName = new FieldBase(DbType.Sqlite, "[ZWGB_Area]", FieldType.Common, "[AreaName]");
+        public static readonly FieldBase ParentAreaID = new FieldBase(DbType.Sqlite, "[ZWGB_Area]", FieldType.Common, "[ParentAreaID]");
+        public static readonly FieldBase DefaultVolume = new FieldBase(DbType.Sqlite, "[ZWGB_Area]", FieldType.Common, "[DefaultVolume]");
     }
 
 
@@ -1199,12 +1185,6 @@ namespace ZW_GBwin.Model
             get { return GetPropertyValue<Int32>("DefaultVolume"); }
             set { SetPropertyValue("DefaultVolume", value); }
         }
-    }
-
-    [Table("[ZWGB_Area]", DbType.Sqlite)]
-    [TablesPrimaryKey(PrimaryKeyType.CustomerGUID, typeof(Int64), "AreaID")]
-    public class ZWGB_Area : EntityBase
-    {
 
         /// <summary>
         /// 
@@ -1218,70 +1198,10 @@ namespace ZW_GBwin.Model
         /// <summary>
         /// 
         /// </summary>
-        public String AreaName
+        public Int32 Channals
         {
-            get { return GetPropertyValue<String>("AreaName"); }
-            set { SetPropertyValue("AreaName", value); }
-        }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        public Int32 DefaultVolume
-        {
-            get { return GetPropertyValue<Int32>("DefaultVolume"); }
-            set { SetPropertyValue("DefaultVolume", value); }
-        }
-    }
-
-    [Table("[ZWGB_AreaPoint]", DbType.Sqlite)]
-    [TablesPrimaryKey(PrimaryKeyType.CustomerGUID, typeof(Int64), "APID")]
-    public class ZWGB_AreaPoint : EntityBase
-    {
-
-        /// <summary>
-        /// 
-        /// </summary>
-        public Int64 APID
-        {
-            get { return GetPropertyValue<Int64>("APID"); }
-            set { SetPropertyValue("APID", value); }
-        }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        public Int32 TerminalID
-        {
-            get { return GetPropertyValue<Int32>("TerminalID"); }
-            set { SetPropertyValue("TerminalID", value); }
-        }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        public Int64 GroupID
-        {
-            get { return GetPropertyValue<Int64>("GroupID"); }
-            set { SetPropertyValue("GroupID", value); }
-        }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        public Int32 DefaultVolume
-        {
-            get { return GetPropertyValue<Int32>("DefaultVolume"); }
-            set { SetPropertyValue("DefaultVolume", value); }
-        }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        public Int64 AreaID
-        {
-            get { return GetPropertyValue<Int64>("AreaID"); }
-            set { SetPropertyValue("AreaID", value); }
+            get { return GetPropertyValue<Int32>("Channals"); }
+            set { SetPropertyValue("Channals", value); }
         }
     }
 
@@ -1384,6 +1304,48 @@ namespace ZW_GBwin.Model
         {
             get { return GetPropertyValue<Int64>("FileRID"); }
             set { SetPropertyValue("FileRID", value); }
+        }
+    }
+
+    [Table("[ZWGB_Area]", DbType.Sqlite)]
+    [TablesPrimaryKey(PrimaryKeyType.CustomerGUID, typeof(Int64), "AreaID")]
+    public class ZWGB_Area : EntityBase
+    {
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public Int64 AreaID
+        {
+            get { return GetPropertyValue<Int64>("AreaID"); }
+            set { SetPropertyValue("AreaID", value); }
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public String AreaName
+        {
+            get { return GetPropertyValue<String>("AreaName"); }
+            set { SetPropertyValue("AreaName", value); }
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public Int64 ParentAreaID
+        {
+            get { return GetPropertyValue<Int64>("ParentAreaID"); }
+            set { SetPropertyValue("ParentAreaID", value); }
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public Int32 DefaultVolume
+        {
+            get { return GetPropertyValue<Int32>("DefaultVolume"); }
+            set { SetPropertyValue("DefaultVolume", value); }
         }
     }
 

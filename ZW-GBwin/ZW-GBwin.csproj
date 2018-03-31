@@ -70,6 +70,12 @@
     <Compile Include="AddDeviceForm.Designer.cs">
       <DependentUpon>AddDeviceForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="AreaForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AreaForm.Designer.cs">
+      <DependentUpon>AreaForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="DatabaseConfig.cs" />
     <Compile Include="DbDataService.cs" />
     <Compile Include="DeviceSettingsForm.cs">
@@ -113,6 +119,9 @@
     </Compile>
     <EmbeddedResource Include="AddDeviceForm.resx">
       <DependentUpon>AddDeviceForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AreaForm.resx">
+      <DependentUpon>AreaForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="DeviceSettingsForm.resx">
       <DependentUpon>DeviceSettingsForm.cs</DependentUpon>
@@ -232,6 +241,19 @@
     <None Include="Resources\clear_net_32.png" />
     <None Include="Resources\alert_net_32.png" />
     <None Include="Resources\information_net_32.png" />
+    <None Include="Resources\addEvent_32.png" />
+    <None Include="Resources\connectCheckmark_net_32.png" />
+    <None Include="Resources\connectClose_net_32.png" />
+    <None Include="Resources\disk_save_22px.png" />
+    <None Include="Resources\FolderMusicLoaction_net_32.png" />
+    <None Include="Resources\group_32.png" />
+    <None Include="Resources\knob_net_32.png" />
+    <None Include="Resources\Music-2_net_32.png" />
+    <None Include="Resources\PlayPowerDevice_32.png" />
+    <None Include="Resources\alert_horn_32.png" />
+    <None Include="Resources\group_32_Add.png" />
+    <None Include="Resources\group_32_Del.png" />
+    <None Include="Resources\group_32_Edit.png" />
     <Content Include="zhiweiart_32X32.ico" />
   </ItemGroup>
   <ItemGroup>
