@@ -141,9 +141,9 @@ namespace DataHelper
             int hours = Convert.ToInt32(Math.Floor(secondsInput / 3600));
             int minutes = Convert.ToInt32(Math.Floor((secondsInput - hours * 3600) / 60));
             int seconds = Convert.ToInt32(Math.Floor((secondsInput - hours * 3600 - minutes * 60)));
-            string hoursStr = hours > 10 ? hours.ToString() : "0" + hours.ToString();
-            string minutesStr = minutes > 10 ? minutes.ToString() : "0" + minutes.ToString();
-            string secondsStr = seconds > 10 ? seconds.ToString() : "0" + seconds.ToString();
+            string hoursStr = hours > 9 ? hours.ToString() : "0" + hours.ToString();
+            string minutesStr = minutes > 9 ? minutes.ToString() : "0" + minutes.ToString();
+            string secondsStr = seconds > 9 ? seconds.ToString() : "0" + seconds.ToString();
             string timeStr = hoursStr + ":" + minutesStr + ":" + secondsStr;
             return timeStr;
         }

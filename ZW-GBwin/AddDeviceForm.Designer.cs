@@ -87,8 +87,9 @@
             this.btn_AddDevice.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
             this.btn_AddDevice.Location = new System.Drawing.Point(195, 97);
             this.btn_AddDevice.Name = "btn_AddDevice";
-            this.btn_AddDevice.Size = new System.Drawing.Size(75, 23);
+            this.btn_AddDevice.Size = new System.Drawing.Size(75, 28);
             this.btn_AddDevice.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
+            this.btn_AddDevice.Symbol = "";
             this.btn_AddDevice.TabIndex = 3;
             this.btn_AddDevice.Text = "添加";
             this.btn_AddDevice.Click += new System.EventHandler(this.btn_AddDevice_Click);
@@ -99,8 +100,9 @@
             this.btn_Cancel.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
             this.btn_Cancel.Location = new System.Drawing.Point(114, 97);
             this.btn_Cancel.Name = "btn_Cancel";
-            this.btn_Cancel.Size = new System.Drawing.Size(75, 23);
+            this.btn_Cancel.Size = new System.Drawing.Size(75, 28);
             this.btn_Cancel.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
+            this.btn_Cancel.Symbol = "";
             this.btn_Cancel.TabIndex = 4;
             this.btn_Cancel.Text = "取消";
             this.btn_Cancel.Click += new System.EventHandler(this.btn_Cancel_Click);

@@ -43,10 +43,11 @@
             this.buttonX_CancelResource.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
             this.buttonX_CancelResource.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
             this.buttonX_CancelResource.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonX_CancelResource.Location = new System.Drawing.Point(131, 189);
+            this.buttonX_CancelResource.Location = new System.Drawing.Point(122, 189);
             this.buttonX_CancelResource.Name = "buttonX_CancelResource";
-            this.buttonX_CancelResource.Size = new System.Drawing.Size(64, 28);
+            this.buttonX_CancelResource.Size = new System.Drawing.Size(73, 28);
             this.buttonX_CancelResource.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
+            this.buttonX_CancelResource.Symbol = "";
             this.buttonX_CancelResource.TabIndex = 22;
             this.buttonX_CancelResource.Text = "取 消";
             this.buttonX_CancelResource.Click += new System.EventHandler(this.buttonX_CancelResource_Click);
@@ -60,6 +61,7 @@
             this.buttonX_OpenResourceLoaction.Name = "buttonX_OpenResourceLoaction";
             this.buttonX_OpenResourceLoaction.Size = new System.Drawing.Size(155, 28);
             this.buttonX_OpenResourceLoaction.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
+            this.buttonX_OpenResourceLoaction.Symbol = "";
             this.buttonX_OpenResourceLoaction.TabIndex = 21;
             this.buttonX_OpenResourceLoaction.Text = "选择添加的资源";
             this.buttonX_OpenResourceLoaction.Click += new System.EventHandler(this.buttonX_OpenResourceLoaction_Click);
@@ -69,10 +71,11 @@
             this.buttonX_SaveResource.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
             this.buttonX_SaveResource.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
             this.buttonX_SaveResource.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonX_SaveResource.Location = new System.Drawing.Point(213, 189);
+            this.buttonX_SaveResource.Location = new System.Drawing.Point(201, 189);
             this.buttonX_SaveResource.Name = "buttonX_SaveResource";
-            this.buttonX_SaveResource.Size = new System.Drawing.Size(64, 28);
+            this.buttonX_SaveResource.Size = new System.Drawing.Size(76, 28);
             this.buttonX_SaveResource.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
+            this.buttonX_SaveResource.Symbol = "";
             this.buttonX_SaveResource.TabIndex = 20;
             this.buttonX_SaveResource.Text = "保 存";
             this.buttonX_SaveResource.Click += new System.EventHandler(this.buttonX_SaveResource_Click);
@@ -158,6 +161,8 @@
             this.Controls.Add(this.textBoxX_ResourceName);
             this.DoubleBuffered = true;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "ResourceFilesForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "资源文件";

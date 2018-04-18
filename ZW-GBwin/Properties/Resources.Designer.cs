@@ -193,6 +193,16 @@ namespace ZW_GBwin.Properties {
         /// <summary>
         ///   查找 System.Drawing.Bitmap 类型的本地化资源。
         /// </summary>
+        internal static System.Drawing.Bitmap group_22 {
+            get {
+                object obj = ResourceManager.GetObject("group_22", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
+        /// </summary>
         internal static System.Drawing.Bitmap group_32 {
             get {
                 object obj = ResourceManager.GetObject("group_32", resourceCulture);
@@ -226,6 +236,26 @@ namespace ZW_GBwin.Properties {
         internal static System.Drawing.Bitmap group_32_Edit {
             get {
                 object obj = ResourceManager.GetObject("group_32_Edit", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
+        /// </summary>
+        internal static System.Drawing.Bitmap group_b_22 {
+            get {
+                object obj = ResourceManager.GetObject("group_b_22", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
+        /// </summary>
+        internal static System.Drawing.Bitmap group_b_32 {
+            get {
+                object obj = ResourceManager.GetObject("group_b_32", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -393,6 +423,16 @@ namespace ZW_GBwin.Properties {
         /// <summary>
         ///   查找 System.Drawing.Bitmap 类型的本地化资源。
         /// </summary>
+        internal static System.Drawing.Bitmap PlayPowerDevice_22 {
+            get {
+                object obj = ResourceManager.GetObject("PlayPowerDevice_22", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
+        /// </summary>
         internal static System.Drawing.Bitmap PlayPowerDevice_32 {
             get {
                 object obj = ResourceManager.GetObject("PlayPowerDevice_32", resourceCulture);
@@ -466,6 +506,16 @@ namespace ZW_GBwin.Properties {
         internal static System.Drawing.Bitmap Sync_net_32 {
             get {
                 object obj = ResourceManager.GetObject("Sync_net_32", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
+        /// </summary>
+        internal static System.Drawing.Bitmap trumpet_net_22 {
+            get {
+                object obj = ResourceManager.GetObject("trumpet_net_22", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

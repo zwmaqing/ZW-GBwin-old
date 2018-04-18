@@ -247,4 +247,19 @@
   <data name="group_32_Edit" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\group_32_Edit.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="group_22" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\group_22.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="group_b_22" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\group-b-22.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="group_b_32" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\group-b-32.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="PlayPowerDevice_22" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\PlayPowerDevice_22.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="trumpet_net_22" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\trumpet_net_22.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
 </root>

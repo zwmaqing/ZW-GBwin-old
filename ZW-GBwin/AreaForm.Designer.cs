@@ -72,6 +72,7 @@
             this.btn_SaveArea.Name = "btn_SaveArea";
             this.btn_SaveArea.Size = new System.Drawing.Size(67, 28);
             this.btn_SaveArea.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
+            this.btn_SaveArea.Symbol = "";
             this.btn_SaveArea.TabIndex = 2;
             this.btn_SaveArea.Text = "保存";
             this.btn_SaveArea.Click += new System.EventHandler(this.btn_SaveArea_Click);
@@ -86,6 +87,8 @@
             this.Controls.Add(this.labelX1);
             this.DoubleBuffered = true;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "AreaForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "区域";

@@ -742,7 +742,6 @@ namespace ZW_GBwin
                     throw ex;
                 }
             }
-
         }
 
 
@@ -836,6 +835,240 @@ namespace ZW_GBwin
         #endregion 区域管理
 
 
+        #region 定时任务管理
+
+        public List<ZWGB_PlayTask> LoadAllTimerTask()
+        {
+            using (var db = new Sqlite(connectStr))
+            {
+                try
+                {
+                    var theEntities = db.GetEntities<ZWGB_PlayTask>(ZWGB_PlayTaskSet.SelectAll().Where(ZWGB_PlayTaskSet.TaskID.BiggerThanOrEqual(0)));
+
+                    return theEntities;
+                }
+                catch (Exception ex)
+                {
+                    Moon.Orm.Util.LogUtil.Exception(ex);
+                    throw ex;
+                }
+            }
+        }
+
+        public long AddTimerTask(ZWGB_PlayTask task)
+        {
+            long taskID = -1;
+            if (task == null)
+            { return taskID; }
+
+            using (var db = new Sqlite(connectStr))
+            {
+                try
+                {
+                    var list = db.GetDictionaryList(ZWGB_PlayTaskSet.Select(ZWGB_PlayTaskSet.TaskID.Max().AS("TaskID")));
+                    long id = 0;
+                    if (list != null && list.Count > 0 && !list[0]["TaskID"].IsNull())
+                    {
+                        id = list[0]["TaskID"].To<long>();
+                    }
+
+                    task.TaskID = (id + 1);
+                    db.Add(task);
+                    taskID = task.TaskID;
+                }
+                catch (Exception ex)
+                {
+                    Moon.Orm.Util.LogUtil.Exception(ex);//
+                    throw ex;
+                }
+            }
+            return taskID;
+        }
+
+        public void UpdateTimerTaskInfo(ZWGB_PlayTask task)
+        {
+            if (task == null)
+            {
+                return;
+            }
+            using (var db = new Sqlite(connectStr))
+            {
+                try
+                {
+                    task.WhereExpression = ZWGB_PlayTaskSet.TaskID.Equal(task.TaskID);//条件
+                    db.Update(task);
+                }
+                catch (Exception ex)
+                {
+                    Moon.Orm.Util.LogUtil.Exception(ex);
+                    throw ex;
+                }
+            }
+        }
+
+        public bool DelTheTaskInfo(Int64 taskID)
+        {
+            using (var db = new Sqlite(connectStr))
+            {
+                try
+                {
+                    return db.Remove<ZWGB_PlayTaskSet>(ZWGB_PlayTaskSet.TaskID.Equal(taskID)) > 0;
+                }
+                catch (Exception ex)
+                {
+                    Moon.Orm.Util.LogUtil.Exception(ex);
+                    throw ex;
+                }
+            }
+        }
+
+
+        public bool AddTimerTaskDeviceSync(TaskDeviceSync taskSync)
+        {
+            bool isOK = false;
+            if (taskSync == null)
+            { return isOK; }
+
+            using (var db = new Sqlite(connectStr))
+            {
+                try
+                {
+                    ZWGB_TaskDeviceSync sync = new Model.ZWGB_TaskDeviceSync();
+                    sync.DeviceID = taskSync.DeviceID;
+                    sync.DevSN = taskSync.DevSN;
+                    sync.DevTaskID = taskSync.DevTaskID;
+                    sync.IsSync = taskSync.IsSync;
+                    sync.TaskID = taskSync.TaskID;
+                    sync.ChannelGroupID = taskSync.ChannelGroupID;
+                    sync.AreaID = taskSync.AreaID;
+
+                    db.Add(sync);
+
+                    isOK = true;
+                }
+                catch (Exception ex)
+                {
+                    Moon.Orm.Util.LogUtil.Exception(ex);//
+                    throw ex;
+                }
+            }
+            return isOK;
+        }
+
+        public bool AddTimerTaskDeviceSyncList(List<TaskDeviceSync> taskSyncList)
+        {
+            bool isOK = false;
+            if (taskSyncList == null)
+            { return isOK; }
+
+            using (var db = new Sqlite(connectStr))
+            {
+                try
+                {
+                    db.TransactionEnabled = true;
+                    foreach (var taskSync in taskSyncList)
+                    {
+                        ZWGB_TaskDeviceSync sync = new Model.ZWGB_TaskDeviceSync();
+                        sync.DeviceID = taskSync.DeviceID;
+                        sync.DevSN = taskSync.DevSN;
+                        sync.DevTaskID = taskSync.DevTaskID;
+                        sync.IsSync = taskSync.IsSync;
+                        sync.TaskID = taskSync.TaskID;
+                        sync.ChannelGroupID = taskSync.ChannelGroupID;
+                        sync.AreaID = taskSync.AreaID;
+
+                        db.Add(sync);
+                    }
+                    db.Transaction.Commit();
+                    isOK = true;
+                }
+                catch (Exception ex)
+                {
+                    Moon.Orm.Util.LogUtil.Exception(ex);//
+                    throw ex;
+                }
+            }
+            return isOK;
+        }
+
+        public bool UpdateTimerTaskDeviceSyncList(List<TaskDeviceSync> taskSyncList)
+        {
+            bool isOK = false;
+            if (taskSyncList == null)
+            { return isOK; }
+
+            using (var db = new Sqlite(connectStr))
+            {
+                try
+                {
+                    db.TransactionEnabled = true;
+                    foreach (var taskSync in taskSyncList)
+                    {
+                        ZWGB_TaskDeviceSync sync = new Model.ZWGB_TaskDeviceSync();
+                        sync.DeviceID = taskSync.DeviceID;
+                        sync.DevSN = taskSync.DevSN;
+                        sync.DevTaskID = taskSync.DevTaskID;
+                        sync.IsSync = taskSync.IsSync;
+                        sync.TaskID = taskSync.TaskID;
+                        sync.ChannelGroupID = taskSync.ChannelGroupID;
+                        sync.AreaID = taskSync.AreaID;
+                        sync.WhereExpression = ZWGB_TaskDeviceSyncSet.TaskID.Equal(taskSync.TaskID).And(ZWGB_TaskDeviceSyncSet.DevSN.Equal(taskSync.DevSN)).And(ZWGB_TaskDeviceSyncSet.DevTaskID.Equal(taskSync.DevTaskID));
+                        db.Update(sync);
+                    }
+                    db.Transaction.Commit();
+                    isOK = true;
+                }
+                catch (Exception ex)
+                {
+                    Moon.Orm.Util.LogUtil.Exception(ex);//
+                    throw ex;
+                }
+            }
+            return isOK;
+        }
+
+        public List<TaskDeviceSync> LoadAllTimerTaskNoSync(Int64 taskID)
+        {
+            List<TaskDeviceSync> taskSync = new List<TaskDeviceSync>();
+            using (var db = new Sqlite(connectStr))
+            {
+                try
+                {
+                    var theEntities = db.GetEntities<ZWGB_TaskDeviceSync>(ZWGB_TaskDeviceSyncSet.SelectAll().Where(ZWGB_TaskDeviceSyncSet.TaskID.Equal(taskID)));
+                    foreach (var one in theEntities)
+                    {
+                        taskSync.Add(ZWGB_TaskDeviceSyncToTaskDeviceSync(one));
+                    }
+                    return taskSync;
+                }
+                catch (Exception ex)
+                {
+                    Moon.Orm.Util.LogUtil.Exception(ex);
+                    throw ex;
+                }
+            }
+        }
+
+        public bool DelTheTaskDeviceSyncInfo(Int64 taskID)
+        {
+            using (var db = new Sqlite(connectStr))
+            {
+                try
+                {
+                    return db.Remove<ZWGB_TaskDeviceSyncSet>(ZWGB_TaskDeviceSyncSet.TaskID.Equal(taskID)) > 0;
+                }
+                catch (Exception ex)
+                {
+                    Moon.Orm.Util.LogUtil.Exception(ex);
+                    throw ex;
+                }
+            }
+        }
+
+
+
+        #endregion 定时任务管理
+
         public deviceInfo ZWGB_TerminalDevToDevInfo(ZWGB_TerminalDev dbDev)
         {
             deviceInfo oneInfo = new deviceInfo();
@@ -860,6 +1093,8 @@ namespace ZW_GBwin
             oneInfo.SubnetMask = dbDev.SubnetMask;
             oneInfo.AreaID = dbDev.AreaID;
             oneInfo.Channals = dbDev.Channals;
+            oneInfo.LoginName = dbDev.LoginName;
+            oneInfo.LoginPass = dbDev.LoginPass;
             return oneInfo;
         }
 
@@ -887,11 +1122,23 @@ namespace ZW_GBwin
             oneDev.SubnetMask = devInfo.SubnetMask;
             oneDev.AreaID = devInfo.AreaID;
             oneDev.Channals = devInfo.Channals;
+            oneDev.LoginName = devInfo.LoginName;
+            oneDev.LoginPass = devInfo.LoginPass;
             return oneDev;
         }
 
-
-
+        public TaskDeviceSync ZWGB_TaskDeviceSyncToTaskDeviceSync(ZWGB_TaskDeviceSync entity)
+        {
+            TaskDeviceSync sync = new TaskDeviceSync();
+            sync.AreaID = entity.AreaID;
+            sync.ChannelGroupID = entity.ChannelGroupID;
+            sync.DeviceID = entity.DeviceID;
+            sync.DevSN = entity.DevSN;
+            sync.DevTaskID = entity.DevTaskID;
+            sync.IsSync = entity.IsSync;
+            sync.TaskID = entity.TaskID;
+            return sync;
+        }
     }
 
     public class ResourceFile

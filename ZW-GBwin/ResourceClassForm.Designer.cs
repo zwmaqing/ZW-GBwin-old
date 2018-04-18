@@ -84,8 +84,9 @@
             this.btn_OpenResourceClassLoaction.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn_OpenResourceClassLoaction.Location = new System.Drawing.Point(148, 135);
             this.btn_OpenResourceClassLoaction.Name = "btn_OpenResourceClassLoaction";
-            this.btn_OpenResourceClassLoaction.Size = new System.Drawing.Size(105, 23);
+            this.btn_OpenResourceClassLoaction.Size = new System.Drawing.Size(105, 28);
             this.btn_OpenResourceClassLoaction.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
+            this.btn_OpenResourceClassLoaction.Symbol = "";
             this.btn_OpenResourceClassLoaction.TabIndex = 18;
             this.btn_OpenResourceClassLoaction.Text = "打开位置";
             this.btn_OpenResourceClassLoaction.Click += new System.EventHandler(this.btn_OpenResourceClassLoaction_Click);
@@ -158,8 +159,9 @@
             this.btn_Cancel.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
             this.btn_Cancel.Location = new System.Drawing.Point(98, 194);
             this.btn_Cancel.Name = "btn_Cancel";
-            this.btn_Cancel.Size = new System.Drawing.Size(75, 23);
+            this.btn_Cancel.Size = new System.Drawing.Size(75, 28);
             this.btn_Cancel.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
+            this.btn_Cancel.Symbol = "";
             this.btn_Cancel.TabIndex = 22;
             this.btn_Cancel.Text = "取消";
             this.btn_Cancel.Click += new System.EventHandler(this.btn_Cancel_Click);
@@ -170,8 +172,9 @@
             this.btn_Save.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
             this.btn_Save.Location = new System.Drawing.Point(179, 194);
             this.btn_Save.Name = "btn_Save";
-            this.btn_Save.Size = new System.Drawing.Size(75, 23);
+            this.btn_Save.Size = new System.Drawing.Size(75, 28);
             this.btn_Save.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
+            this.btn_Save.Symbol = "";
             this.btn_Save.TabIndex = 23;
             this.btn_Save.Text = "保存";
             this.btn_Save.Click += new System.EventHandler(this.btn_Save_Click);
@@ -194,6 +197,8 @@
             this.Controls.Add(this.label1);
             this.DoubleBuffered = true;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "ResourceClassForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "资源类别";

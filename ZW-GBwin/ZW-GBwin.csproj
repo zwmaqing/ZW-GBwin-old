@@ -70,14 +70,32 @@
     <Compile Include="AddDeviceForm.Designer.cs">
       <DependentUpon>AddDeviceForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="AreaAddDevForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AreaAddDevForm.Designer.cs">
+      <DependentUpon>AreaAddDevForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="AreaForm.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="AreaForm.Designer.cs">
       <DependentUpon>AreaForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="ChannelGroupForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ChannelGroupForm.Designer.cs">
+      <DependentUpon>ChannelGroupForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="DatabaseConfig.cs" />
     <Compile Include="DbDataService.cs" />
+    <Compile Include="DelTimerTaskForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DelTimerTaskForm.Designer.cs">
+      <DependentUpon>DelTimerTaskForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="DeviceSettingsForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -90,11 +108,11 @@
     <Compile Include="MainForm.Designer.cs">
       <DependentUpon>MainForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Form2.cs">
+    <Compile Include="TaskProjectForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form2.Designer.cs">
-      <DependentUpon>Form2.cs</DependentUpon>
+    <Compile Include="TaskProjectForm.Designer.cs">
+      <DependentUpon>TaskProjectForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Model.cs" />
     <Compile Include="Program.cs" />
@@ -117,11 +135,26 @@
     <Compile Include="SendFileToAreasDevForm.Designer.cs">
       <DependentUpon>SendFileToAreasDevForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="TimerTaskForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="TimerTaskForm.Designer.cs">
+      <DependentUpon>TimerTaskForm.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="AddDeviceForm.resx">
       <DependentUpon>AddDeviceForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="AreaAddDevForm.resx">
+      <DependentUpon>AreaAddDevForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="AreaForm.resx">
       <DependentUpon>AreaForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ChannelGroupForm.resx">
+      <DependentUpon>ChannelGroupForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DelTimerTaskForm.resx">
+      <DependentUpon>DelTimerTaskForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="DeviceSettingsForm.resx">
       <DependentUpon>DeviceSettingsForm.cs</DependentUpon>
@@ -129,8 +162,8 @@
     <EmbeddedResource Include="MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Form2.resx">
-      <DependentUpon>Form2.cs</DependentUpon>
+    <EmbeddedResource Include="TaskProjectForm.resx">
+      <DependentUpon>TaskProjectForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -150,6 +183,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="SendFileToAreasDevForm.resx">
       <DependentUpon>SendFileToAreasDevForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TimerTaskForm.resx">
+      <DependentUpon>TimerTaskForm.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
@@ -254,6 +290,11 @@
     <None Include="Resources\group_32_Add.png" />
     <None Include="Resources\group_32_Del.png" />
     <None Include="Resources\group_32_Edit.png" />
+    <None Include="Resources\group_22.png" />
+    <None Include="Resources\PlayPowerDevice_22.png" />
+    <None Include="Resources\trumpet_net_22.png" />
+    <None Include="Resources\group-b-22.png" />
+    <None Include="Resources\group-b-32.png" />
     <Content Include="zhiweiart_32X32.ico" />
   </ItemGroup>
   <ItemGroup>

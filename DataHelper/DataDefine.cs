@@ -61,6 +61,10 @@ namespace DataHelper
         public String ModeStr { get; set; }
         public Int64 AreaID { get; set; }
         public Int32 Channals { get; set; }
+        public String LoginName { get; set; }
+        public String LoginPass { get; set; }
+        public string Token { get; set; }
+
 
         public deviceInfo() { }
 
@@ -167,7 +171,33 @@ namespace DataHelper
         public string GroupName;
         public int[] ChannelList;
         public bool Status;
+
+        private string getChannelsStr()
+        {
+            string Channels = "";
+            if (ChannelList.Length > 0)
+            {
+                foreach (var one in ChannelList)
+                {
+                    if (Channels.Length > 1)
+                    { Channels += "_" + one.ToString(); }
+                    else
+                    {
+                        Channels += one.ToString();
+                    }
+                }
+            }
+            return Channels;
+        }
+        public string ChannelsStr
+        {
+            get
+            {
+                return getChannelsStr();
+            }
+        }
     }
+
 
     public class AuioRequestResult
     {
@@ -234,6 +264,74 @@ namespace DataHelper
         public string Channel;
         public UInt32 Serial;
         public UInt32 Port;
+    }
+
+    public class OperateNormalResult
+    {
+        public bool Status;
+        public UInt32 StatusCode;
+        public string StatusMessage;
+        public Object DetailedInfo;
+    }
+
+    public class TaskDeviceSync
+    {
+        public Int64 RID { get; set; }
+
+        public Int64 TaskID { get; set; }
+
+        public Int64 AreaID { get; set; }
+
+        public Int64 DeviceID { get; set; }
+
+        public String DevSN { get; set; }
+
+        public string Token { get; set; }
+
+        public string IPV4 { get; set; }
+
+        public string DevAliasName { get; set; }
+
+        public string LoginName { get; set; }
+
+        public string LoginPass { get; set; }
+
+        public Int32 ChannelGroupID { get; set; }
+
+        public Int32 DevTaskID { get; set; }
+
+        public bool IsTimeOK { get; set; }
+
+        public string TimeOverlapStr { get; set; }
+
+        public bool IsSync { get; set; }
+    }
+
+    public class IsTaskTimeOverlapResult : OperateNormalResult
+    {
+        public TaskTimeOverlap Data;
+    }
+
+    public class TaskTimeOverlap
+    {
+        public bool IsOverlap;
+        public string StatusMessage;
+        public UInt32 GroupID;
+        public string TaskName;
+        public string TaskType;
+        public string StartTime;
+        public string TimeSpan;
+        public int[] Week;
+    }
+
+    public class TaskId
+    {
+        public int TaskID { get; set; }
+    }
+
+    public class OperateTaskResult: OperateNormalResult
+    {
+        public TaskId Data;
     }
 
 }

@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Net.Sockets;
@@ -60,6 +61,8 @@ namespace ZW_GBwin
             BindDeviceList = new BindingList<deviceInfo>(DeviceList);
             this.dGrid_devList.DataSourceChanged += DGrid_devList_DataSourceChanged;
             this.dGrid_devList.DataSource = BindDeviceList;
+
+            btnItem_SearchDevice_Click(sender, e);
         }
 
 
@@ -113,7 +116,12 @@ namespace ZW_GBwin
                 case "tabItem_ChannlsGroup":
                     {
                         loadAreaMenustrip(advTree_Area);
-                        loadAllAreaAndDeviceToTree();
+                        loadAllAreaDeviceToTree();
+                        break;
+                    }
+                case "tabItem_TimeMusic":
+                    {
+                        loadAllTimerTaskFromDB();
                         break;
                     }
                 default:
@@ -125,6 +133,558 @@ namespace ZW_GBwin
 
         }
 
+        /// <summary>
+        /// Show Toast
+        /// </summary>
+        /// <param name="msg"></param>
+        /// <param name="img"></param>
+        /// <param name="position"></param>
+        /// <param name="scenes"></param>
+        /// <param name="color"></param>
+        private void showToastNotice(string msg, Image img, eToastPosition position = eToastPosition.MiddleCenter, int scenes = 3, eToastGlowColor color = eToastGlowColor.Blue)
+        {
+            if (this.InvokeRequired)
+            {
+                this.BeginInvoke(new MethodInvoker(
+                                delegate
+                                {
+                                    if (img == null)
+                                    {
+                                        img = global::ZW_GBwin.Properties.Resources.information_net_32;
+                                    }
+                                    ToastNotification.Show(this, msg, img, scenes * 1000, color, position);
+                                }
+                                ));
+            }
+            else
+            {
+                if (img == null)
+                {
+                    img = global::ZW_GBwin.Properties.Resources.information_net_32;
+                }
+                ToastNotification.Show(this, msg, img, scenes * 1000, color, position);
+            }
+        }
+
+        #region 设备通信模块
+
+        // 发送UDP消息
+        private void UdpSendString(IPEndPoint toPoint, string msg)
+        {
+            ThreadPool.QueueUserWorkItem(x =>
+            {
+                // 启动发送消息
+                byte[] messagebytes = Encoding.UTF8.GetBytes(msg);
+
+                using (var sendUdpClient = new UdpClient())
+                {
+                    try
+                    {
+                        // 发送消息
+                        sendUdpClient.Send(messagebytes, messagebytes.Length, toPoint);
+                    }
+                    catch (Exception ex)
+                    {
+
+                    }
+                    sendUdpClient.Close();
+                }
+            });
+        }
+
+        // 发送UDP消息
+        private void UdpSendByte(IPEndPoint toPoint, byte[] msg)
+        {
+            ThreadPool.QueueUserWorkItem(x =>
+            {
+                // 启动发送消息
+                using (var sendUdpClient = new UdpClient())
+                {
+                    // 发送消息
+                    int state = sendUdpClient.Send(msg, msg.Length, toPoint);
+
+                    sendUdpClient.Close();
+                }
+            });
+        }
+
+        private void UdpSendStringWaitCallback(IPEndPoint toPoint, string msg, double interval, System.Timers.ElapsedEventHandler callBack)
+        {
+            ThreadPool.QueueUserWorkItem(x =>
+            {
+                // 启动发送消息
+                byte[] messagebytes = Encoding.UTF8.GetBytes(msg);
+
+                using (var sendUdpClient = new UdpClient())
+                {
+                    // 发送消息
+                    int state = sendUdpClient.Send(messagebytes, messagebytes.Length, toPoint);
+
+                    sendUdpClient.Close();
+
+                    System.Timers.Timer timer = new System.Timers.Timer();
+                    timer.AutoReset = false;
+                    timer.Interval = 1000;
+                    timer.Elapsed += callBack;
+                    timer.Start();
+                }
+            });
+        }
+
+
+        public string HttpGet(string Url, Dictionary<string, string> parameters)
+        {
+            //拼装请求参数列表  
+            StringBuilder sb = new StringBuilder();
+            string strParameters = "";
+            if (parameters != null)
+            {
+                foreach (KeyValuePair<string, string> kvp in parameters)
+                {
+                    if (sb.Length > 0)
+                    {
+                        sb.Append("&");
+                    }
+                    sb.AppendFormat("{0}={1}", kvp.Key, kvp.Value);
+                }
+                strParameters = sb.ToString();
+            }
+            // MessageBox.Show(strParameters);
+            string retString = "";
+            try
+            {
+                HttpWebRequest request = (HttpWebRequest)WebRequest.Create(Url + (strParameters == "" ? "" : "?") + strParameters);
+                request.Method = "GET";
+                request.ContentType = "text/html;charset=UTF-8";
+
+                HttpWebResponse response = (HttpWebResponse)request.GetResponse();
+                Stream myResponseStream = response.GetResponseStream();
+                StreamReader myStreamReader = new StreamReader(myResponseStream, Encoding.GetEncoding("utf-8"));
+                retString = myStreamReader.ReadToEnd();
+                myStreamReader.Close();
+                myResponseStream.Close();
+            }
+            catch (Exception ex)
+            {
+                //  MessageBox.Show("网络错误：" + ex.Message);
+                throw (ex);
+            }
+            return retString;
+        }
+
+        private LoginDeviceResult loginDeviceHttp(string IP, string name, string pass)
+        {
+            string url = "http://" + IP + "/API/System";
+            Dictionary<string, string> parameters = new Dictionary<string, string>();
+            parameters.Add("CMD", "LogOn");
+            parameters.Add("userName", name);
+            parameters.Add("password", pass);
+
+            string re = HttpGet(url, parameters);
+
+            try
+            {
+                LoginDeviceResult result = JsonConvert.DeserializeObject<LoginDeviceResult>(re);
+                return result;
+            }
+            catch
+            {
+                return null;
+            }
+        }
+
+        private GetCHGroupsResult getNetPowerGroups(string IP, string token)
+        {
+            string url = "http://" + IP + "/API/Group";
+            Dictionary<string, string> parameters = new Dictionary<string, string>();
+            parameters.Add("CMD", "GetCHGroups");
+            parameters.Add("Range", "1-10");
+            parameters.Add("Token", token);
+
+            string re = HttpGet(url, parameters);
+
+            try
+            {
+                GetCHGroupsResult result = JsonConvert.DeserializeObject<GetCHGroupsResult>(re);
+                return result;
+            }
+            catch
+            {
+                return null;
+            }
+        }
+
+        private OperateNormalResult addChannelGroup(string IP, string token, CHGroup group)
+        {
+            string url = "http://" + IP + "/API/Group";
+            Dictionary<string, string> parameters = new Dictionary<string, string>();
+            parameters.Add("CMD", "AddChannelGroup");
+            parameters.Add("GroupName", group.GroupName);
+            parameters.Add("Channels", group.ChannelsStr);
+            parameters.Add("Token", token);
+
+            string re = HttpGet(url, parameters);
+
+            try
+            {
+                OperateNormalResult result = JsonConvert.DeserializeObject<OperateNormalResult>(re);
+                return result;
+            }
+            catch
+            {
+                return null;
+            }
+        }
+
+        private OperateNormalResult editTheChannelGroup(string IP, string token, CHGroup group)
+        {
+            string url = "http://" + IP + "/API/Group";
+            Dictionary<string, string> parameters = new Dictionary<string, string>();
+            parameters.Add("CMD", "EditChannelGroup");
+            parameters.Add("GroupID", group.GroupID.ToString());
+            parameters.Add("GroupName", group.GroupName);
+            parameters.Add("Channels", group.ChannelsStr);
+            parameters.Add("Token", token);
+
+            string re = HttpGet(url, parameters);
+
+            try
+            {
+                OperateNormalResult result = JsonConvert.DeserializeObject<OperateNormalResult>(re);
+                return result;
+            }
+            catch
+            {
+                return null;
+            }
+        }
+
+        #endregion 设备通信模块
+
+        #region 设备管理
+
+        #region 缓存
+
+        private string currentLocalIP = "";
+
+        private udpReceiver udp65000 = new udpReceiver();
+
+        private udpReceiver udp65005 = new udpReceiver();
+
+        private ClientAsync tcpClient;
+
+        /// <summary>
+        /// 搜索设备发布信息组播地址端
+        /// </summary>
+        private IPEndPoint searchDevGroupPoint = new IPEndPoint(IPAddress.Parse("224.1.1.1"), 65000);
+
+        private int UdpRceivePort65000 = 65000;
+        private int UdpRceivePort65005 = 65005;
+
+        private List<deviceInfo> DeviceList;//设备列表
+        private BindingList<deviceInfo> BindDeviceList;
+
+        private ChangeDevIPData CurrentDev;
+        private deviceInfo selectDevice;//用户在设备列表里选定的设备信息缓存
+
+        public delegate void ChangeDevIpHandler(string currentIP, ChangeDevIPData param);
+
+        #endregion 缓存
+
+        #region 私有方法
+
+        private void loadAllDevFromDB()
+        {
+            DeviceList = _dbHelper.LoadAllStoredDevices();
+        }
+
+        private void Udp65000_ReceivedSearch(IPAddress arg1, byte[] arg2, string arg3)
+        {
+            bool ex = false;
+            deviceInfo oneDev = JsonConvert.DeserializeObject<deviceInfo>(arg3);
+            oneDev.IsOnLine = true;
+            oneDev.IsMulticastTo = true;
+
+            foreach (var one in BindDeviceList)
+            {
+                if (one.SN == oneDev.SN)
+                {
+                    one.IsMulticastTo = true;
+                    one.IsOnLine = true;
+                    one.IPV4 = oneDev.IPV4;
+                    one.AliasName = oneDev.AliasName;
+                    one.IsDHCP = oneDev.IsDHCP;
+                    one.SoftwareVersion = oneDev.SoftwareVersion;
+                    _dbHelper.UpdateDeviceInfo(one);
+                    ex = true;
+                    break;
+                }
+            }
+
+            if (this.dGrid_devList.IsHandleCreated && !ex && oneDev.SN.Length > 0)
+                this.dGrid_devList.BeginInvoke(new Action(delegate
+                {
+                    if (oneDev.Type == "IPCHPOWER")
+                    {
+                        oneDev.Channals = 16;
+                    }
+                    else
+                    {
+                        oneDev.Channals = 1;
+                    }
+                    oneDev.AreaID = 1;
+                    //发送到UI 线程执行的代码
+                    _dbHelper.AddDeviceInfo(oneDev);
+                    BindDeviceList.Add(oneDev);
+                    this.dGrid_devList.Refresh();
+                }));
+
+        }
+
+        private void DGrid_devList_DataSourceChanged(object sender, EventArgs e)
+        {
+            for (int i = 0; i < dGrid_devList.Columns.Count; i++)
+            {
+                dGrid_devList.Columns[i].AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells;
+                switch (dGrid_devList.Columns[i].Name)
+                {
+                    case "AliasName":
+                        {
+                            dGrid_devList.Columns[i].HeaderText = "设备别名";
+                            break;
+                        }
+                    case "Type":
+                        {
+                            dGrid_devList.Columns[i].HeaderText = "设备类别";
+                            break;
+                        }
+                    case "HardwareVersion":
+                        {
+                            dGrid_devList.Columns[i].HeaderText = "硬件版本";
+                            break;
+                        }
+                    case "SoftwareVersion":
+                        {
+                            dGrid_devList.Columns[i].HeaderText = "软件版本";
+                            break;
+                        }
+                    case "SN":
+                        {
+                            dGrid_devList.Columns[i].HeaderText = "序列号SN";
+                            break;
+                        }
+                    case "IsDHCP":
+                        {
+                            dGrid_devList.Columns[i].HeaderText = "自动获取IP";
+                            break;
+                        }
+                    case "IPV4":
+                        {
+                            dGrid_devList.Columns[i].HeaderText = "IP地址IPV4";
+                            break;
+                        }
+                    case "IsOnLine":
+                        {
+                            dGrid_devList.Columns[i].HeaderText = "是否在线";
+                            break;
+                        }
+                    case "IsMulticastTo":
+                        {
+                            dGrid_devList.Columns[i].HeaderText = "是否组可达";
+                            break;
+                        }
+                    case "TaskStatus":
+                        {
+                            dGrid_devList.Columns[i].HeaderText = "任务状态";
+                            break;
+                        }
+                    case "SpeakBusy":
+                        {
+                            dGrid_devList.Columns[i].HeaderText = "语音状态";
+                            break;
+                        }
+                    case "MonitorStatus":
+                        {
+                            dGrid_devList.Columns[i].HeaderText = "监听状态";
+                            break;
+                        }
+
+                    case "ModeStr":
+                        {
+                            dGrid_devList.Columns[i].HeaderText = "设备型号";
+                            break;
+                        }
+                    default:
+                        {
+                            dGrid_devList.Columns[i].Visible = false;
+                            break;
+                        }
+                }
+            }
+        }
+
+        /// <summary>
+        /// 检查设备是否在线，TCP方法
+        /// </summary>
+        private void checkDeviceOnlineTcp()
+        {
+            tcpClient = new ClientAsync();
+
+            tcpClient.Completed += new Action<TcpClient, EnSocketAction>((c, enAction) =>
+            {
+                switch (enAction)
+                {
+                    case EnSocketAction.ConnectTimeOut:
+                        {
+                            showToastNotice("连接设备超时！", null);
+                            break;
+                        }
+                    case EnSocketAction.Connect:
+                        {
+                            //   var localIP =NetHelper. GetLocalIP();//获取电脑当前本地IP
+
+                            SearchCmd cmd = new SearchCmd("SearchDev", currentLocalIP);
+                            var searchCMD = JsonConvert.SerializeObject(cmd);
+                            tcpClient.SendAsync(searchCMD);
+                            break;
+                        }
+                }
+            });
+
+            tcpClient.Received += new Action<string, string>((key, msg) =>
+            {
+                if (msg.Contains("SoftwareVersion"))
+                {
+                    bool ex = false;
+                    deviceInfo result = JsonConvert.DeserializeObject<deviceInfo>(msg);
+                    result.IsOnLine = true;
+                    result.IsMulticastTo = false;
+                    foreach (var one in BindDeviceList)
+                    {
+                        if (one.SN == result.SN)
+                        {
+                            one.IsOnLine = true;
+                            one.IsMulticastTo = false;
+                            ex = true;
+                            break;
+                        }
+                    }
+
+                    if (this.dGrid_devList.IsHandleCreated && !ex && result.SN.Length > 0)
+                        this.dGrid_devList.BeginInvoke(new Action(delegate
+                        {
+                            //发送到UI 线程执行的代码
+                            result.IsOnLine = true;
+                            result.IsMulticastTo = false;
+                            BindDeviceList.Add(result);
+                        }));
+                }
+            });
+        }
+
+        private void dGrid_devList_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (DeviceList.Count > 0 && e.RowIndex > -1)
+                selectDevice = DeviceList[e.RowIndex];
+        }
+
+        private void ChangeDevIpMethod(string currentIP, ChangeDevIPData param)
+        {
+            try
+            {
+                System.Timers.ElapsedEventHandler callBack = (Object o, System.Timers.ElapsedEventArgs a) =>
+                {
+                    showToastNotice("修改配置命令已发出，请40秒后[搜索设备]以获取更改.", null, eToastPosition.MiddleCenter, 8);
+                };
+                string cmdStr = JsonConvert.SerializeObject(param);
+
+                UdpSendStringWaitCallback(new IPEndPoint(IPAddress.Parse(currentIP), 65000), cmdStr, 1000, callBack);
+
+                //更新设备登录密码
+                ZWGB_TerminalDev dev = new ZWGB_TerminalDev();
+                dev.SN = param.SN;
+                dev.LoginName = param.userName;
+                dev.LoginPass = param.password;
+                _dbHelper.UpdateDeviceInfo(dev);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("修改网络参数发生错误：" + ex.Message);
+            }
+        }
+
+        #endregion 私有方法
+
+        #region 快捷键
+
+        private void btnItem_SearchDevice_Click(object sender, EventArgs e)
+        {
+            btnItem_SearchDevice.Enabled = false;
+            CurrentDev = null;//清除设置设备ip命令标志
+                              // var localIP = NetHelper.GetLocalIP();//获取电脑当前本地IP
+
+            SearchCmd cmd = new SearchCmd("SearchDev", currentLocalIP);
+            var searchCMD = JsonConvert.SerializeObject(cmd);
+
+            udp65000 = new udpReceiver();
+            udp65000.Received -= Udp65000_ReceivedSearch;
+            udp65000.Received += Udp65000_ReceivedSearch;
+
+            // 创建
+            IPAddress localIp = IPAddress.Parse(currentLocalIP);//选定当前系统的IP
+            udp65000.StartUdpReceive(localIp, UdpRceivePort65000);
+            System.Timers.ElapsedEventHandler callBack = (Object o, System.Timers.ElapsedEventArgs a) =>
+            {
+                udp65000.Close();
+                btnItem_SearchDevice.Enabled = true;
+            };
+            UdpSendStringWaitCallback(searchDevGroupPoint, searchCMD, 1000, callBack);
+        }
+
+        private void btnItem_AddDevice_Click(object sender, EventArgs e)
+        {
+            tcpClient = new ClientAsync();
+            checkDeviceOnlineTcp();
+            AddDeviceForm addForm = new AddDeviceForm(tcpClient);
+            DialogResult result = addForm.ShowDialog(this);
+        }
+
+        private void btnItem_DelDevice_Click(object sender, EventArgs e)
+        {
+            if (selectDevice != null)
+            {
+                string message = "真的要删除设备：" + selectDevice.AliasName + " 地址:" + selectDevice.IPV4 + " 的信息？";
+                string caption = "请选择是否删除设备信息";
+                MessageBoxButtons buttons = MessageBoxButtons.YesNo;
+                DialogResult result = MessageBox.Show(message, caption, buttons);
+
+                if (result == System.Windows.Forms.DialogResult.Yes)
+                {
+                    // 操作
+                    BindDeviceList.Remove(selectDevice);
+                    _dbHelper.DelDeviceInfo(selectDevice.SN);
+                }
+            }
+        }
+
+        private void btnItem_SettingDevice_Click(object sender, EventArgs e)
+        {
+            if (selectDevice != null)
+            {
+
+                DeviceSettingsForm setForm = new DeviceSettingsForm(selectDevice, ChangeDevIpMethod);
+                setForm.ShowDialog(this);
+            }
+        }
+
+
+        #endregion 快捷键
+
+        #region Click
+
+        #endregion
+
+        #endregion 设备管理
 
         #region 播放资源管理
 
@@ -455,427 +1015,213 @@ namespace ZW_GBwin
 
         #endregion 播放资源管理
 
-        /// <summary>
-        /// Show Toast
-        /// </summary>
-        /// <param name="msg"></param>
-        /// <param name="img"></param>
-        /// <param name="position"></param>
-        /// <param name="scenes"></param>
-        /// <param name="color"></param>
-        private void showToastNotice(string msg, Image img, eToastPosition position = eToastPosition.MiddleCenter, int scenes = 3, eToastGlowColor color = eToastGlowColor.Blue)
-        {
-            if (this.InvokeRequired)
-            {
-                this.BeginInvoke(new MethodInvoker(
-                                delegate
-                                {
-                                    if (img == null)
-                                    {
-                                        img = global::ZW_GBwin.Properties.Resources.information_net_32;
-                                    }
-                                    ToastNotification.Show(this, msg, img, scenes * 1000, color, position);
-                                }
-                                ));
-            }
-            else
-            {
-                if (img == null)
-                {
-                    img = global::ZW_GBwin.Properties.Resources.information_net_32;
-                }
-                ToastNotification.Show(this, msg, img, scenes * 1000, color, position);
-            }
-        }
-
-
-        #region 设备通信模块
-
-        // 发送UDP消息
-        private void UdpSendString(IPEndPoint toPoint, string msg)
-        {
-            ThreadPool.QueueUserWorkItem(x =>
-            {
-                // 启动发送消息
-                byte[] messagebytes = Encoding.UTF8.GetBytes(msg);
-
-                using (var sendUdpClient = new UdpClient())
-                {
-                    try
-                    {
-                        // 发送消息
-                        sendUdpClient.Send(messagebytes, messagebytes.Length, toPoint);
-                    }
-                    catch (Exception ex)
-                    {
-
-                    }
-                    sendUdpClient.Close();
-                }
-            });
-        }
-
-        // 发送UDP消息
-        private void UdpSendByte(IPEndPoint toPoint, byte[] msg)
-        {
-            ThreadPool.QueueUserWorkItem(x =>
-            {
-                // 启动发送消息
-                using (var sendUdpClient = new UdpClient())
-                {
-                    // 发送消息
-                    int state = sendUdpClient.Send(msg, msg.Length, toPoint);
-
-                    sendUdpClient.Close();
-                }
-            });
-        }
-
-        private void UdpSendStringWaitCallback(IPEndPoint toPoint, string msg, double interval, System.Timers.ElapsedEventHandler callBack)
-        {
-            ThreadPool.QueueUserWorkItem(x =>
-            {
-                // 启动发送消息
-                byte[] messagebytes = Encoding.UTF8.GetBytes(msg);
-
-                using (var sendUdpClient = new UdpClient())
-                {
-                    // 发送消息
-                    int state = sendUdpClient.Send(messagebytes, messagebytes.Length, toPoint);
-
-                    sendUdpClient.Close();
-
-                    System.Timers.Timer timer = new System.Timers.Timer();
-                    timer.AutoReset = false;
-                    timer.Interval = 1000;
-                    timer.Elapsed += callBack;
-                    timer.Start();
-                }
-            });
-        }
-
-
-
-        #endregion 设备通信模块
-
-
-        #region 设备管理
-
+        #region 定时任务管理
         #region 缓存
 
-        private string currentLocalIP = "";
-
-        private udpReceiver udp65000 = new udpReceiver();
-
-        private udpReceiver udp65005 = new udpReceiver();
-
-        private ClientAsync tcpClient;
-
-        /// <summary>
-        /// 搜索设备发布信息组播地址端
-        /// </summary>
-        private IPEndPoint searchDevGroupPoint = new IPEndPoint(IPAddress.Parse("224.1.1.1"), 65000);
-
-        private int UdpRceivePort65000 = 65000;
-        private int UdpRceivePort65005 = 65005;
-
-        private List<deviceInfo> DeviceList;//设备列表
-        private BindingList<deviceInfo> BindDeviceList;
-
-        private ChangeDevIPData CurrentDev;
-        private deviceInfo selectDevice;//用户在设备列表里选定的设备信息缓存
-
-        public delegate void ChangeDevIpHandler(string currentIP, ChangeDevIPData param);
+        private List<ZWGB_PlayTask> timerTaskList;//任务列表
+        private BindingList<ZWGB_PlayTask> BindTimerTaskList;
 
         #endregion 缓存
 
         #region 私有方法
 
-        private void loadAllDevFromDB()
+        private void loadAllTimerTaskFromDB()
         {
-            DeviceList = _dbHelper.LoadAllStoredDevices();
+            timerTaskList = _dbHelper.LoadAllTimerTask();
+
+            BindTimerTaskList = new BindingList<ZWGB_PlayTask>(timerTaskList);
+
+            gridView_TimerTasks.DataSource = BindTimerTaskList;
         }
 
-        private void Udp65000_ReceivedSearch(IPAddress arg1, byte[] arg2, string arg3)
+        private void gridView_TimerTasks_DataSourceChanged(object sender, EventArgs e)
         {
-            bool ex = false;
-            deviceInfo oneDev = JsonConvert.DeserializeObject<deviceInfo>(arg3);
-            oneDev.IsOnLine = true;
-            oneDev.IsMulticastTo = true;
-
-            foreach (var one in BindDeviceList)
+            for (int i = 0; i < gridView_TimerTasks.Columns.Count; i++)
             {
-                if (one.SN == oneDev.SN)
+                switch (gridView_TimerTasks.Columns[i].Name)
                 {
-                    one.IsMulticastTo = true;
-                    one.IsOnLine = true;
-                    one.IPV4 = oneDev.IPV4;
-                    one.AliasName = oneDev.AliasName;
-                    one.IsDHCP = oneDev.IsDHCP;
-                    one.SoftwareVersion = oneDev.SoftwareVersion;
-                    _dbHelper.UpdateDeviceInfo(one);
-                    ex = true;
-                    break;
-                }
-            }
-
-            if (this.dGrid_devList.IsHandleCreated && !ex && oneDev.SN.Length > 0)
-                this.dGrid_devList.BeginInvoke(new Action(delegate
-                {
-                    if (oneDev.Type == "IPCHPOWER")
-                    {
-                        oneDev.Channals = 16;
-                    }
-                    else
-                    {
-                        oneDev.Channals = 1;
-                    }
-                    oneDev.AreaID = 0;
-                    //发送到UI 线程执行的代码
-                    _dbHelper.AddDeviceInfo(oneDev);
-                    BindDeviceList.Add(oneDev);
-                    this.dGrid_devList.Refresh();
-                }));
-
-        }
-
-        private void DGrid_devList_DataSourceChanged(object sender, EventArgs e)
-        {
-            for (int i = 0; i < dGrid_devList.Columns.Count; i++)
-            {
-                dGrid_devList.Columns[i].AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells;
-                switch (dGrid_devList.Columns[i].Name)
-                {
-                    case "AliasName":
+                    case "TaskID":
                         {
-                            dGrid_devList.Columns[i].HeaderText = "设备别名";
+                            gridView_TimerTasks.Columns[i].HeaderText = "任务编号";
+                            gridView_TimerTasks.Columns[i].AutoSizeMode = DataGridViewAutoSizeColumnMode.ColumnHeader;
                             break;
                         }
-                    case "Type":
+                    case "TaskName":
                         {
-                            dGrid_devList.Columns[i].HeaderText = "设备类别";
+                            gridView_TimerTasks.Columns[i].HeaderText = "定时任务名称";
+                            gridView_TimerTasks.Columns[i].MinimumWidth = 200;
                             break;
                         }
-                    case "HardwareVersion":
+                    case "StarTimeStr":
                         {
-                            dGrid_devList.Columns[i].HeaderText = "硬件版本";
+                            gridView_TimerTasks.Columns[i].HeaderText = "开始时间";
                             break;
                         }
-                    case "SoftwareVersion":
+                    case "EndTimeStr":
                         {
-                            dGrid_devList.Columns[i].HeaderText = "软件版本";
+                            gridView_TimerTasks.Columns[i].HeaderText = "结束时间";
                             break;
                         }
-                    case "SN":
+                    case "SpanTimeStr":
                         {
-                            dGrid_devList.Columns[i].HeaderText = "序列号SN";
+                            gridView_TimerTasks.Columns[i].HeaderText = "任务时长";
                             break;
                         }
-                    case "IsDHCP":
+                    case "PlayMode":
                         {
-                            dGrid_devList.Columns[i].HeaderText = "自动获取IP";
+                            gridView_TimerTasks.Columns[i].HeaderText = "播放模式";
                             break;
                         }
-                    case "IPV4":
+                    case "StarVolume":
                         {
-                            dGrid_devList.Columns[i].HeaderText = "IP地址IPV4";
+                            gridView_TimerTasks.Columns[i].HeaderText = "开始音量";
+                            //
                             break;
                         }
-                    case "IsOnLine":
+                    case "EndVolume":
                         {
-                            dGrid_devList.Columns[i].HeaderText = "是否在线";
+                            gridView_TimerTasks.Columns[i].HeaderText = "结束音量";
                             break;
                         }
-                    case "IsMulticastTo":
+                    case "WeekStr":
                         {
-                            dGrid_devList.Columns[i].HeaderText = "是否组可达";
-                            break;
-                        }
-                    case "TaskStatus":
-                        {
-                            dGrid_devList.Columns[i].HeaderText = "任务状态";
-                            break;
-                        }
-                    case "SpeakBusy":
-                        {
-                            dGrid_devList.Columns[i].HeaderText = "语音状态";
-                            break;
-                        }
-                    case "MonitorStatus":
-                        {
-                            dGrid_devList.Columns[i].HeaderText = "监听状态";
-                            break;
-                        }
-
-                    case "ModeStr":
-                        {
-                            dGrid_devList.Columns[i].HeaderText = "设备型号";
+                            gridView_TimerTasks.Columns[i].HeaderText = "执行的周日";
+                            gridView_TimerTasks.Columns[i].AutoSizeMode = DataGridViewAutoSizeColumnMode.ColumnHeader;
                             break;
                         }
                     default:
                         {
-                            dGrid_devList.Columns[i].Visible = false;
+                            gridView_TimerTasks.Columns[i].Visible = false;
                             break;
                         }
                 }
             }
-        }
-
-        /// <summary>
-        /// 检查设备是否在线，TCP方法
-        /// </summary>
-        private void checkDeviceOnlineTcp()
-        {
-            tcpClient = new ClientAsync();
-
-            tcpClient.Completed += new Action<TcpClient, EnSocketAction>((c, enAction) =>
-            {
-                switch (enAction)
-                {
-                    case EnSocketAction.ConnectTimeOut:
-                        {
-                            showToastNotice("连接设备超时！", null);
-                            break;
-                        }
-                    case EnSocketAction.Connect:
-                        {
-                            //   var localIP =NetHelper. GetLocalIP();//获取电脑当前本地IP
-
-                            SearchCmd cmd = new SearchCmd("SearchDev", currentLocalIP);
-                            var searchCMD = JsonConvert.SerializeObject(cmd);
-                            tcpClient.SendAsync(searchCMD);
-                            break;
-                        }
-                }
-            });
-
-            tcpClient.Received += new Action<string, string>((key, msg) =>
-            {
-                if (msg.Contains("SoftwareVersion"))
-                {
-                    bool ex = false;
-                    deviceInfo result = JsonConvert.DeserializeObject<deviceInfo>(msg);
-                    result.IsOnLine = true;
-                    result.IsMulticastTo = false;
-                    foreach (var one in BindDeviceList)
-                    {
-                        if (one.SN == result.SN)
-                        {
-                            one.IsOnLine = true;
-                            one.IsMulticastTo = false;
-                            ex = true;
-                            break;
-                        }
-                    }
-
-                    if (this.dGrid_devList.IsHandleCreated && !ex && result.SN.Length > 0)
-                        this.dGrid_devList.BeginInvoke(new Action(delegate
-                        {
-                            //发送到UI 线程执行的代码
-                            result.IsOnLine = true;
-                            result.IsMulticastTo = false;
-                            BindDeviceList.Add(result);
-                        }));
-                }
-            });
-        }
-
-        private void dGrid_devList_CellClick(object sender, DataGridViewCellEventArgs e)
-        {
-            if (DeviceList.Count > 0 && e.RowIndex > -1)
-                selectDevice = DeviceList[e.RowIndex];
-        }
-
-        private void ChangeDevIpMethod(string currentIP, ChangeDevIPData param)
-        {
-            try
-            {
-                System.Timers.ElapsedEventHandler callBack = (Object o, System.Timers.ElapsedEventArgs a) =>
-                {
-                    showToastNotice("修改配置命令已发出，请40秒后[搜索设备]以获取更改.", null, eToastPosition.MiddleCenter, 8);
-                };
-                string cmdStr = JsonConvert.SerializeObject(param);
-                UdpSendStringWaitCallback(new IPEndPoint(IPAddress.Parse(currentIP), 65000), cmdStr, 1000, callBack);
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("修改网络参数发生错误：" + ex.Message);
-            }
+            gridView_TimerTasks.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
         }
 
         #endregion 私有方法
 
-        #region 快捷键
+        #region Click
 
-        private void btnItem_SearchDevice_Click(object sender, EventArgs e)
+        private void btnItem_AddTimeMusic_Click(object sender, EventArgs e)
         {
-            btnItem_SearchDevice.Enabled = false;
-            CurrentDev = null;//清除设置设备ip命令标志
-                              // var localIP = NetHelper.GetLocalIP();//获取电脑当前本地IP
-
-            SearchCmd cmd = new SearchCmd("SearchDev", currentLocalIP);
-            var searchCMD = JsonConvert.SerializeObject(cmd);
-
-            udp65000 = new udpReceiver();
-            udp65000.Received -= Udp65000_ReceivedSearch;
-            udp65000.Received += Udp65000_ReceivedSearch;
-
-            // 创建
-            IPAddress localIp = IPAddress.Parse(currentLocalIP);//选定当前系统的IP
-            udp65000.StartUdpReceive(localIp, UdpRceivePort65000);
-            System.Timers.ElapsedEventHandler callBack = (Object o, System.Timers.ElapsedEventArgs a) =>
+            if (allArea == null || allArea.Count < 1)
             {
-                udp65000.Close();
-                btnItem_SearchDevice.Enabled = true;
-            };
-            UdpSendStringWaitCallback(searchDevGroupPoint, searchCMD, 1000, callBack);
-        }
+                allArea = _dbHelper.LoadAllArea();//读取所有的区域数据
+            }
+            if (DeviceList == null || DeviceList.Count < 1)
+            { DeviceList = _dbHelper.LoadAllStoredDevices(); }
 
-        private void btnItem_AddDevice_Click(object sender, EventArgs e)
-        {
-            tcpClient = new ClientAsync();
-            checkDeviceOnlineTcp();
-            AddDeviceForm addForm = new AddDeviceForm(tcpClient);
-            DialogResult result = addForm.ShowDialog(this);
-        }
-
-        private void btnItem_DelDevice_Click(object sender, EventArgs e)
-        {
-            if (selectDevice != null)
+            ZWGB_PlayTask newTask = new ZWGB_PlayTask();
+            List<TaskDeviceSync> devicesSync = new List<TaskDeviceSync>();
+            TimerTaskForm taskForm = new ZW_GBwin.TimerTaskForm(allArea, DeviceList, newTask, devicesSync);
+            if (taskForm.ShowDialog() == DialogResult.OK)
             {
-                string message = "真的要删除设备：" + selectDevice.AliasName + " 地址:" + selectDevice.IPV4 + " 的信息？";
-                string caption = "请选择是否删除设备信息";
-                MessageBoxButtons buttons = MessageBoxButtons.YesNo;
-                DialogResult result = MessageBox.Show(message, caption, buttons);
-
-                if (result == System.Windows.Forms.DialogResult.Yes)
+                long taskIdDB = _dbHelper.AddTimerTask(newTask);
+                foreach (var onedev in devicesSync)
                 {
-                    // 操作
-                    BindDeviceList.Remove(selectDevice);
-                    _dbHelper.DelDeviceInfo(selectDevice.SN);
+                    onedev.TaskID = taskIdDB;
+                }
+
+                _dbHelper.AddTimerTaskDeviceSyncList(devicesSync);
+                loadAllTimerTaskFromDB();
+
+                //弹出项目添加页面
+            }
+        }
+
+        private void btnItem_TaskProject_Click(object sender, EventArgs e)
+        {
+            TaskProjectForm tp = new TaskProjectForm(resourcesClass, resources, _dbHelper);
+            tp.ShowDialog();
+        }
+
+        private void btnItem_EditTimeMusic_Click(object sender, EventArgs e)
+        {
+            if (gridView_TimerTasks.CurrentRow != null)
+            {
+                ZWGB_PlayTask theTask = (ZWGB_PlayTask)gridView_TimerTasks.CurrentRow.DataBoundItem;
+                if (allArea == null || allArea.Count < 1)
+                {
+                    allArea = _dbHelper.LoadAllArea();//读取所有的区域数据
+                }
+
+                DeviceList = _dbHelper.LoadAllStoredDevices();
+                List<TaskDeviceSync> devicesSync = _dbHelper.LoadAllTimerTaskNoSync(theTask.TaskID);
+                //
+
+                TimerTaskForm taskForm = new ZW_GBwin.TimerTaskForm(allArea, DeviceList, theTask, devicesSync);
+                if (taskForm.ShowDialog() == DialogResult.OK)
+                {
+                    _dbHelper.UpdateTimerTaskInfo(theTask);
+
+                    _dbHelper.UpdateTimerTaskDeviceSyncList(devicesSync);
+                    loadAllTimerTaskFromDB();
                 }
             }
         }
 
-        private void btnItem_SettingDevice_Click(object sender, EventArgs e)
+        private void btnItem_DelTimeMusic_Click(object sender, EventArgs e)
         {
-            if (selectDevice != null)
+            if (gridView_TimerTasks.CurrentRow != null)
             {
+                ZWGB_PlayTask theTask = (ZWGB_PlayTask)gridView_TimerTasks.CurrentRow.DataBoundItem;
+                List<TaskDeviceSync> devicesSync = _dbHelper.LoadAllTimerTaskNoSync(theTask.TaskID);
 
-                DeviceSettingsForm setForm = new DeviceSettingsForm(selectDevice, ChangeDevIpMethod);
-                setForm.ShowDialog(this);
+                if (DeviceList == null || DeviceList.Count < 1)
+                { DeviceList = _dbHelper.LoadAllStoredDevices(); }
+
+
+
+                DelTimerTaskForm delForm = new DelTimerTaskForm(DeviceList, theTask, devicesSync);
+                if (delForm.ShowDialog() == DialogResult.OK)
+                {
+                    _dbHelper.DelTheTaskDeviceSyncInfo(theTask.TaskID);
+                    _dbHelper.DelTheTaskInfo(theTask.TaskID);
+
+                    loadAllTimerTaskFromDB();
+                }
+
+                //提示有设备不在线，是否继续删除
+                //删除设备上的次任务
+                //删除任务同步记录
+                //删除任务记录
             }
         }
 
+        private void btnItem_StartTimeMusic_Click(object sender, EventArgs e)
+        {
 
-        #endregion 快捷键
+        }
 
-        #region Click
+        private void btnItem_PauseTimeMusic_Click(object sender, EventArgs e)
+        {
 
-        #endregion
+        }
 
-        #endregion 设备管理
+        private void btnItem_StopTimeMusic_Click(object sender, EventArgs e)
+        {
 
+        }
+
+        private void btnItem_PrevTimeMusic_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnItem_NextTimeMusic_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void gridView_TimerTasks_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            btnItem_EditTimeMusic_Click(sender, e);
+        }
+
+        #endregion Click
+
+        #endregion 定时任务管理
 
         #region 区域管理
 
@@ -885,6 +1231,7 @@ namespace ZW_GBwin
 
         private List<ZWGB_Area> allArea;//区域数据缓存
 
+        DevComponents.AdvTree.Node defaultNode;//
 
 
         #endregion 缓存
@@ -1008,17 +1355,77 @@ namespace ZW_GBwin
                     }
                 case "添加设备":
                     {
-
+                        ZWGB_Area theArea = (ZWGB_Area)_selectedAreaNode.Tag;
+                        if (theArea.AreaID < 2)
+                        {
+                            showToastNotice("不能直接把设备添加到此默认区域.", null, eToastPosition.MiddleCenter, 2);
+                            return;
+                        }
+                        var dev = DeviceList.FindAll(x => x.AreaID == 1);
+                        var addDev = new List<deviceInfo>();
+                        AreaAddDevForm addDevForm = new AreaAddDevForm(dev, addDev);
+                        if (addDevForm.ShowDialog() == DialogResult.OK)
+                        {
+                            //更新设备所属区域信息
+                            foreach (var oneDev in addDev)
+                            {
+                                oneDev.AreaID = theArea.AreaID;
+                                _dbHelper.UpdateDeviceInfo(oneDev);
+                            }
+                            //重载区域列表
+                            loadAllAreaDeviceToTree();
+                        }
                         break;
                     }
                 case "移除该设备":
                     {
+                        if (_selectedAreaNode.Parent.Text == "默认区域")
+                        {
+                            showToastNotice("不能移除此默认区域的设备.", null, eToastPosition.MiddleCenter, 2);
+                            return;
+                        }
+                        Type nodeType = _selectedAreaNode.Tag.GetType();
+                        if (nodeType == typeof(deviceInfo))
+                        {
+                            deviceInfo theDev = (deviceInfo)_selectedAreaNode.Tag;
+                            theDev.AreaID = 1;
+                            _dbHelper.UpdateDeviceInfo(theDev);
+                            _selectedAreaNode.Parent.Nodes.Remove(_selectedAreaNode);
 
+                            defaultNode.Nodes.Add(_selectedAreaNode);
+                        }
                         break;
                     }
                 case "添加分区设备组":
                     {
+                        CHGroup _group = new CHGroup();
+                        ChannelGroupForm group = new ZW_GBwin.ChannelGroupForm(_group);
+                        if (group.ShowDialog() == DialogResult.OK)
+                        {
+                            deviceInfo theDev = (deviceInfo)_selectedAreaNode.Tag;
+                            if (String.IsNullOrEmpty(theDev.LoginName))
+                            {
+                                showToastNotice("该设备的登录口令尚未配置，未能添加！", null, eToastPosition.MiddleCenter, 2);
+                                return;
+                            }
 
+                            LoginDeviceResult logon = loginDeviceHttp(theDev.IPV4, theDev.LoginName, theDev.LoginPass);
+
+                            if (logon.Status && logon.Data != null)
+                            {
+                                theDev.Token = logon.Data.Token;
+                                OperateNormalResult result = addChannelGroup(theDev.IPV4, logon.Data.Token, _group);
+                                if (result.Status)
+                                {
+                                    //获取该设备的分组信息，加载到树节点
+                                    showToastNotice("该分区分组已添加到目标设备.", null, eToastPosition.MiddleCenter, 1);
+                                }
+                            }
+                            else
+                            {
+                                showToastNotice("未能登录到目标设备：" + logon.DetailedInfo.ToString(), null, eToastPosition.MiddleCenter, 2);
+                            }
+                        }
                         break;
                     }
                 case "修改分区设备组":
@@ -1038,7 +1445,7 @@ namespace ZW_GBwin
             }
         }
 
-        private void loadAllAreaAndDeviceToTree()
+        private void loadAllAreaDeviceToTree()
         {
             loadAllDevFromDB();//加载存储的设备
             allArea = _dbHelper.LoadAllArea();//读取所有的区域数据
@@ -1065,8 +1472,11 @@ namespace ZW_GBwin
                 }
                 treeNodes.Add(theNode);
                 advTree_Area.Nodes.Add(theNode);
+                if (oneRoot.AreaID == 1)
+                {
+                    defaultNode = theNode;
+                }
             }
-
 
             while (treeNodes.Count > 0)
             {
@@ -1091,7 +1501,7 @@ namespace ZW_GBwin
                     theNode.Nodes.Add(tempNode);
                 }
             }
-
+            advTree_Area.ExpandAll();
         }
 
         /// <summary>
@@ -1227,10 +1637,25 @@ namespace ZW_GBwin
         private void advTree_Area_BeforeNodeDrop(object sender, DevComponents.AdvTree.TreeDragDropEventArgs e)
         {
             //父节点是设备的，不接受拖入
+            if (e.NewParentNode == null)
+            {
+                e.Cancel = true;
+                return;
+            }
             Type parentType = e.NewParentNode.Tag.GetType();
+            if (parentType == typeof(ZWGB_Area))
+            {
+                ZWGB_Area parentArea = (ZWGB_Area)e.NewParentNode.Tag;
+                if (parentArea.AreaID == 1)
+                {
+                    e.Cancel = true;
+                    return;
+                }
+            }
             if (parentType == typeof(deviceInfo) || parentType == typeof(int))
             {
                 e.Cancel = true;
+                return;
             }
             else
             {
@@ -1257,6 +1682,8 @@ namespace ZW_GBwin
         #endregion Click
 
         #endregion 区域管理
+
+
 
         private void Udp65000_Received(System.Net.IPAddress arg1, byte[] arg2, string arg3)
         {

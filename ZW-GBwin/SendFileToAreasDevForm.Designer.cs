@@ -37,6 +37,8 @@
             this.ClientSize = new System.Drawing.Size(457, 261);
             this.DoubleBuffered = true;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "SendFileToAreasDevForm";
             this.Text = "发送播放资源到区域设备终端";
             this.ResumeLayout(false);
